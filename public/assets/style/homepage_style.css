@@ -1,0 +1,68 @@
+body {
+  background-image: url(../images/Cursive-Background.jpg);
+  background-repeat: no repeat;
+  background-size: cover;
+}
+
+a.hide_hyperlink{
+  text-decoration: none;
+  color: black;
+  font-weight: bolder;
+}
+
+
+.a{
+  /*padding-top: 20px;*/
+
+  width: 100%;
+  /*max-width: 960px;*/
+  font-family: 'Meddon', cursive;
+  margin: 0px auto;
+  text-align: center;
+  vertical-align: middle;
+
+  line-height: 80px;
+}
+.b{
+  width: 100%;
+  /*max-width: 960px;*/
+  font-family: 'Meddon', cursive;
+  margin: 0px auto;
+  text-align: center;
+  vertical-align: middle;
+
+  line-height: 80px;
+}
+
+.c{
+  width: 100%;
+  /*max-width: 960px;*/
+  font-family: 'Meddon', cursive;
+  margin: 0px auto;
+  text-align: center;
+  vertical-align: middle;
+
+  line-height: 90px;
+}
+
+.d{
+  width: 100%;
+  /*max-width: 960px;*/
+  font-family: 'Meddon', cursive;
+  margin: 0px auto;
+  text-align: center;
+  vertical-align: middle;
+
+  line-height: 100px;
+}
+
+.e{
+  width: 100%;
+  /*max-width: 960px;*/
+  font-family: 'Meddon', cursive;
+  margin: 0px auto;
+  text-align: center;
+  vertical-align: middle;
+
+  line-height: 110px;
+}

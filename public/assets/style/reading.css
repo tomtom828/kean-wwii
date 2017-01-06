@@ -1,0 +1,153 @@
+#logo_bar{
+	height:80px;
+	width: 40%;
+	background-color: #15317E;
+	float: left;
+}
+
+#site_logo{
+	width: 17%;
+	height: 80px;
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: auto;
+	margin-left: 10px;
+	margin-right: 0px;
+	float: left;
+}
+
+#home_link{
+	width: 65%;
+	height: 80px;
+	background-color: #15317E;
+	font-size: 13px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 85px;
+	float: left;
+}
+
+
+#nav_wrapper{
+	
+	height: 80px;
+	width: 60%;
+	background:#15317E;
+	display: flex;
+	flex-flow: row;
+	white-space: nowrap;
+	float: left;
+}
+
+#nav_bar ul{
+	list-style-type: none;
+	margin-top: auto;
+	margin-bottom: auto;
+	font-size: 13px;
+	position: relative;
+}
+
+#nav_bar ul li{
+	display: inline-block;
+}
+
+#nav_bar ul li:hover{
+	background-color: #151B8D;
+}
+
+#nav_bar ul li a,visited{
+	color: #151B8D;
+	display: block;
+	padding: 15px;
+	text-decoration: none;
+	color: white;
+}
+
+#nav_bar ul li a:hover{
+	color: white;
+	text-decoration: none;
+}
+
+#nav_bar ul li:hover ul{
+	display: block;
+}
+
+#nav_bar ul ul{
+	display: none;
+	position: absolute;
+	background-color: #151B8D;
+}
+
+#nav_bar ul ul li{
+	display: block;
+}
+
+body,
+html{
+	min-height: 100%;
+}
+
+
+
+body {
+	background-image:url(image3.jpg);
+	background-repeat:no repeat;
+	background-size: cover;
+}
+
+
+
+#sf{
+	height: 30px;
+	width: 300px;
+}
+
+
+#searchbutton{
+	float: left;
+	width: 28px;
+	padding-left: 37%;
+}
+
+#searchfield{
+	float: left;
+	width: 240px;
+}
+
+#authors{
+	height: 120px;
+	width: 100%;
+	background-image:url(authors.jpg);
+	background-repeat: no repeat;
+	background-size: cover;
+	color: white;
+	margin-top: 100px;
+	display: inline-block;
+	padding-top: 30px;
+	font-size: 14px;
+}
+
+#letters{
+	height: 120px;
+	width: 100%;
+	background-image:url(letters1.jpg);
+	background-repeat: no repeat;
+	background-size: cover;
+	color: white;
+	display: inline-block;
+	padding-top: 30px;
+	font-size: 14px;
+}
+
+#map{
+	height: 120px;
+	width: 100%;
+	background-image:url(map.jpg);
+	background-repeat: no repeat;
+	background-size: cover;
+	color: white;
+	display: inline-block;
+	padding-top: 30px;
+	font-size: 14px;
+}
