@@ -14,6 +14,9 @@ CREATE TABLE `dummytable` (
 INSERT INTO `dummytable` VALUES (32,'Fort Washington Road, Fort Washington, Maryland 20744',NULL,NULL),(33,'1023 Fort McClellan, Anniston, Alabama, 36205',NULL,NULL),(34,'Walker St and Lee Blvd, Newport News, Virginia, 23604',NULL,NULL),(35,'2500 Jackson Avenue, Hattiesburg, Mississippi, 39401',NULL,NULL),(36,'',NULL,NULL),(37,'Walker Street and Lee Boulevard, Newport News, Virginia, 23604',NULL,NULL),(38,'131-24 233rd St Jamaica, New York 11422',NULL,NULL),(39,'Fort Washington Road, Fort Washington, Maryland 20744',NULL,NULL),(40,'1810 Avendia J Sheppard AFB, Texas, 76311',NULL,NULL),(41,'Fort Washington Road, Fort Washington, Maryland 20744',NULL,NULL),(42,'Walker Street and Lee Boulevard, Newport News, Virginia, 23604',NULL,NULL),(43,'2500 Jackson Avenue, Hattiesburg, Mississippi, 39401',NULL,NULL),(44,'Fort Washington Road, Fort Washington, Maryland 20744',NULL,NULL),(45,'Walker Street and Lee Boulevard, Newport News, Virginia, 23604',NULL,NULL),(46,'Walker Street and Lee Boulevard, Newport News, Virginia, 23604',NULL,NULL),(47,'Walker Street and Lee Boulevard, Newport News, Virginia, 23604',NULL,NULL);
 
 
+-- Remove Strict Mode
+
+SET sql_mode = '';
 
 
 CREATE TABLE `letters` (
