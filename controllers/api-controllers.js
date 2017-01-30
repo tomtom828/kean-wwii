@@ -39,6 +39,40 @@ apiRouter.get('/api/authors/all', function (req, res) {
 
 
 
+
+// GET - Retrieve all Authors (Lastname, Firstname) from MySQL
+apiRouter.get('/api/letters/all/:lastname/:firstname', function (req, res) {
+  
+  // Collect parameters
+  var lastname = req.params.lastname;
+  var firstname = req.params.firstname;
+
+  // Declare Database
+  var connection = mysql.createConnection(
+    dbInfo
+  );
+
+  // Connect to the Database
+  connection.connect(function(err) {
+      if (err) throw err;
+      console.log("connected as id " + connection.threadId);
+  });
+
+  // Read Database
+  connection.query('SELECT filename, letterdate, ts_dateguess FROM letters WHERE lastname = "' + lastname + '" AND firstname = "' + firstname + '" ORDER BY letterdate DESC', function(err, response){
+    if(err) throw err;
+
+    // Export to CLient Side
+    res.json(response);
+
+    // Disconnect from MySQL
+    connection.end();
+  });
+
+});
+
+
+
 // ----------------------------------------------------
 // Export routes
 module.exports = apiRouter;

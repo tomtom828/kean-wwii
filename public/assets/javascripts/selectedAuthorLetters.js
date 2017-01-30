@@ -6,21 +6,33 @@ $(document).ready(function(){
   var firstName = authorRoute[3];
   var lastName = authorRoute[2];
 
-  // Spot Check names for Other
+  // Spot Check names
+  var displayFirstName = firstName;
+  var displayLastName = lastName;
+
   if(firstName == 'Other'){
     // Change for Various vs. Unknown Soldier
     if(lastName == 'Various'){
-      firstName = 'Various';
-      lastName = "Authors";
+      displayFirstName = 'Various';
+      displayLastName = "Authors";
     }
     else{
-      firstName = "The";
+      displayFirstName = "The";
     }
   }
 
   // Append Author name for all needed classes 
-  $('.author-name').text(firstName + " " + lastName);
+  $('.author-name').text(displayFirstName + " " + displayLastName);
+
 
   // Collect all letters via Author Name (API Call)
+  var currentURL = window.location.origin;
+  $.get(currentURL + '/api/letters/all/' + lastName + '/' + firstName, function(data){
+
+    // Store repsonse globally
+    allLetters = data;
+    console.log(allLetters)
+
+  });
 
 });
