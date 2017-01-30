@@ -39,6 +39,10 @@ app.use('/', domRouter);
 var apiRouter = require('./controllers/api-controllers.js');
 app.use('/', apiRouter);
 
+// Import Resource controller
+var resourceRouter = require('./controllers/resource-controllers.js');
+app.use('/', resourceRouter);
+
 // ============================================================
 
 

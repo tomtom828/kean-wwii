@@ -15,6 +15,11 @@ domRouter.get('/authors', function (req, res){
 });
 
 
+// View Selected Author Page Render
+domRouter.get('/authors/:lastname/:firstname', function (req, res){
+  res.render('selectedAuthor');
+});
+
 
 // ----------------------------------------------------
 // Export routes

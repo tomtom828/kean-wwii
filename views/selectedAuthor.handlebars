@@ -1,0 +1,120 @@
+<!-- Link in View Author Letters Page CSS -->
+<link href="/assets/style/author_letters_style.css" rel="stylesheet" type="text/css">
+
+
+{{!-- Title using Author Name --}}
+<h1 id="author-name-title" class="author-name" align="center"></h1>
+
+<br/><br/>
+
+{{!-- Row for Image and Bio --}}
+<div class="row">
+
+  {{!-- Image --}}
+  <div class="col-md-5">
+    <img src="http://placehold.it/350x350">
+  </div>
+
+  {{!-- Bio --}}
+  <div class="col-md-7">
+
+    {{!-- Repeat their name --}}
+    <h3 class="author-name"></h3>
+
+    {{!-- Important Facts --}}
+    <ul>
+      <li id="bio-birth"><b>Date of Birth: </b> </li>
+      <li id="bio-death"><b>Date of Death: </b> </li>
+      <li id="bio-enrolled"><b>Enrolled: </b> </li>
+      <li id="bio-left"><b>Left N.S.T.C. for service: </b> </li>
+      <li id="bio-return"><b>Return to N.S.T.C. from service: </b> </li>
+      <li id="bio-graduated"><b>Graduated from N.S.T.C.: </b> </li>
+      <li id="bio-degree"><b>Degree: </b> </li>
+    <ul>
+
+  </div>
+
+<div>
+
+
+<br/><br/>
+
+{{!-- Row for Letters --}}
+<div class="row">
+
+  {{!-- Letters Title --}}
+  <div class="col-md-12">
+    <center><h2>Letters</h2></center>
+  </div>
+
+
+  <div class="row">
+
+    {{!-- Drop Down of all Letters to View --}}
+    <div class="col-md-12">
+      <center>
+
+        {{!-- Drop Down --}}
+        <div class="input-group">
+          Select a Letter:
+          <button id="selectLetter" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Letter 1 <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#">Letter 1</a></li>
+            <li><a href="#">Letter 2</a></li>
+          </ul>
+        </div>
+
+      </center>
+    </div>
+
+
+  </div>
+
+
+  <br/><br/>
+
+
+  {{!-- Side By Side Letters and Transcribe --}}
+  {{!-- <div class="row"> --}}
+
+   {{!-- Letter Images --}}
+    <div class="col-md-6">
+      <img id="letter-image" src="/resources/letter-image/Joseph Pikus April 13 1943 2-2.jpg" alt="Letter" height="650" width="500">
+    </div>
+
+
+    {{!-- Letter Transcribe --}}
+    <div class="col-md-6">
+      <center style="height: 650px; width: 500px; background-color: #e5e5e3;">
+        <p id="letter-text"></p>
+      <center>
+    </div>
+
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+<br/><br/>
+
+{{!-- Row for Map --}}
+<div class="row">
+
+  {{!-- Letters Title --}}
+  <div class="col-md-12">
+    <center><h2>Map</h2></center>
+  </div>
+
+</div>
+
+
+
+<!-- Link in JavaScript to collect all letter names from API -->
+<script src="/assets/javascripts/selectedAuthorLetters.js"></script>

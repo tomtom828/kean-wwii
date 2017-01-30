@@ -87,7 +87,19 @@ $(document).ready(function(){
 
 
   // Click Listner for Author Meta Data (brings user to selected author's page)
+  $(document).on('click', '.author_box', function(){
 
+    // Collect first and last name
+    var nameAttribute = $(this).data('name').split('-');
+    var firstName = nameAttribute[1];
+    var lastname = nameAttribute[0];
+
+    // Redirect to selected author's page
+    var baseURL = window.location.origin;
+    var authorURL = baseURL + '/authors/' + lastname + '/' + firstName;
+    window.location.href = authorURL;
+
+  });
 
 });
 
