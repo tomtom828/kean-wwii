@@ -9,7 +9,6 @@ $(document).ready(function(){
   // Spot Check names
   var displayFirstName = firstName;
   var displayLastName = lastName;
-
   if(firstName == 'Other'){
     // Change for Various vs. Unknown Soldier
     if(lastName == 'Various'){
@@ -21,6 +20,7 @@ $(document).ready(function(){
     }
   }
 
+
   // Append Author name for all needed classes 
   $('.author-name').text(displayFirstName + " " + displayLastName);
 
@@ -31,7 +31,6 @@ $(document).ready(function(){
 
     // Store repsonse
     allLetters = data;
-    console.log(allLetters)
 
     // Set the default letter
     $('#currentLetter').text(allLetters[0].filename);
@@ -46,7 +45,6 @@ $(document).ready(function(){
       alt: allLetters[0].filename.toString()
     });
 
-
     // Append File Names to the Read Drop Down Menu
     for(var i=0; i < allLetters.length; i++){
       var listItem = '<li class="letterListItem"><a href="#">' + allLetters[i].filename + '</a></li>';
@@ -57,10 +55,16 @@ $(document).ready(function(){
 
 
   // Click Listener for Letter Selection
-  $(document).on('click', '.letterListItem', function(){
+  $(document).on('click', '.letterListItem', function(e){
     
+    // Prevent Default Click action
+    e.preventDefault();
+
     // Collect Image / Letter Entry Name
     var letterName = $(this).text();
+
+    // Update Dropdown Button Text
+    $('#currentLetter').html(letterName);
 
     // Render the proper Letter image
     var letterImageURL = "/resources/letter-image/" + letterName + ".jpg";
@@ -72,10 +76,8 @@ $(document).ready(function(){
     // Hit API to collect article text
     getLetterText(letterName);
 
-    // Prevent Default Click action
-    return false;
-
   });
+
 
 
   // API Function - Get the Article Text
@@ -83,8 +85,8 @@ $(document).ready(function(){
     // Set up URL to hit API
     var currentURL = window.location.origin;
     $.get(currentURL + "/resources/letters/" + letterName, function(data){
-      // Append Text to DOM
-      $('#letterText').html(data);
+      // Append Text to DOM (note that \n is needed to be changed to <br> tag for jQuery to work right)
+      $('#letterText').html( data.replace(/\n/g, "<br />") );
     });
   }
 

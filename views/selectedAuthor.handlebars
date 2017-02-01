@@ -45,6 +45,7 @@
   {{!-- Letters Title --}}
   <div class="col-md-12">
     <center><h2>Letters</h2></center>
+    <br/>
   </div>
 
 
@@ -56,10 +57,12 @@
 
         {{!-- Drop Down --}}
         <div class="input-group">
-          Select a Letter:
+          <b>Select a Letter: </b>
           <button id="selectLetter" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i><span id="currentLetter"></span> </i><span class="caret"></span></button>
           <ul id="letterDropDown" class="dropdown-menu">
+
             {{!-- Dynamically append letter names from database --}}
+
           </ul>
         </div>
 
@@ -78,16 +81,18 @@
 
    {{!-- Letter Images --}}
     <div class="col-md-6">
-      <img id="letterImage" src="/resources/letter-image/Joseph Pikus April 13 1943 2-2.jpg" alt="Letter" height="650" width="500">
+      <img id="letterImage" src="/resources/letter-image/Joseph Pikus April 13 1943 2-2.jpg" alt="Letter" height="650" width="500" style="background-color: #ffffff;">
     </div>
 
 
     {{!-- Letter Transcribe --}}
     <div class="col-md-6">
-      <center style="height: 650px; width: 500px; background-color: #e5e5e3;">
+      <div style="height: 650px; width: 500px; padding: 30px; overflow: auto; background-color: #e5e5e3;">
+
         {{!-- Dynamically Append Letter Text --}}
         <p id="letterText"></p>
-      <center>
+
+      <div>
     </div>
 
 
