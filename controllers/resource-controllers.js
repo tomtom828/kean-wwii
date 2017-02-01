@@ -16,10 +16,15 @@ resourceRouter.get('/resources/letters/:letterName', function (req, res) {
   var fullPath = path.join(__dirname, fileLocation);
 
   // Read File from Resources Folder
-  var fileText = fs.readFileSync(fullPath).toString();
-
-  // Respond with Letter Text
-  res.json(fileText);
+  var fileText;
+  try {
+    // Respond with Letter Text
+    fileText = fs.readFileSync(fullPath).toString();
+    res.json(fileText);
+  } catch (err) {
+    // Respond with Error
+    res.json("File Not Found.");
+  }
 
 });
 
