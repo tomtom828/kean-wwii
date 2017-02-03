@@ -42,84 +42,130 @@
 {{!-- Row for Letters --}}
 <div class="row">
 
+
   {{!-- Letters Title --}}
   <div class="col-md-12">
     <center><h2>Letters</h2></center>
-    <br/>
   </div>
 
 
   <div class="row">
-
     {{!-- Drop Down of all Letters to View --}}
     <div class="col-md-12">
       <center>
-
         {{!-- Drop Down --}}
         <div class="input-group">
           <b>Select a Letter: </b>
           <button id="selectLetter" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i><span id="currentLetter"></span> </i><span class="caret"></span></button>
           <ul id="letterDropDown" class="dropdown-menu">
-
             {{!-- Dynamically append letter names from database --}}
-
           </ul>
         </div>
-
       </center>
     </div>
-
-
   </div>
 
-
-  <br/><br/>
+  <br/>
 
 
   {{!-- Side By Side Letters and Transcribe --}}
-  {{!-- <div class="row"> --}}
+  <div class="row">
 
    {{!-- Letter Images --}}
     <div class="col-md-6">
-      <img id="letterImage" src="/resources/letter-image/Joseph Pikus April 13 1943 2-2.jpg" alt="Letter" height="650" width="500" style="background-color: #ffffff;">
+      <img id="letterImage" src="" alt="Letter Scan" height="650" width="500" style="background-color: #ffffff;">
     </div>
-
 
     {{!-- Letter Transcribe --}}
     <div class="col-md-6">
       <div style="height: 650px; width: 500px; padding: 30px; overflow: auto; background-color: #e5e5e3;">
-
         {{!-- Dynamically Append Letter Text --}}
         <p id="letterText"></p>
-
       <div>
     </div>
-
 
   </div>
 
 
 </div>
-
-
-
-
 
 
 
 <br/><br/>
 
+
 {{!-- Row for Map --}}
 <div class="row">
 
-  {{!-- Letters Title --}}
+ {{!-- Map Title --}}
   <div class="col-md-12">
     <center><h2>Map</h2></center>
   </div>
+
+
+  <div class="row">
+    {{!-- Drop Down of all Years to View --}}
+    <div class="col-md-12">
+      <center>
+        {{!-- Drop Down --}}
+        <div class="input-group">
+          <b>Select a Year: </b>
+          <button id="selectYear" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i><span id="currentYear">All</span> </i><span class="caret"></span></button>
+          <ul id="yearDropDown" class="dropdown-menu">
+            <li class="yearListItem"><a href="#">All</a></li>
+            <li class="yearListItem"><a href="#">1941</a></li>
+            <li class="yearListItem"><a href="#">1942</a></li>
+            <li class="yearListItem"><a href="#">1943</a></li>
+            <li class="yearListItem"><a href="#">1944</a></li>
+            <li class="yearListItem"><a href="#">1945</a></li>
+            <li class="yearListItem"><a href="#">1946</a></li>
+            <li class="yearListItem"><a href="#">1950</a></li>
+          </ul>
+        </div>
+      </center>
+    </div>
+  </div>
+
+  <br/>
+
+
+  {{!-- View Letter Years on map --}}
+  <div class="row">
+
+    <div id="maperror"></div>
+    <div id="map"></div>
+    <div id="legend"><h3>Legend</h3></div>
+
+    <div id="marker_traveller">
+        <div id="traversal"></div><br>
+        <button onclick="goto_first_marker()">First Letter</button>
+        <button onclick="goto_final_marker()">Final Letter</button><br><br>
+        <button onclick="goto_previous_marker()">Previous Letter</button>
+        <button onclick="goto_next_marker()">Next Letter</button><br><br>
+        <button onclick="reset_map_view()">Reset Map View</button>
+        <button onclick="toggle_legend_visibility()">Toggle Legend Visibility</button>
+    </div>
+
+  </div>
+
+
+
 
 </div>
 
 
 
+<!-- Map scripts/resources -->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+<script type="text/javascript" src="/map_libraries/OverlappingMarkerSpiderfier.js"></script>
+<script type="text/javascript" src="/map_libraries/markerwithlabel.js"></script>
+<script type="text/javascript" src="/map_libraries/polyline_labels.js"></script>
+
+
 <!-- Link in JavaScript to collect all letter names from API -->
 <script src="/assets/javascripts/selectedAuthorLetters.js"></script>
+
+
+<!-- Custom map scripts -->
+<script type="text/javascript" src="/map_js/map_year.js"></script>
+<script type="text/javascript" src="/map_js/create_legend.js"></script>
