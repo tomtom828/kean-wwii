@@ -1,8 +1,16 @@
 <!-- Link in View Author Letters Page CSS -->
 <link href="/assets/style/author_letters_style.css" rel="stylesheet" type="text/css">
 
+{{!-- Map Styling --}}
+<style>
+   #map {
+    height: 500px;
+    width: 100%;
+   }
+</style>
 
-{{!-- Title using Author Name --}}
+
+{{!-- Title using author-name or Name --}}
 <h1 id="author-name-title" class="author-name" align="center"></h1>
 
 <br/><br/>
@@ -133,7 +141,23 @@
   <div class="row">
 
     <div id="maperror"></div>
+
     <div id="map"></div>
+    <script type="text/javascript">
+      function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+
+
     <div id="legend"><h3>Legend</h3></div>
 
     <div id="marker_traveller">
@@ -154,12 +178,15 @@
 </div>
 
 
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
+</script>
 
-<!-- Map scripts/resources -->
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+<!-- Old Map scripts/resources -->
+{{!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
 <script type="text/javascript" src="/map_libraries/OverlappingMarkerSpiderfier.js"></script>
 <script type="text/javascript" src="/map_libraries/markerwithlabel.js"></script>
-<script type="text/javascript" src="/map_libraries/polyline_labels.js"></script>
+<script type="text/javascript" src="/map_libraries/polyline_labels.js"></script> --}}
 
 
 <!-- Link in JavaScript to collect all letter names from API -->
@@ -167,5 +194,5 @@
 
 
 <!-- Custom map scripts -->
-<script type="text/javascript" src="/map_js/map_year.js"></script>
-<script type="text/javascript" src="/map_js/create_legend.js"></script>
+{{!-- <script type="text/javascript" src="/map_js/map_year.js"></script>
+<script type="text/javascript" src="/map_js/create_legend.js"></script> --}}
