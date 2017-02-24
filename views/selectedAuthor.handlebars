@@ -1,14 +1,6 @@
 <!-- Link in View Author Letters Page CSS -->
 <link href="/assets/style/author_letters_style.css" rel="stylesheet" type="text/css">
 
-{{!-- Map Styling --}}
-<style>
-   #map {
-    height: 500px;
-    width: 100%;
-   }
-</style>
-
 
 {{!-- Title using author-name or Name --}}
 <h1 id="author-name-title" class="author-name" align="center"></h1>
@@ -140,59 +132,97 @@
   {{!-- View Letter Years on map --}}
   <div class="row">
 
-    <div id="maperror"></div>
-
     <div id="map"></div>
-    <script type="text/javascript">
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
+
+      <div id="legend"><h3>Legend</h3></div>
+
+      <script>
+        var map;
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: new google.maps.LatLng(-33.91722, 151.23064),
+            mapTypeId: 'roadmap'
+          });
+
+          var iconBase = '/marker_icons/';
+          var icons = {
+            parking: {
+              name: 'Parking',
+              icon: iconBase + '1941_single.png'
+            },
+            library: {
+              name: 'Library',
+              icon: iconBase + '1942_single.png'
+            },
+            info: {
+              name: 'Info',
+              icon: iconBase + '1943_single.png'
+            }
+          };
+
+          function addMarker(feature) {
+            var marker = new google.maps.Marker({
+              position: feature.position,
+              icon: icons[feature.type].icon,
+              map: map
+            });
+          }
+
+          var features = [
+            {
+              position: new google.maps.LatLng(-33.91721, 151.22630),
+              type: 'info'
+            },
+
+          ];
+
+          for (var i = 0, feature; feature = features[i]; i++) {
+            addMarker(feature);
+          }
+
+          // var legend = document.getElementById('legend');
+          // for (var key in icons) {
+          //   var type = icons[key];
+          //   var name = type.name;
+          //   var icon = type.icon;
+          //   var div = document.createElement('div');
+          //   div.innerHTML = '<img src="' + icon + '"> ' + name;
+          //   legend.appendChild(div);
+          // }
+
+          // map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+
+          var legend = document.getElementById('legend');
+          legend.style.display = "block"; //toggle visibility here, when it's known the legend will actually be needed 
+          
+          var prefixes = ["unknown","1941","1942","1943","1944","1945","1946","1950"];
+
+          for(var i = 0; i < prefixes.length; i++) {
+
+            var single_icon = "/marker_icons/" + prefixes[i] + "_single.png";
+            var multiple_icon = "/marker_icons/" + prefixes[i] + "_multiple.png";
+
+            var single_name = prefixes[i] + " (single)";
+            var multiple_name = prefixes[i] + " (multiple)";
+
+            var div = document.createElement('div');
+
+            div.innerHTML = '<img src="' + single_icon + '"> ' + single_name + '<img src="' + multiple_icon + '"> ' + multiple_name;
+            legend.appendChild(div);
+          }
+
+          map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend); //push the filled legend div to the map
+
+
+
+        }
     </script>
 
-
-    <div id="legend"><h3>Legend</h3></div>
-
-    <div id="marker_traveller">
-        <div id="traversal"></div><br>
-        <button onclick="goto_first_marker()">First Letter</button>
-        <button onclick="goto_final_marker()">Final Letter</button><br><br>
-        <button onclick="goto_previous_marker()">Previous Letter</button>
-        <button onclick="goto_next_marker()">Next Letter</button><br><br>
-        <button onclick="reset_map_view()">Reset Map View</button>
-        <button onclick="toggle_legend_visibility()">Toggle Legend Visibility</button>
-    </div>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwJ4VNrbXp9LO1_9O4H4kg-vwq8C0nPTk&callback=initMap">
+    </script>
 
   </div>
 
-
-
-
 </div>
-
-
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkUOdZ5y7hMm0yrcCQoCvLwzdM6M8s5qk&callback=initMap">
-</script>
-
-<!-- Old Map scripts/resources -->
-{{!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry"></script>
-<script type="text/javascript" src="/map_libraries/OverlappingMarkerSpiderfier.js"></script>
-<script type="text/javascript" src="/map_libraries/markerwithlabel.js"></script>
-<script type="text/javascript" src="/map_libraries/polyline_labels.js"></script> --}}
-
-
-<!-- Link in JavaScript to collect all letter names from API -->
-<script src="/assets/javascripts/selectedAuthorLetters.js"></script>
-
-
-<!-- Custom map scripts -->
-{{!-- <script type="text/javascript" src="/map_js/map_year.js"></script>
-<script type="text/javascript" src="/map_js/create_legend.js"></script> --}}

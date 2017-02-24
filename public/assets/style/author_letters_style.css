@@ -15,3 +15,39 @@ body {
 	font-family: 'Meddon', cursive;
 	font-weight: bold;
 }
+
+
+/* Mapping Styling */
+/*#map {
+  height: 75%;
+  width: 750px;
+  position: relative;
+    height: 500px;
+    width: 100%;
+}
+#maperror {
+  height: 3%;
+}
+#legend { 
+  background:white;
+  padding:10px;
+  display:none;
+}*/
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+#legend {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid #000;
+}
+#legend h3 {
+  margin-top: 0;
+}
+#legend img {
+  vertical-align: middle;
+}
