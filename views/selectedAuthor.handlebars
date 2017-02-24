@@ -132,10 +132,27 @@
   {{!-- View Letter Years on map --}}
   <div class="row">
 
+    {{!-- Custom Map Error Message --}}
+    <div id="maperror"></div>
+
+    {{!-- Google Map --}}
     <div id="map"></div>
 
-      <div id="legend"><h3>Legend</h3></div>
+    {{!-- Google Map Legend --}}
+    <div id="legend"><h3>Legend</h3></div>
 
+    {{!-- Custom Marker Controls --}}
+    <div id="marker_traveller">
+      <div id="traversal"></div><br>
+      <button onclick="goto_first_marker()">First Letter</button>
+      <button onclick="goto_final_marker()">Final Letter</button><br><br>
+      <button onclick="goto_previous_marker()">Previous Letter</button>
+      <button onclick="goto_next_marker()">Next Letter</button><br><br>
+      <button onclick="reset_map_view()">Reset Map View</button>
+      <button onclick="toggle_legend_visibility()">Toggle Legend Visibility</button>
+    </div>
+
+    {{!-- Create Google Map Legend --}}
       <script>
         var map;
         function initMap() {
@@ -181,18 +198,9 @@
             addMarker(feature);
           }
 
-          // var legend = document.getElementById('legend');
-          // for (var key in icons) {
-          //   var type = icons[key];
-          //   var name = type.name;
-          //   var icon = type.icon;
-          //   var div = document.createElement('div');
-          //   div.innerHTML = '<img src="' + icon + '"> ' + name;
-          //   legend.appendChild(div);
-          // }
 
-          // map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
-
+          // Create a Custom Map Legend
+          // --------------------------------------- start ---------------------------------------
           var legend = document.getElementById('legend');
           legend.style.display = "block"; //toggle visibility here, when it's known the legend will actually be needed 
           
@@ -214,10 +222,42 @@
 
           map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend); //push the filled legend div to the map
 
+          // --------------------------------------- end ---------------------------------------
 
 
         }
     </script>
+
+
+
+
+
+    {{!-- Toggle Legend Visibility --}}
+    <script type="text/javascript">
+
+      function toggle_legend_visibility() {
+
+        var legend = document.getElementById('legend');
+
+        if(legend.style.display == "block") { //if visible, hide it
+
+          legend.style.display = "none";
+        }
+
+        else { //if hidden, show it
+
+          legend.style.display = "block";
+        }
+      }
+
+    </script>
+
+
+
+
+
+
+
 
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwJ4VNrbXp9LO1_9O4H4kg-vwq8C0nPTk&callback=initMap">
