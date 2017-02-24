@@ -6,86 +6,86 @@
 
     function load(firstname, lastname) {
 
-      var string1 = "getxml.php?";
-      var string2 = "firstname=";
-      string2 = string2.concat(firstname);
-      var string3 = "&lastname=";
-      string3 = string3.concat(lastname);
-      var phplink = string1.concat(string2,string3);
+      // var string1 = "getxml.php?";
+      // var string2 = "firstname=";
+      // string2 = string2.concat(firstname);
+      // var string3 = "&lastname=";
+      // string3 = string3.concat(lastname);
+      // var phplink = string1.concat(string2,string3);
 
-      var markers = []; //all markers, including potentially null location data ones
+      // var markers = []; //all markers, including potentially null location data ones
 
       downloadUrl(phplink, function(data) {
 
-        var xml = data.responseXML;
-        markers = xml.documentElement.getElementsByTagName("marker");
+      //   var xml = data.responseXML;
+      //   markers = xml.documentElement.getElementsByTagName("marker");
 
-        if(markers.length === 1) { //***author only had 1 letter***
+       // if(markers.length === 1) { //***author only had 1 letter***
 
-          if(markers[0].getAttribute("lat") && markers[0].getAttribute("lng"))  {
+          // if(markers[0].getAttribute("lat") && markers[0].getAttribute("lng"))  {
 
-            map = new google.maps.Map(document.getElementById("map"), {
-            center: new google.maps.LatLng(markers[0].getAttribute("lat"), markers[0].getAttribute("lng")),
-            zoom: 2,
-            mapTypeId: 'roadmap'
-            }); //create map, center is one pt
+          //   map = new google.maps.Map(document.getElementById("map"), {
+          //   center: new google.maps.LatLng(markers[0].getAttribute("lat"), markers[0].getAttribute("lng")),
+          //   zoom: 2,
+          //   mapTypeId: 'roadmap'
+          //   }); //create map, center is one pt
 
-            document.getElementById("maperror").style.display = "none";
+          //   document.getElementById("maperror").style.display = "none";
 
-            center = map.center;
-          }
+          //   center = map.center;
+          // }
 
-          else {
+          // else {
 
-            document.getElementById("maperror").innerHTML = "Location data is not available at this time.<br>";
+          //   document.getElementById("maperror").innerHTML = "Location data is not available at this time.<br>";
           
-            document.getElementById("map").style.display = "none";
-            document.getElementById("marker_traveller").style.display = "none";
-            return; //exit early so that the legend div is never created
-          }
+          //   document.getElementById("map").style.display = "none";
+          //   document.getElementById("marker_traveller").style.display = "none";
+          //   return; //exit early so that the legend div is never created
+          // }
 
-        }
+      //  }
 
-        else { //***author had > 1 letter***
+      //  else { //***author had > 1 letter***
 
-          var bound = new google.maps.LatLngBounds();
-          var nullcount = 0;
+          // var bound = new google.maps.LatLngBounds();
+          // var nullcount = 0;
 
-          for(i = 0; i < markers.length; i++) {
+          // for(i = 0; i < markers.length; i++) {
 
-            if(markers[i].getAttribute("lat") && markers[i].getAttribute("lng")) { //if the point is NOT NULL
+          //   if(markers[i].getAttribute("lat") && markers[i].getAttribute("lng")) { //if the point is NOT NULL
 
-              bound.extend(new google.maps.LatLng(markers[i].getAttribute("lat"), markers[i].getAttribute("lng")));
-            }
+          //     bound.extend(new google.maps.LatLng(markers[i].getAttribute("lat"), markers[i].getAttribute("lng")));
+          //   }
 
-            else { //both the lat and lng are null, meaning we don't have a point to map it to
+          //   else { //both the lat and lng are null, meaning we don't have a point to map it to
 
-              nullcount++; //keep track of how many null points there are
-            }
-          }
+          //     nullcount++; //keep track of how many null points there are
+          //   }
+          // }
 
-          if(nullcount !== markers.length) { //if there is at least one non-null point, make the map object
+          // if(nullcount !== markers.length) { //if there is at least one non-null point, make the map object
 
-            map = new google.maps.Map(document.getElementById("map"), {
-            center: bound.getCenter(),
-            zoom: 2,
-            mapTypeId: 'roadmap'
-            }); //create map, center is derived from latlngbounds
+          //   map = new google.maps.Map(document.getElementById("map"), {
+          //   center: bound.getCenter(),
+          //   zoom: 2,
+          //   mapTypeId: 'roadmap'
+          //   }); //create map, center is derived from latlngbounds
 
-            center = bound.getCenter(); //store center in a global
+          //   center = bound.getCenter(); //store center in a global
 
-            document.getElementById("maperror").style.display = "none";
-          }
+          //   document.getElementById("maperror").style.display = "none";
+          // }
 
-          else { //nullcount === markers.length, which means every point for the author was null, so DO NOT draw the map
+          // else { //nullcount === markers.length, which means every point for the author was null, so DO NOT draw the map
 
-            document.getElementById("maperror").innerHTML = "Location data is not available at this time.<br>";
+          //   document.getElementById("maperror").innerHTML = "Location data is not available at this time.<br>";
           
-            document.getElementById("map").style.display = "none";
-            document.getElementById("marker_traveller").style.display = "none";
-            return; //exit early so that the legend div is never created
-          }
-        }
+          //   document.getElementById("map").style.display = "none";
+          //   document.getElementById("marker_traveller").style.display = "none";
+          //   return; //exit early so that the legend div is never created
+          // }
+        //}
 
         var oms = new OverlappingMarkerSpiderfier(map,{
           keepSpiderfied: true

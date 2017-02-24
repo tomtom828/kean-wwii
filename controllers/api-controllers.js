@@ -9,6 +9,7 @@ var dbInfo = require('../dbInfo.json');
 // console.log(dbInfo)
 
 
+
 // GET - Retrieve all Authors (Lastname, Firstname) from MySQL
 apiRouter.get('/api/authors/all', function (req, res) {
   
@@ -40,7 +41,7 @@ apiRouter.get('/api/authors/all', function (req, res) {
 
 
 
-// GET - Retrieve all Authors (Lastname, Firstname) from MySQL
+// GET - Retrieve selected Author (Lastname, Firstname) from MySQL
 apiRouter.get('/api/letters/all/:lastname/:firstname', function (req, res) {
   
   // Collect parameters
@@ -70,6 +71,41 @@ apiRouter.get('/api/letters/all/:lastname/:firstname', function (req, res) {
   });
 
 });
+
+
+
+
+// GET - Retrieve Lat & Long Coordinates of selected Author (Lastname, Firstname) from MySQL
+apiRouter.get('/api/map/all/:lastname/:firstname', function (req, res) {
+  
+  // Collect parameters
+  var lastname = req.params.lastname;
+  var firstname = req.params.firstname;
+
+  // Declare Database
+  var connection = mysql.createConnection(
+    dbInfo
+  );
+
+  // Connect to the Database
+  connection.connect(function(err) {
+      if (err) throw err;
+      console.log("connected as id " + connection.threadId);
+  });
+
+  // Read Database
+  connection.query('SELECT * FROM letters,locdata WHERE firstname = "' + firstname + '" AND lastname = "' + lastname + '" AND letters.id = locdata.locationid ORDER BY ts_dateguess', function(err, response){
+    if(err) throw err;
+
+    // Export to Client Side
+    res.json(response);
+
+    // Disconnect from MySQL
+    connection.end();
+  });
+
+});
+
 
 
 
