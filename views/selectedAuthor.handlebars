@@ -45,7 +45,7 @@
 
   {{!-- Letters Title --}}
   <div class="col-md-12">
-    <center><h2>Letters</h2></center>
+    <center><h2 id="mapped-letter">Letters</h2></center>
   </div>
 
 
@@ -308,11 +308,11 @@
                     var marker_icon_filepath = "/marker_icons/unknown_single.png";
                   }
 
-                  var html = "<b><a href=viewletter.php?letterid=" + letterid + ">" + 
-                              name + "</a>" + 
-                              "</b> <br>" + 
+                  var html = '<b><a href="#mapped-letter" class="mapMarkerIconLink">' + 
+                              name + '</a>'+ 
+                              '</b> <br>' + 
                               address +
-                              "<br>";
+                              '<br>';
                   var icon = {};
 
                   //change this to generate string that points to proper marker, then use that in the icon -> we can go from this to use normal markers instead of MarkerWithLabel
@@ -596,26 +596,16 @@
 
     </script>
 
-
-
-
-
-    {{!-- --}}
-
-
-
-
-
-
-
-    {{!-- Google Maps API Resources --}}
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwJ4VNrbXp9LO1_9O4H4kg-vwq8C0nPTk&callback=initMap">
-    </script>
-    <script type="text/javascript" src="/map_libraries/OverlappingMarkerSpiderfier.js"></script>
-    <script type="text/javascript" src="/map_libraries/markerwithlabel.js"></script>
-    <script type="text/javascript" src="/map_libraries/polyline_labels.js"></script>
-
   </div>
 
 </div>
+
+
+{{!-- Link in JavaScript to collect all letter names from API --}}
+<script src="/assets/javascripts/selectedAuthorLetters.js"></script>
+
+{{!-- Google Maps API Resources --}}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwJ4VNrbXp9LO1_9O4H4kg-vwq8C0nPTk&callback=initMap"></script>
+<script type="text/javascript" src="/map_libraries/OverlappingMarkerSpiderfier.js"></script>
+<script type="text/javascript" src="/map_libraries/markerwithlabel.js"></script>
+<script type="text/javascript" src="/map_libraries/polyline_labels.js"></script>

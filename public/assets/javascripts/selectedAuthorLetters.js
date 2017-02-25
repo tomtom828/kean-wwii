@@ -79,6 +79,38 @@ $(document).ready(function(){
   });
 
 
+  // Click Listener for Map Icon Link Selection
+  $(document).on('click', '.mapMarkerIconLink', function(e){
+    
+    // Prevent Default Click action
+    //e.preventDefault();
+
+    // Collect Image / Letter Entry Name
+    var letterName = $(this).text();
+
+    console.log(letterName)
+
+    // // Update Dropdown Button Text
+    $('#currentLetter').html(letterName);
+
+    // // Render the proper Letter image
+    var letterImageURL = "/resources/letter-image/" + letterName + ".jpg";
+    $('#letterImage').attr({
+      src: letterImageURL,
+      alt: letterName
+    });
+
+    // // Hit API to collect article text
+    getLetterText(letterName);
+
+
+    // Scroll to Letter Location
+
+
+  });
+
+
+
 
   // API Function - Get the Article Text
   var getLetterText = function(letterName){
@@ -89,7 +121,6 @@ $(document).ready(function(){
       $('#letterText').html( data.replace(/\n/g, "<br />") );
     });
   }
-
 
 
 
