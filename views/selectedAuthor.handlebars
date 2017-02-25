@@ -159,7 +159,7 @@
         var center; //global ref to the center of a map with multiple letters
         var valid_markers = []; //only the markers with real location data
         var current_zoomed_coord_index = -1; //iterator for stepping through letters in chrono order -- initially at -1, then set to [0,+infinity]
-        var infoWindow //= new google.maps.InfoWindow({maxWidth: 200}); //global infowindow for letter info
+        var infoWindow = new google.maps.InfoWindow({maxWidth: 200}); //global infowindow for letter info
 
         function initMap() {
 
@@ -307,13 +307,13 @@
 
                   var coords = markers[i].lat+","+markers[i].lng;
 
-                  var name = markers[i].name;
-                  var address = markers[i].address;
+                  var name = markers[i].filename;
+                  var address = markers[i].location;
                   var point = new google.maps.LatLng(
                     parseFloat(markers[i].lat),
                     parseFloat(markers[i].lng));
-                  var letterid = markers[i].letterid;
-                  var year = markers[i].year;
+                  var letterid = markers[i].id;
+                  var year = markers[i].ts_dateguess.substring(0, 4);;
 
                   if(year > "0000") { //if a year is not null, by default make the path point to that year, single icon on the spot
 
