@@ -106,23 +106,6 @@
   <div class="row">
     {{!-- Drop Down of all Years to View --}}
     <div class="col-md-12">
-      <center>
-        {{!-- Drop Down --}}
-        <div class="input-group">
-          <b>Select a Year: </b>
-          <button id="selectYear" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i><span id="currentYear">All</span> </i><span class="caret"></span></button>
-          <ul id="yearDropDown" class="dropdown-menu">
-            <li class="yearListItem"><a href="#">All</a></li>
-            <li class="yearListItem"><a href="#">1941</a></li>
-            <li class="yearListItem"><a href="#">1942</a></li>
-            <li class="yearListItem"><a href="#">1943</a></li>
-            <li class="yearListItem"><a href="#">1944</a></li>
-            <li class="yearListItem"><a href="#">1945</a></li>
-            <li class="yearListItem"><a href="#">1946</a></li>
-            <li class="yearListItem"><a href="#">1950</a></li>
-          </ul>
-        </div>
-      </center>
     </div>
   </div>
 
@@ -383,33 +366,33 @@
                 } //endif
               } //end marker loop
 
-            for(var i = 0; i < valid_markers.length-1; i++) {
+            // for(var i = 0; i < valid_markers.length-1; i++) {
 
-              if(!valid_markers[i].position.equals(valid_markers[i+1].position) && valid_markers[i].year > "0000" && valid_markers[i+1].year > "0000") { //if the pair is on the exact same spot, OR one of the two points has an unknown date, do not draw the polyline
+            //   if(!valid_markers[i].position.equals(valid_markers[i+1].position) && valid_markers[i].year > "0000" && valid_markers[i+1].year > "0000") { //if the pair is on the exact same spot, OR one of the two points has an unknown date, do not draw the polyline
 
-                var midpoint = google.maps.geometry.spherical.interpolate(valid_markers[i].position,valid_markers[i+1].position,0.5); //midway pt between these two markers
+            //     var midpoint = google.maps.geometry.spherical.interpolate(valid_markers[i].position,valid_markers[i+1].position,0.5); //midway pt between these two markers
 
-                var polyLabel = new Label({
-                  text: valid_markers[i].name + " to " + valid_markers[i+1].name,
-                  position: midpoint
-                });
+            //     var polyLabel = new Label({
+            //       text: valid_markers[i].name + " to " + valid_markers[i+1].name,
+            //       position: midpoint
+            //     });
 
-                var path = new google.maps.Polyline({
-                  path: [valid_markers[i].position,valid_markers[i+1].position],
-                  icons: [{
-                    icon: lineSymbol,
-                    offset: '100%'
-                  }],
-                  geodesic: true,
-                  strokeColor: '#2f2f2f',
-                  strokeOpacity: 1.0,
-                  strokeWeight: 4,
-                  map: map
-                });
+            //     var path = new google.maps.Polyline({
+            //       path: [valid_markers[i].position,valid_markers[i+1].position],
+            //       icons: [{
+            //         icon: lineSymbol,
+            //         offset: '100%'
+            //       }],
+            //       geodesic: true,
+            //       strokeColor: '#2f2f2f',
+            //       strokeOpacity: 1.0,
+            //       strokeWeight: 4,
+            //       map: map
+            //     });
 
-                create_polyline_listeners(path, polyLabel);
-              } //endif
-            } //endloop
+            //     create_polyline_listeners(path, polyLabel);
+            //   } //endif
+            // } //endloop
 
              // legend(map); //call the legend function in create_legend.js
 
