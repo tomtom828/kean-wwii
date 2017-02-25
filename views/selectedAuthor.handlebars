@@ -159,11 +159,11 @@
         var center; //global ref to the center of a map with multiple letters
         var valid_markers = []; //only the markers with real location data
         var current_zoomed_coord_index = -1; //iterator for stepping through letters in chrono order -- initially at -1, then set to [0,+infinity]
-        var infoWindow = new google.maps.InfoWindow({maxWidth: 200}); //global infowindow for letter info
+        
 
         function initMap() {
 
-
+          var infoWindow = new google.maps.InfoWindow({maxWidth: 200}); //global infowindow for letter info
 
           // Collect all Lat and Long Points for the Author 
           // --------------------------------------- start ---------------------------------------
@@ -421,137 +421,43 @@
               // OTHER FUNCTIONS FOR MAPPNG
               function create_polyline_listeners(polyline, label) {
 
-      google.maps.event.addListener(polyline, 'mouseover', function(e) {
+                google.maps.event.addListener(polyline, 'mouseover', function(e) {
 
-          var tooltipLat = e.latLng.lat();
-          var tooltipLng = e.latLng.lng();
-          label.position = new google.maps.LatLng(tooltipLat, tooltipLng);
-          //label.position = e.latLng;
+                    var tooltipLat = e.latLng.lat();
+                    var tooltipLng = e.latLng.lng();
+                    label.position = new google.maps.LatLng(tooltipLat, tooltipLng);
+                    //label.position = e.latLng;
 
-          label.setMap(map);
-          
-          polyline.setOptions({ strokeColor: '#660033',
-                                strokeWeight: 6});  
-      });
+                    label.setMap(map);
+                    
+                    polyline.setOptions({ strokeColor: '#660033',
+                                          strokeWeight: 6});  
+                });
 
-      google.maps.event.addListener(polyline, 'mouseout', function(e) {
+                google.maps.event.addListener(polyline, 'mouseout', function(e) {
 
-          label.setMap(null);
-          polyline.setOptions({ strokeColor: '#2f2f2f',
-                                strokeWeight: 4});  
-      });
-    }
+                    label.setMap(null);
+                    polyline.setOptions({ strokeColor: '#2f2f2f',
+                                          strokeWeight: 4});  
+                });
+              }
 
-    function goto_first_marker() {
+              
 
-      map.setZoom(7);
-      current_zoomed_coord_index = 0; //reset current zoomed coord index
-      map.panTo(valid_markers[current_zoomed_coord_index].position);
-      google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
-      document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
-    }
+              function bindInfoWindow(marker, map, infoWindow, html) {
 
-    function goto_final_marker() {
+                google.maps.event.addListener(marker, 'click', function() {
 
-      map.setZoom(7);
-      current_zoomed_coord_index = valid_markers.length-1; //reassign current zoomed coord
-      map.panTo(valid_markers[current_zoomed_coord_index].position);
-      google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
-      document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
-    }
+                  infoWindow.setContent(html);
+                  infoWindow.open(map,marker);
 
-    function goto_previous_marker() {
+                  //extra code to bind the map navigation to marker clicks
+                  current_zoomed_coord_index = marker.chronoSpot-1; //-1 for 0-indexing
+                  document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+                });
+              }
 
-      if(current_zoomed_coord_index === 0 || current_zoomed_coord_index === -1) {
-
-        //if the user navigated to the start of the path, OR has freshly loaded the map and not used the buttons yet, OR reset the map view, wrap around to the end
-        map.setZoom(7);
-        current_zoomed_coord_index = valid_markers.length-1 //reassign current zoomed coord
-        map.panTo(valid_markers[current_zoomed_coord_index].position);
-        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
-        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
-      }
-
-      else {
-
-        //the user is somewhere from coords[1] to coords[coords.length-1], so go to previous marker as expected
-        map.setZoom(7);
-        current_zoomed_coord_index--;
-        map.panTo(valid_markers[current_zoomed_coord_index].position);
-        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
-        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";     
-      }
-    }
-
-    function goto_next_marker() {
-
-      if(current_zoomed_coord_index === valid_markers.length-1) {
-
-        //if the user navigated to the end of the path, wrap around to the beginning
-        map.setZoom(7);
-        current_zoomed_coord_index = 0; //reassign current zoomed coord
-        map.panTo(valid_markers[current_zoomed_coord_index].position);
-        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
-        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
-      }
-
-      else {
-
-        //the user is somwhere from coords[-1] to coords[coords.length-2], go to next as expected
-        map.setZoom(7);
-        current_zoomed_coord_index++;
-        map.panTo(valid_markers[current_zoomed_coord_index].position);
-        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
-        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
-      }
-    }
-
-    function reset_map_view() {
-
-      map.setZoom(2);
-      map.setCenter(center);
-      infoWindow.close();
-      document.getElementById("traversal").innerHTML = "Use the buttons below to step through the letters chronologically."; //reset the traversal text
-      current_zoomed_coord_index = -1; //reset current zoomed coord index as if the map was freshly loaded
-    }
-
-    function bindInfoWindow(marker, map, infoWindow, html) {
-
-      google.maps.event.addListener(marker, 'click', function() {
-
-        infoWindow.setContent(html);
-        infoWindow.open(map,marker);
-
-        //extra code to bind the map navigation to marker clicks
-        current_zoomed_coord_index = marker.chronoSpot-1; //-1 for 0-indexing
-        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
-      });
-    }
-
-    function downloadUrl(url, callback) {
-
-      var request = window.ActiveXObject ?
-        new ActiveXObject('Microsoft.XMLHTTP') :
-        new XMLHttpRequest;
-
-      request.onreadystatechange = function() {
-
-        if(request.readyState === 4) {
-
-          request.onreadystatechange = doNothing;
-          callback(request, request.status);
-        }
-      };
-
-      request.open('GET', url, true);
-      request.send(null);
-    }
-
-
-
-
-
-
+      
 
 
 
@@ -621,6 +527,89 @@
           legend.style.display = "block";
         }
       }
+
+    </script>
+
+
+
+
+
+
+    {{!-- Toggle Other Map Functionality --}}
+    <script type="text/javascript">
+      function goto_first_marker() {
+
+        map.setZoom(7);
+        current_zoomed_coord_index = 0; //reset current zoomed coord index
+        map.panTo(valid_markers[current_zoomed_coord_index].position);
+        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+      }
+
+      function goto_final_marker() {
+
+        map.setZoom(7);
+        current_zoomed_coord_index = valid_markers.length-1; //reassign current zoomed coord
+        map.panTo(valid_markers[current_zoomed_coord_index].position);
+        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+      }
+
+      function goto_previous_marker() {
+
+        if(current_zoomed_coord_index === 0 || current_zoomed_coord_index === -1) {
+
+          //if the user navigated to the start of the path, OR has freshly loaded the map and not used the buttons yet, OR reset the map view, wrap around to the end
+          map.setZoom(7);
+          current_zoomed_coord_index = valid_markers.length-1 //reassign current zoomed coord
+          map.panTo(valid_markers[current_zoomed_coord_index].position);
+          google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+          document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+        }
+
+        else {
+
+          //the user is somewhere from coords[1] to coords[coords.length-1], so go to previous marker as expected
+          map.setZoom(7);
+          current_zoomed_coord_index--;
+          map.panTo(valid_markers[current_zoomed_coord_index].position);
+          google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+          document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";     
+        }
+      }
+
+      function goto_next_marker() {
+
+        if(current_zoomed_coord_index === valid_markers.length-1) {
+
+          //if the user navigated to the end of the path, wrap around to the beginning
+          map.setZoom(7);
+          current_zoomed_coord_index = 0; //reassign current zoomed coord
+          map.panTo(valid_markers[current_zoomed_coord_index].position);
+          google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+          document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+        }
+
+        else {
+
+          //the user is somwhere from coords[-1] to coords[coords.length-2], go to next as expected
+          map.setZoom(7);
+          current_zoomed_coord_index++;
+          map.panTo(valid_markers[current_zoomed_coord_index].position);
+          google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+          document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+        }
+      }
+
+      function reset_map_view() {
+
+        map.setZoom(2);
+        map.setCenter(center);
+        infoWindow.close();
+        document.getElementById("traversal").innerHTML = "Use the buttons below to step through the letters chronologically."; //reset the traversal text
+        current_zoomed_coord_index = -1; //reset current zoomed coord index as if the map was freshly loaded
+      }
+
 
     </script>
 
