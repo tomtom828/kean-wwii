@@ -155,7 +155,12 @@
     {{!-- Create Google Map Legend --}}
       <script>
 
-        var map;
+        var map; //global ref to google map
+        var center; //global ref to the center of a map with multiple letters
+        var valid_markers = []; //only the markers with real location data
+        var current_zoomed_coord_index = -1; //iterator for stepping through letters in chrono order -- initially at -1, then set to [0,+infinity]
+        var infoWindow //= new google.maps.InfoWindow({maxWidth: 200}); //global infowindow for letter info
+
         function initMap() {
 
 
@@ -278,9 +283,9 @@
 
                 for(i = 0; i < markers.length; i++) {
                   //get distinct marker lat/lng combos
-                  if(markers[i].getAttribute("lat") && markers[i].getAttribute("lng")) {
+                  if(markers[i].lat && markers[i].lng) {
 
-                    var coords = markers[i].getAttribute("lat")+","+markers[i].getAttribute("lng");
+                    var coords = markers[i].lat+","+markers[i].lng;
                     if(distinct_array[coords])
                       distinct_array[coords]++;
                     else
@@ -296,28 +301,28 @@
 
               for(var i = 0; i < markers.length; i++) {
 
-                if(markers[i].getAttribute("lat") && markers[i].getAttribute("lng")) { //if the map point exists
+                if(markers[i].lat && markers[i].lng) { //if the map point exists
 
                   chronocounter++;
 
-                  var coords = markers[i].getAttribute("lat")+","+markers[i].getAttribute("lng");
+                  var coords = markers[i].lat+","+markers[i].lng;
 
-                  var name = markers[i].getAttribute("name");
-                  var address = markers[i].getAttribute("address");
+                  var name = markers[i].name;
+                  var address = markers[i].address;
                   var point = new google.maps.LatLng(
-                    parseFloat(markers[i].getAttribute("lat")),
-                    parseFloat(markers[i].getAttribute("lng")));
-                  var letterid = markers[i].getAttribute("letterid");
-                  var year = markers[i].getAttribute("year");
+                    parseFloat(markers[i].lat),
+                    parseFloat(markers[i].lng));
+                  var letterid = markers[i].letterid;
+                  var year = markers[i].year;
 
                   if(year > "0000") { //if a year is not null, by default make the path point to that year, single icon on the spot
 
-                    var marker_icon_filepath = "marker_icons/" + year.toString() + "_single.png";
+                    var marker_icon_filepath = "/marker_icons/" + year.toString() + "_single.png";
                   }
 
                   else { //year is unknown
 
-                    var marker_icon_filepath = "marker_icons/unknown_single.png";
+                    var marker_icon_filepath = "/marker_icons/unknown_single.png";
                   }
 
                   var html = "<b><a href=viewletter.php?letterid=" + letterid + ">" + 
@@ -360,13 +365,13 @@
                   
                   if(year > "0000") {
                     marker.setOptions({
-                      icon: "marker_icons/" + year.toString() + "_multiple.png"
+                      icon: "/marker_icons/" + year.toString() + "_multiple.png"
                     }); 
                   }
 
                   else {
                     marker.setOptions({
-                      icon: "marker_icons/unknown_multiple.png"
+                      icon: "/marker_icons/unknown_multiple.png"
                     });
                   } 
                 }
@@ -406,9 +411,141 @@
               } //endif
             } //endloop
 
-              legend(map); //call the legend function in create_legend.js
+             // legend(map); //call the legend function in create_legend.js
 
               document.getElementById("traversal").innerHTML = "Use the buttons below to step through the letters chronologically.";
+
+
+
+
+              // OTHER FUNCTIONS FOR MAPPNG
+              function create_polyline_listeners(polyline, label) {
+
+      google.maps.event.addListener(polyline, 'mouseover', function(e) {
+
+          var tooltipLat = e.latLng.lat();
+          var tooltipLng = e.latLng.lng();
+          label.position = new google.maps.LatLng(tooltipLat, tooltipLng);
+          //label.position = e.latLng;
+
+          label.setMap(map);
+          
+          polyline.setOptions({ strokeColor: '#660033',
+                                strokeWeight: 6});  
+      });
+
+      google.maps.event.addListener(polyline, 'mouseout', function(e) {
+
+          label.setMap(null);
+          polyline.setOptions({ strokeColor: '#2f2f2f',
+                                strokeWeight: 4});  
+      });
+    }
+
+    function goto_first_marker() {
+
+      map.setZoom(7);
+      current_zoomed_coord_index = 0; //reset current zoomed coord index
+      map.panTo(valid_markers[current_zoomed_coord_index].position);
+      google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+      document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+    }
+
+    function goto_final_marker() {
+
+      map.setZoom(7);
+      current_zoomed_coord_index = valid_markers.length-1; //reassign current zoomed coord
+      map.panTo(valid_markers[current_zoomed_coord_index].position);
+      google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+      document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+    }
+
+    function goto_previous_marker() {
+
+      if(current_zoomed_coord_index === 0 || current_zoomed_coord_index === -1) {
+
+        //if the user navigated to the start of the path, OR has freshly loaded the map and not used the buttons yet, OR reset the map view, wrap around to the end
+        map.setZoom(7);
+        current_zoomed_coord_index = valid_markers.length-1 //reassign current zoomed coord
+        map.panTo(valid_markers[current_zoomed_coord_index].position);
+        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+      }
+
+      else {
+
+        //the user is somewhere from coords[1] to coords[coords.length-1], so go to previous marker as expected
+        map.setZoom(7);
+        current_zoomed_coord_index--;
+        map.panTo(valid_markers[current_zoomed_coord_index].position);
+        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";     
+      }
+    }
+
+    function goto_next_marker() {
+
+      if(current_zoomed_coord_index === valid_markers.length-1) {
+
+        //if the user navigated to the end of the path, wrap around to the beginning
+        map.setZoom(7);
+        current_zoomed_coord_index = 0; //reassign current zoomed coord
+        map.panTo(valid_markers[current_zoomed_coord_index].position);
+        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+      }
+
+      else {
+
+        //the user is somwhere from coords[-1] to coords[coords.length-2], go to next as expected
+        map.setZoom(7);
+        current_zoomed_coord_index++;
+        map.panTo(valid_markers[current_zoomed_coord_index].position);
+        google.maps.event.trigger(valid_markers[current_zoomed_coord_index],'click');
+        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+      }
+    }
+
+    function reset_map_view() {
+
+      map.setZoom(2);
+      map.setCenter(center);
+      infoWindow.close();
+      document.getElementById("traversal").innerHTML = "Use the buttons below to step through the letters chronologically."; //reset the traversal text
+      current_zoomed_coord_index = -1; //reset current zoomed coord index as if the map was freshly loaded
+    }
+
+    function bindInfoWindow(marker, map, infoWindow, html) {
+
+      google.maps.event.addListener(marker, 'click', function() {
+
+        infoWindow.setContent(html);
+        infoWindow.open(map,marker);
+
+        //extra code to bind the map navigation to marker clicks
+        current_zoomed_coord_index = marker.chronoSpot-1; //-1 for 0-indexing
+        document.getElementById("traversal").innerHTML = "Letter " + (current_zoomed_coord_index+1) + " of " + valid_markers.length + " (chronologically)";
+      });
+    }
+
+    function downloadUrl(url, callback) {
+
+      var request = window.ActiveXObject ?
+        new ActiveXObject('Microsoft.XMLHTTP') :
+        new XMLHttpRequest;
+
+      request.onreadystatechange = function() {
+
+        if(request.readyState === 4) {
+
+          request.onreadystatechange = doNothing;
+          callback(request, request.status);
+        }
+      };
+
+      request.open('GET', url, true);
+      request.send(null);
+    }
 
 
 
@@ -430,49 +567,6 @@
 
 
 
-
-
-
-
-
-
-
-
-          // var iconBase = '/marker_icons/';
-          // var icons = {
-          //   parking: {
-          //     name: 'Parking',
-          //     icon: iconBase + '1941_single.png'
-          //   },
-          //   library: {
-          //     name: 'Library',
-          //     icon: iconBase + '1942_single.png'
-          //   },
-          //   info: {
-          //     name: 'Info',
-          //     icon: iconBase + '1943_single.png'
-          //   }
-          // };
-
-          // function addMarker(feature) {
-          //   var marker = new google.maps.Marker({
-          //     position: feature.position,
-          //     icon: icons[feature.type].icon,
-          //     map: map
-          //   });
-          // }
-
-          // var features = [
-          //   {
-          //     position: new google.maps.LatLng(-33.91721, 151.22630),
-          //     type: 'info'
-          //   },
-
-          // ];
-
-          // for (var i = 0, feature; feature = features[i]; i++) {
-          //   addMarker(feature);
-          // }
 
 
           // Create a Custom Map Legend
@@ -543,7 +637,7 @@
 
 
     {{!-- Google Maps API Resources --}}
-    <script async defer
+    <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwJ4VNrbXp9LO1_9O4H4kg-vwq8C0nPTk&callback=initMap">
     </script>
     <script type="text/javascript" src="/map_libraries/OverlappingMarkerSpiderfier.js"></script>
