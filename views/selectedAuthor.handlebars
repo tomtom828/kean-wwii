@@ -78,7 +78,13 @@
    {{!-- Letter Images --}}
     <div class="col-md-6 col-xs-12">
       <center>
-        <h4>Archive</h4>
+        <h4>
+          {{!-- <a href="#" aria-label="Previous"><span aria-hidden="true">&lsaquo;</span></a> --}}
+          <button class="btn btn-default transcript-button"><i class="glyphicon glyphicon-menu-left"></i></button>
+          View Archive
+          <button class="btn btn-default transcript-button"><i class="glyphicon glyphicon-menu-right"></i></button>
+          {{!-- <a href="#" aria-label="Next"><span aria-hidden="true">&rsaquo;</span></a> --}}
+        </h4>
         <img id="letterImage" src="" alt="Letter Scan" height="650" width="90%" style="background-color: #ffffff; margin-bottom: 20px;">
       </center>
     </div>
@@ -86,7 +92,11 @@
     {{!-- Letter Transcribe --}}
     <div class="col-md-6 col-xs-12">
       <center>
-        <h4>Transcript</h4>
+        <h4>
+          <button class="btn btn-default hide-used-as-placeholder"><i class="glyphicon glyphicon-menu-up"></i></button>
+          View Transcript
+          <button class="btn btn-default hide-used-as-placeholder"><i class="glyphicon glyphicon-menu-down"></i></button>
+        </h4>
         <div style="height: 650px; width: 90%; padding: 30px; overflow: auto; background-color: #e5e5e3; margin-bottom: 20px;">
           {{!-- Dynamically Append Letter Text --}}
           <p id="letterText" style="text-align: left;"></p>

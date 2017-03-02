@@ -51,3 +51,12 @@ body {
 #legend img {
   vertical-align: middle;
 }
+
+.hide-used-as-placeholder {
+  visibility:hidden;
+}
+
+.transcript-button {
+  border: none;
+  background: transparent;
+}
