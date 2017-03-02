@@ -11,33 +11,36 @@
 <div class="row">
 
   {{!-- Image --}}
-  <div class="col-md-5">
-    <img src="http://placehold.it/350x350">
+  <div class="col-md-5 col-xs-12">
+    <center>
+      <img src="http://placehold.it/350x350">
+    </center>
   </div>
 
   {{!-- Bio --}}
-  <div class="col-md-7">
+  <div class="col-md-7 col-xs-12">
+    <div style="margin-left: 25%;">
 
-    {{!-- Repeat their name --}}
-    <h3 class="author-name"></h3>
+      {{!-- Repeat their name --}}
+      <h3 class="author-name"></h3>
 
-    {{!-- Important Facts --}}
-    <ul>
-      <li id="bio-birth"><b>Date of Birth: </b> </li>
-      <li id="bio-death"><b>Date of Death: </b> </li>
-      <li id="bio-enrolled"><b>Enrolled: </b> </li>
-      <li id="bio-left"><b>Left N.S.T.C. for service: </b> </li>
-      <li id="bio-return"><b>Return to N.S.T.C. from service: </b> </li>
-      <li id="bio-graduated"><b>Graduated from N.S.T.C.: </b> </li>
-      <li id="bio-degree"><b>Degree: </b> </li>
-    <ul>
+      {{!-- Important Facts --}}
+      <ul>
+        <li id="bio-birth"><b>Date of Birth: </b> </li>
+        <li id="bio-death"><b>Date of Death: </b> </li>
+        <li id="bio-enrolled"><b>Enrolled: </b> </li>
+        <li id="bio-left"><b>Left N.S.T.C. for service: </b> </li>
+        <li id="bio-return"><b>Return to N.S.T.C. from service: </b> </li>
+        <li id="bio-graduated"><b>Graduated from N.S.T.C.: </b> </li>
+        <li id="bio-degree"><b>Degree: </b> </li>
+      <ul>
 
+    </div>
   </div>
 
+  <br/><br/>
 <div>
 
-
-<br/><br/>
 
 {{!-- Row for Letters --}}
 <div class="row">
@@ -52,6 +55,7 @@
   <div class="row">
     {{!-- Drop Down of all Letters to View --}}
     <div class="col-md-12">
+      <br/>
       <center>
         {{!-- Drop Down --}}
         <div class="input-group">
@@ -72,26 +76,32 @@
   <div class="row">
 
    {{!-- Letter Images --}}
-    <div class="col-md-6">
-      <img id="letterImage" src="" alt="Letter Scan" height="650" width="500" style="background-color: #ffffff;">
+    <div class="col-md-6 col-xs-12">
+      <center>
+        <h4>Archive</h4>
+        <img id="letterImage" src="" alt="Letter Scan" height="650" width="90%" style="background-color: #ffffff; margin-bottom: 20px;">
+      </center>
     </div>
 
     {{!-- Letter Transcribe --}}
-    <div class="col-md-6">
-      <div style="height: 650px; width: 500px; padding: 30px; overflow: auto; background-color: #e5e5e3;">
-        {{!-- Dynamically Append Letter Text --}}
-        <p id="letterText"></p>
+    <div class="col-md-6 col-xs-12">
+      <center>
+        <h4>Transcript</h4>
+        <div style="height: 650px; width: 90%; padding: 30px; overflow: auto; background-color: #e5e5e3; margin-bottom: 20px;">
+          {{!-- Dynamically Append Letter Text --}}
+          <p id="letterText" style="text-align: left;"></p>
+        </center>
       <div>
     </div>
 
   </div>
 
-
+  <br/><br/>
 </div>
 
 
 
-<br/><br/>
+
 
 
 {{!-- Row for Map --}}
@@ -112,28 +122,40 @@
   <br/>
 
 
-  {{!-- View Letter Years on map --}}
+  {{!-- View Author's Letters on Map --}}
   <div class="row">
 
-    {{!-- Custom Map Error Message --}}
-    <div id="maperror"></div>
+    {{!-- Google Map Row --}}
+    <div class="col-md-12">
+      <center>
+        {{!-- Custom Map Error Message --}}
+        <div id="maperror"></div>
 
-    {{!-- Google Map --}}
-    <div id="map"></div>
+        {{!-- Google Map --}}
+        <div id="map"></div>
 
-    {{!-- Google Map Legend --}}
-    <div id="legend"><h3>Legend</h3></div>
+        {{!-- Notes on which letter was selected --}}
+        <br><b><div id="traversal"></div></b><br>
 
-    {{!-- Custom Marker Controls --}}
-    <div id="marker_traveller">
-      <div id="traversal"></div><br>
-      <button onclick="goto_first_marker()">First Letter</button>
-      <button onclick="goto_final_marker()">Final Letter</button><br><br>
-      <button onclick="goto_previous_marker()">Previous Letter</button>
-      <button onclick="goto_next_marker()">Next Letter</button><br><br>
-      <button onclick="reset_map_view()">Reset Map View</button>
-      <button onclick="toggle_legend_visibility()">Toggle Legend Visibility</button>
+        {{!-- Google Map Legend --}}
+        <div id="legend"><h3>Legend</h3></div>
+      </center>
     </div>
+
+    {{!-- Map Marker Controls Row --}}
+    <div class="col-md-12" style="padding-bottom: 20px;">
+      <center>
+        <div id="marker_traveller">
+          <button onclick="goto_first_marker()" class="btn btn-primary">First Letter</button>
+          <button onclick="goto_final_marker()" class="btn btn-primary">Final Letter</button><br><br>
+          <button onclick="goto_previous_marker()" class="btn btn-info">Previous Letter</button>
+          <button onclick="goto_next_marker()" class="btn btn-info">Next Letter</button><br><br>
+          <button onclick="toggle_legend_visibility()" class="btn btn-success">Toggle Legend View</button>
+          <button onclick="reset_map_view()" class="btn btn-warning">Reset Map View</button>
+        </div>
+      </center>
+    </div>
+
 
     {{!-- Create Google Map Legend --}}
       <script>
