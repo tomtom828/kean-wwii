@@ -33,15 +33,6 @@ button{
 }
 
 
-#author_list{
-	width: 80%;
-/*  text-align: center;
-  vertical-align: middle;*/
-  box-sizing: border-box;
-  position: absolute;
-  margin-left: 2%;
-}
-
 
 .author_box{
   width: 200px;

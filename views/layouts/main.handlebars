@@ -4,8 +4,8 @@
 
   <head>
 
-    {{!-- <meta content="text/html; charset=utf-8" http-equiv="Content-Type"> --}}
-    {{!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> --}}
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Tab Icon -->
     <link rel="icon" href="/assets/images/Kean-Thumbnail.png">
@@ -27,37 +27,44 @@
   <body>
     
     <!-- Page Header & Navigation Bar -->
-    <nav id="logo_bar" class="navbar navbar-default navbar-static-top" role="navigation">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
 
-      <!-- Kean Logo and Page Title (With Link to Homepage) -->
-      <div id="main_link_logo" class="navbar-header">
-        <a href="/">
-          <img alt="Kean University" src="/assets/images/Kean-Logo.png">
-          <h1 id="main_link_header">The Nancy Thompson WWII Scrapbook Collection</h1>
-        </a>
-      </div>
+        {{!-- Kean Logo and Mobile Icon --}}
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <div class="brand-container">
+              <img id="kean-logo" alt="Kean University" src="/assets/images/Kean-Logo.png">
+              <span id="webpage-logo">The Nancy Thompson WWII Scrapbook Collection</span>
+            </div>
+          </a>
+        </div>
 
 
-      <!-- Content Navigation -->
-      <div id="nav_wrapper">
-        <div id="nav_bar">
+        {{!-- Navigation Bar Content --}}
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
 
-          <!-- Main Content List -->
-          <ul>
-            <!-- Reading Tab -->
-            <li><a href="#">READING</a>
-              <!-- Reading Tab Content List -->
-              <ul>
+            {{!-- Reading Selection --}}
+            <li class="dropdown">
+              <a href="#" id="nav-reading" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">READING</a>
+              <ul class="dropdown-menu navbar-drop-menu">
                 <li><a href="/authors">AUTHORS</a></li>
                 <li><a href="#">LETTERS</a></li>
                 <li><a href="#">MAPPING</a></li>
               </ul>
             </li>
 
-            <!-- Experiencing Tab -->
-            <li><a href="#">EXPERIENCING</a>
-              <!-- Experiencing Tab Content List -->
-              <ul>
+            {{!-- Experiencing Selection --}}
+            <li class="dropdown">
+              <a href="#" id="nav-experiencing" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">EXPERIENCING</a>
+              <ul class="dropdown-menu navbar-drop-menu">
                 <li><a href="#">LETTER WRITING</a></li>
                 <li><a href="#">WARTIME EXPERIENCE</a></li>
                 <li><a href="#">HOMEFRONT</a></li>
@@ -72,10 +79,10 @@
               </ul>
             </li>
 
-            <!-- Scrapbooking Tab -->
-            <li><a href="#">SCRAPBOOKING</a>
-              <!-- Scrapbooking Tab Content List -->
-              <ul>
+            {{!-- Scrapbooking Selection --}}
+            <li class="dropdown">
+              <a href="#" id="nav-scrapbooking" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SCRAPBOOKING</a>
+              <ul class="dropdown-menu navbar-drop-menu">
                 <li><a href="#">NANCY THOMPSON</a></li>
                 <li><a href="#">NEWARK STATE TEACHER&#39;S COLLEGE</a></li>
                 <li><a href="#">SCRAPBOOK</a></li>
@@ -84,21 +91,23 @@
               </ul>
             </li>
 
-            <!-- Teaching Tab -->
-            <li><a href="#">TEACHING</a></li>
+            {{!-- Teaching Selection --}}
+            <li><a id="nav-teaching" href="#">TEACHING</a></li>
 
-            <!-- History Tab -->
-            <li><a href="#">DOING HISTORY</a>
-            <!-- History Tab Content List -->
-              <ul>
+            {{!-- Doing History Selection --}}
+            <li class="dropdown">
+              <a id="nav-doing" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DOING HISTORY</a>
+              <ul class="dropdown-menu navbar-drop-menu">
                 <li><a href="#">STUDENT WORK</a></li>
                 <li><a href="#">SOCIAL MEDIA</a></li>
                 <li><a href="#">MEDIA</a></li>
               </ul>
             </li>
-          </ul>
 
+          </ul>
         </div>
+
+
       </div>
     </nav>
 

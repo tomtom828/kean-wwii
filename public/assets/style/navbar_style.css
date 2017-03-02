@@ -1,32 +1,56 @@
-/*Full Page Width*/
-/*#whole_page_container{
-	width: 100%;
-	padding: 0%;
-}
-*/
+/* Style for all pages & navbar */
 
-#logo_bar {
+body,
+html{
+	min-height: 100%;
+	font-family: "Times New Roman", Times, serif;
+}
+
+nav {
+	padding-bottom: 10px;
+}
+
+#kean-logo {
+	height: 55px;
+	float: left;
+	margin-top: -10px;
+	padding-bottom: 10px;
+}
+
+.navbar-brand {
+	/*max-width: 450px;*/
+	margin-top: 10px;
+}
+
+#webpage-logo {
+	margin-left: 5px;
+}
+
+.navbar-inverse {
 	background-color: #15317E;
-	vertical-align: middle;
-}
-
-
-#main_link_logo{
-	margin-left: 20px;
-	padding-top: 7px;
-	padding-bottom: 7px;
-	font-size: 14px;
-	display: inline-block;
-	vertical-align: middle;
-}
-
-#main_link_header{
-	margin-left: 15px;
-	font-size: 14px;
 	color: white;
-	display: inline-block;
-	vertical-align: middle;
 }
+
+.navbar-drop-menu {
+	background-color: #15317E;
+}
+
+.navbar-drop-menu > li > a {
+	color: white;
+}
+
+.navbar-brand > div {
+	color: white;
+}
+
+#nav-reading, #nav-experiencing, #nav-scrapbooking, #nav-teaching, #nav-doing {
+	color: white;
+}
+
+#navbar-collapse-1 {
+	margin-top: 12.5px;
+}
+
 
 
 
@@ -34,30 +58,30 @@
 /*----------------------------------------------------*/
 
 
-#nav_wrapper{
+/*#nav_wrapper{
 	
-/*	height: 80px;
-	width: 60%;*/
+	height: 80px;
+	width: 60%;
 	background:#15317E;
 	display: flex;
 	flex-flow: row;
 	white-space: nowrap;
 	float: left;
-}
+}*/
 
-#nav_bar{
+/*#nav_bar{
 	margin-top: 19px;
 }
 
 #nav_bar ul{
 	list-style-type: none;
 	margin-top: auto;
-	/*margin-bottom: auto;*/
+	margin-bottom: auto;
 	font-size: 13px;
-	/*position: relative;*/
+	position: relative;
 }
-
-#nav_bar ul li{
+*/
+/*#nav_bar ul li{
 	display: inline-block;
 }
 
@@ -90,9 +114,5 @@
 
 #nav_bar ul ul li{
 	display: block;
-}
+}*/
 
-body,
-html{
-	min-height: 100%;
-}
