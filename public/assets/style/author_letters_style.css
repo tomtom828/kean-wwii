@@ -15,6 +15,12 @@ body {
 /*	font-family: 'Meddon', cursive;
 	font-weight: bold;*/
   max-height: 85px;
+  max-width: 95%;
+}
+
+#author-photo {
+  max-width: 350px;
+  max-width: 95%;
 }
 
 
