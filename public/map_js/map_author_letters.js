@@ -48,9 +48,10 @@ function initMap() {
       else {
 
         document.getElementById("maperror").innerHTML = "Location data is not available at this time.<br>";
-      
+
         document.getElementById("map").style.display = "none";
         document.getElementById("marker_traveller").style.display = "none";
+        document.getElementById("legend").style.display = "none";
         return; //exit early so that the legend div is never created
       }
 
@@ -93,9 +94,10 @@ function initMap() {
       else { //nullcount === markers.length, which means every point for the author was null, so DO NOT draw the map
 
         document.getElementById("maperror").innerHTML = "Location data is not available at this time.<br>";
-      
+
         document.getElementById("map").style.display = "none";
         document.getElementById("marker_traveller").style.display = "none";
+        document.getElementById("legend").style.display = "none";
         return; //exit early so that the legend div is never created
       }
 
