@@ -21,6 +21,11 @@ $(document).ready(function(){
   }
 
 
+  // Append Author Signature to title
+  var awsAuthorSignatureURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-signatures/' + displayLastName.toLowerCase() + '-' + displayFirstName.toLowerCase() + '.png';
+  $('#author-signature').attr('src', awsAuthorSignatureURL);
+  $('#author-signature').attr('alt', displayFirstName + ' ' + displayLastName);
+
   // Append Author name for all needed classes 
   $('.author-name').text(displayFirstName + " " + displayLastName);
 

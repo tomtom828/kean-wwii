@@ -11,9 +11,10 @@ body {
 }
 
 
-#author-name-title {
-	font-family: 'Meddon', cursive;
-	font-weight: bold;
+#author-signature {
+/*	font-family: 'Meddon', cursive;
+	font-weight: bold;*/
+  max-height: 85px;
 }
 
 
