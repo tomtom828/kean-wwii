@@ -11,7 +11,7 @@ domRouter.get('/', function (req, res){
 
 // Authors Page Render
 domRouter.get('/authors', function (req, res){
-  res.render('authors');
+  res.render('authorsByName');
 });
 
 
@@ -19,6 +19,7 @@ domRouter.get('/authors', function (req, res){
 domRouter.get('/authors/:lastname/:firstname', function (req, res){
   res.render('selectedAuthor');
 });
+
 
 
 // ----------------------------------------------------

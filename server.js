@@ -43,6 +43,11 @@ app.use('/', apiRouter);
 var resourceRouter = require('./controllers/resource-controllers.js');
 app.use('/', resourceRouter);
 
+// Catch all (404 route) - MUST BE THE LAST ONE LISTED
+app.get('*', function (req, res){
+  res.render('404');
+});
+
 // ============================================================
 
 
