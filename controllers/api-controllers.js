@@ -60,7 +60,7 @@ apiRouter.get('/api/letters/all/:lastname/:firstname', function (req, res) {
   });
 
   // Read Database
-  connection.query('SELECT filename, letterdate, ts_dateguess FROM letters WHERE lastname = "' + lastname + '" AND firstname = "' + firstname + '" ORDER BY letterdate DESC', function(err, response){
+  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = "' + lastname + '" AND letters.firstname = "' + firstname + '" AND letters.filename = archives.filename' + ' ORDER BY letters.letterdate DESC', function(err, response){
     if(err) throw err;
 
     // Export to CLient Side
