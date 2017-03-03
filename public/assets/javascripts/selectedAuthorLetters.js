@@ -26,7 +26,13 @@ $(document).ready(function(){
   $('#author-signature').attr('src', awsAuthorSignatureURL);
   $('#author-signature').attr('alt', displayFirstName + ' ' + displayLastName);
 
-  // Append Author name for all needed classes 
+
+  // Append Author Photo
+  var awsAuthorPhotoURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-photos/' + displayLastName.toLowerCase() + '-' + displayFirstName.toLowerCase() + '.jpg';
+  $('#author-photo').attr('src', awsAuthorPhotoURL);
+
+
+  // Append Author name for all needed classes in the body
   $('.author-name').text(displayFirstName + " " + displayLastName);
 
 
