@@ -1,4 +1,4 @@
-// @comment: Append all Authors and have user able to click which letter they want
+// Append all Authors and have user able to click which letter they want
 
 
 // Global variable for authors JSON
@@ -190,9 +190,11 @@ function appendAuthorsByLastName(nameInput){
           
 
       // Append Author Image to current div
+      var awsAuthorPhotoURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-photos/' + allAuthorsArray[i].lastname.toLowerCase() + '-' + allAuthorsArray[i].firstname.toLowerCase() + '.jpg';
       var currentAuthorImage = $('<img>');
       currentAuthorImage.addClass('author_image'); // Added a class
-      currentAuthorImage.attr("src", 'assets/images/Kean-Thumbnail.png');
+      currentAuthorImage.attr("src", awsAuthorPhotoURL);
+      currentAuthorImage.attr("alt", allAuthorsArray[i].firstname + ' ' + allAuthorsArray[i].lastname);
       currentAuthorDiv.append(currentAuthorImage);
 
 
@@ -249,9 +251,11 @@ function appendAuthorsByFirstName(nameInput){
           
 
       // Append Author Image to current div
+      var awsAuthorPhotoURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-photos/' + allAuthorsArray[i].lastname.toLowerCase() + '-' + allAuthorsArray[i].firstname.toLowerCase() + '.jpg';
       var currentAuthorImage = $('<img>');
       currentAuthorImage.addClass('author_image'); // Added a class
-      currentAuthorImage.attr("src", 'assets/images/Kean-Thumbnail.png');
+      currentAuthorImage.attr("src", awsAuthorPhotoURL);
+      currentAuthorImage.attr("alt", allAuthorsArray[i].firstname + ' ' + allAuthorsArray[i].lastname);
       currentAuthorDiv.append(currentAuthorImage);
 
 
