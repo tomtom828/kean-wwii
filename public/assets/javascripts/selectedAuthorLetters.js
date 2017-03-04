@@ -25,13 +25,13 @@ $(document).ready(function(){
 
 
   // Append Author Signature to title
-  var awsAuthorSignatureURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-signatures/' + displayLastName.toLowerCase() + '-' + displayFirstName.toLowerCase() + '.png';
+  var awsAuthorSignatureURL = 'https://s3.amazonaws.com/kean-wwii-scrapbook/author-signatures/' + displayLastName.toLowerCase() + '-' + displayFirstName.toLowerCase() + '.png';
   $('#author-signature').attr('src', awsAuthorSignatureURL);
   $('#author-signature').attr('alt', displayFirstName + ' ' + displayLastName);
 
 
   // Append Author Photo
-  var awsAuthorPhotoURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-photos/' + displayLastName.toLowerCase() + '-' + displayFirstName.toLowerCase() + '.jpg';
+  var awsAuthorPhotoURL = 'https://s3.amazonaws.com/kean-wwii-scrapbook/author-photos/' + displayLastName.toLowerCase() + '-' + displayFirstName.toLowerCase() + '.jpg';
   $('#author-photo').attr('src', awsAuthorPhotoURL);
 
 
@@ -55,11 +55,12 @@ $(document).ready(function(){
     getLetterText(allLetters[0].filename)
 
     // Render the proper Letter image
-    var letterImageURL = "https://s3.amazonaws.com/tomtom28-kean-wwii/author-archives/" + allLetters[0].filename.toString().replace(/ /g, "+") + "+1-" + allLetters[0].pages + ".jpg";
+    var letterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + allLetters[0].filename.toString().replace(/ /g, "+") + "+1-" + allLetters[0].pages + ".jpg";
     $('#letterImage').attr({
       src: letterImageURL,
       alt: allLetters[0].filename.toString()
     });
+    $("#currentLetterNumber").html(1);
     $("#lastLetterNumber").html(allLetters[0].pages);
 
     // Append File Names to the Read Drop Down Menu
@@ -86,12 +87,13 @@ $(document).ready(function(){
     $('#currentLetter').html(letterName);
 
     // Render the proper Letter image
-    var letterImageURL = "https://s3.amazonaws.com/tomtom28-kean-wwii/author-archives/" + letterName.replace(/ /g, "+") + "+1-" + letterPages + ".jpg";
+    var letterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + letterName.replace(/ /g, "+") + "+1-" + letterPages + ".jpg";
     console.log(letterImageURL)
     $('#letterImage').attr({
       src: letterImageURL,
       alt: letterName
     });
+    $("#currentLetterNumber").html(1);
     $("#lastLetterNumber").html(letterPages);
 
     // Hit API to collect article text
@@ -121,11 +123,12 @@ $(document).ready(function(){
     $('#currentLetter').html(letterName);
 
     // Render the proper Letter image
-    var letterImageURL = "https://s3.amazonaws.com/tomtom28-kean-wwii/author-archives/" + letterName.replace(/ /g, "+") + "+1-" + letterPages + ".jpg";
+    var letterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + letterName.replace(/ /g, "+") + "+1-" + letterPages + ".jpg";
     $('#letterImage').attr({
       src: letterImageURL,
       alt: letterName
     });
+    $("#currentLetterNumber").html(1);
     $("#lastLetterNumber").html(letterPages);
 
     // // Hit API to collect article text
@@ -164,7 +167,7 @@ $(document).ready(function(){
 
     // Go Back 1 file name only if current postion is greater than 1
     if(currentLetterImageNumber > 1) {
-      var newLetterImageURL = "https://s3.amazonaws.com/tomtom28-kean-wwii/author-archives/" + rootLetterImageName + (currentLetterImageNumber - 1) + "-" + lastLetterImageNumber + ".jpg";
+      var newLetterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + rootLetterImageName + (currentLetterImageNumber - 1) + "-" + lastLetterImageNumber + ".jpg";
       console.log(newLetterImageURL);
       $("#currentLetterNumber").html(currentLetterImageNumber - 1);
       $("#letterImage").attr("src", newLetterImageURL);
@@ -202,7 +205,7 @@ $(document).ready(function(){
 
     // Go Forward 1 file name only if current postion is greater than 1
     if(currentLetterImageNumber < lastLetterImageNumber) {
-      var newLetterImageURL = "https://s3.amazonaws.com/tomtom28-kean-wwii/author-archives/" + rootLetterImageName + (currentLetterImageNumber + 1) + "-" + lastLetterImageNumber + ".jpg";
+      var newLetterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + rootLetterImageName + (currentLetterImageNumber + 1) + "-" + lastLetterImageNumber + ".jpg";
       console.log(newLetterImageURL);
       $("#currentLetterNumber").html(currentLetterImageNumber + 1);
       $("#letterImage").attr("src", newLetterImageURL);

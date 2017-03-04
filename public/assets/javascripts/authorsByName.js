@@ -128,7 +128,8 @@ function appendAuthorsByLetter(letter){
           
 
       // Append Author Image to current div
-      var awsAuthorPhotoURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-photos/' + allAuthorsArray[i].lastname.toLowerCase() + '-' + allAuthorsArray[i].firstname.toLowerCase() + '.jpg';
+      var awsAuthorPhotoURL = 'https://s3.amazonaws.com/kean-wwii-scrapbook/author-photos/' + allAuthorsArray[i].lastname.toLowerCase() + '-' + allAuthorsArray[i].firstname.toLowerCase() + '.jpg';
+      console.log(awsAuthorPhotoURL)
       var currentAuthorImage = $('<img>');
       currentAuthorImage.addClass('author_image'); // Added a class
       currentAuthorImage.attr("src", awsAuthorPhotoURL);
@@ -190,7 +191,7 @@ function appendAuthorsByLastName(nameInput){
           
 
       // Append Author Image to current div
-      var awsAuthorPhotoURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-photos/' + allAuthorsArray[i].lastname.toLowerCase() + '-' + allAuthorsArray[i].firstname.toLowerCase() + '.jpg';
+      var awsAuthorPhotoURL = 'https://s3.amazonaws.com/kean-wwii-scrapbook/author-photos/' + allAuthorsArray[i].lastname.toLowerCase() + '-' + allAuthorsArray[i].firstname.toLowerCase() + '.jpg';
       var currentAuthorImage = $('<img>');
       currentAuthorImage.addClass('author_image'); // Added a class
       currentAuthorImage.attr("src", awsAuthorPhotoURL);
@@ -251,7 +252,7 @@ function appendAuthorsByFirstName(nameInput){
           
 
       // Append Author Image to current div
-      var awsAuthorPhotoURL = 'https://s3.amazonaws.com/tomtom28-kean-wwii/author-photos/' + allAuthorsArray[i].lastname.toLowerCase() + '-' + allAuthorsArray[i].firstname.toLowerCase() + '.jpg';
+      var awsAuthorPhotoURL = 'https://s3.amazonaws.com/kean-wwii-scrapbook/author-photos/' + allAuthorsArray[i].lastname.toLowerCase() + '-' + allAuthorsArray[i].firstname.toLowerCase() + '.jpg';
       var currentAuthorImage = $('<img>');
       currentAuthorImage.addClass('author_image'); // Added a class
       currentAuthorImage.attr("src", awsAuthorPhotoURL);
