@@ -1,7 +1,7 @@
 {
-  "host": "y0nkiij6humroewt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  "host": "127.0.0.1",
   "port": 3306,
-  "user": "kxg9r97p4it6k3bd", 
-  "password": "iq97qbgopcd5mekb",
-  "database": "c3k8uxrklhxjlzf6"
+  "user": "root", 
+  "password": "",
+  "database": "2014F_galinjos"
 }
