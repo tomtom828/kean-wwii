@@ -3,5 +3,6 @@ node_modules
 .DS_Store
 
 # Database Credentials
-dbInfo.json
 dbInfo_server.json
+dbInfo_jawsDB.json
+dbInfo_localhost.json
