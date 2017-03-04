@@ -226,6 +226,18 @@ $(document).ready(function(){
   }
 
 
+  // AWS Function - Get Article Text
+  // function getLetterText(letterName) {
+
+  //   // Use Filename to get .txt file from AWS
+  //   var awsArchiveURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/transcripts/" + letterName.split(" ").join("+") + ".txt";
+  //   console.log(awsArchiveURL)
+
+  //   // Append Text to DOM (note that \n is needed to be changed to <br> tag for jQuery to work right)
+  //   $('#letterText').html( awsArchiveURL );
+    
+  // }
+
 
 
 });

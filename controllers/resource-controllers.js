@@ -1,30 +1,57 @@
-// Node Dependencies
+// Node Dependencies for Express
 var express = require('express');
 var resourceRouter = express.Router();
-var fs = require('fs');
-var path = require('path');
+
+// Node Dependencies for AWS
+var aws = require('aws-sdk');
+
+// Set to AWS "Anyone" permissions group => Read Only access to S3
+aws.config.update({
+    accessKeyId: "AKIAJBLISXXXKJHKIDFQ",
+    secretAccessKey: "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",
+});
+
+// Create New S3 Connection
+var s3 = new aws.S3();
 
 
-// Get the Letter content from the .TXT file in Resources
+
+// GET - the Letter content from the .TXT file in Resources
 resourceRouter.get('/resources/letters/:letterName', function (req, res) {
 
   // Get File Name
-  var fileName = req.params.letterName.replace(/\+/g, " ");
+  var fileName = req.params.letterName;
 
-  // Get Full Path to file
-  var fileLocation = '../resources/letter-text/' + fileName + '.txt';
-  var fullPath = path.join(__dirname, fileLocation);
-
-  // Read File from Resources Folder
-  var fileText;
-  try {
-    // Respond with Letter Text
-    fileText = fs.readFileSync(fullPath).toString();
-    res.json(fileText);
-  } catch (err) {
-    // Respond with Error
-    res.json("File Not Found.");
+  // Use the Filename to create the link to the "transcript" folder in the "kean-wwii-scrapbook" bucket
+  var awsTextFileKey = 'transcripts/' + fileName + '.txt';
+  var params = {
+    Bucket: 'kean-wwii-scrapbook',
+    Key: awsTextFileKey
   }
+
+  // Get back the text from the .txt file in AWS S3
+  s3.getObject(params, function(err, data) {
+
+    // If there was an error (file was not found or not read)
+    if (err) {
+
+      // Log error
+      console.log(err, err.stack);
+      // Respond to DOM with Error
+      res.json("Transcript not available at this time.");
+
+    }
+    // Otherwise, it was a succes
+    else{
+
+      // Get .txt file's text
+      var fileText = data.Body.toString();
+      // Respond with Letter Text
+      res.json(fileText);
+
+    } 
+
+  });
 
 });
 
