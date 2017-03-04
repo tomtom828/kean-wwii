@@ -35,13 +35,13 @@ app.use(express.static('public'));
 var domRouter = require('./controllers/dom-controllers.js');
 app.use('/', domRouter);
 
-// Import API controller
-var apiRouter = require('./controllers/api-controllers.js');
-app.use('/', apiRouter);
+// Import MySQL database controller
+var dbRouter = require('./controllers/db-controllers.js');
+app.use('/', dbRouter);
 
-// Import Resource controller
-var resourceRouter = require('./controllers/resource-controllers.js');
-app.use('/', resourceRouter);
+// Import S3 (for .txt files) controller
+var s3Router = require('./controllers/s3-controllers.js');
+app.use('/', s3Router);
 
 // Catch all (404 route) - MUST BE THE LAST ONE LISTED
 app.get('*', function (req, res){

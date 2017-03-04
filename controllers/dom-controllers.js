@@ -1,3 +1,5 @@
+// Controllers for rendering webpages to DOM
+
 // Node Dependencies
 var express = require('express');
 var domRouter = express.Router();
