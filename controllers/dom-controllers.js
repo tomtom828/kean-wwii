@@ -93,6 +93,12 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
   name = name.charAt(0).toUpperCase() + name.slice(1);
   var type = req.params.type.toLowerCase();
 
+  // Return if parameter is not a first name or lastname
+  if(type != "firstname" && type != "lastname"){
+    res.render('search-authors', null);
+    return;
+  }
+
   // Query Database for Author with the Last Name of the letter
   var connection = mysql.createConnection(
     dbInfo
