@@ -10,6 +10,17 @@ nav {
 	padding-bottom: 10px;
 }
 
+html{
+  min-height: 100%;
+  overflow-y: scroll;
+}
+
+body {
+  background-image: url(../images/Cursive-Background.jpg);
+  background-repeat: no repeat;
+  background-size: cover;
+}
+
 #kean-logo {
 	height: 55px;
 	float: left;
@@ -50,69 +61,3 @@ nav {
 #navbar-collapse-1 {
 	margin-top: 12.5px;
 }
-
-
-
-
-
-/*----------------------------------------------------*/
-
-
-/*#nav_wrapper{
-	
-	height: 80px;
-	width: 60%;
-	background:#15317E;
-	display: flex;
-	flex-flow: row;
-	white-space: nowrap;
-	float: left;
-}*/
-
-/*#nav_bar{
-	margin-top: 19px;
-}
-
-#nav_bar ul{
-	list-style-type: none;
-	margin-top: auto;
-	margin-bottom: auto;
-	font-size: 13px;
-	position: relative;
-}
-*/
-/*#nav_bar ul li{
-	display: inline-block;
-}
-
-#nav_bar ul li:hover{
-	background-color: #151B8D;
-}
-
-#nav_bar ul li a,visited{
-	color: #151B8D;
-	display: block;
-	padding: 15px;
-	text-decoration: none;
-	color: white;
-}
-
-#nav_bar ul li a:hover{
-	color: white;
-	text-decoration: none;
-}
-
-#nav_bar ul li:hover ul{
-	display: block;
-}
-
-#nav_bar ul ul{
-	display: none;
-	position: absolute;
-	background-color: #151B8D;
-}
-
-#nav_bar ul ul li{
-	display: block;
-}*/
-

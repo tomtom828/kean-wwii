@@ -1,0 +1,33 @@
+button {
+  border: none;
+  background: transparent;
+}
+
+
+.author_box{
+  width: 200px;
+  height: 240px;
+  float: left;
+
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.author_image{
+  width: 200px;
+  height: 190px;
+  float: left;
+}
+
+.author_footer{
+  width: 200px;
+  background-color: #15317E;
+  opacity: 0.7;
+  filter: alpha(opacity: 70%);
+  float: left;
+  font-size: 13px;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 5px;
+}

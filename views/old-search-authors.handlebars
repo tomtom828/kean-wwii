@@ -1,0 +1,110 @@
+<!-- Link in Author Page CSS -->
+<link href="/assets/style/search-authors.css" rel="stylesheet" type="text/css">
+
+
+<!-- Title -->
+<div class="row">
+  <center><h2>AUTHORS</h2></center>
+</div>
+
+<br>
+
+<!-- Search Bar Components -->
+<div class="row">
+
+  <!-- Empty Div to move search bar to the right -->
+  <div class="col-md-3 col-xs-1"></div> 
+
+    <!-- Search Bar -->
+    <div class="col-md-6 col-xs-10">
+      <div class="input-group">
+
+        <!-- Input Fields -->
+        <input id="autherSearchBox" placeholder="Search" type="text" class="form-control" aria-label="...">
+        <div class="input-group-btn">
+
+          <!-- First Name vs. Last Name Search -->
+          <button id="authorLastOrFirstName" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last Name <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a id="lastNameSearch" href="#">Last Name</a></li>
+            <li><a id="firstNameSearch" href="#">First Name</a></li>
+          </ul>
+
+          <!-- Submit Button -->
+          <button id="authorSearchSubmit" type="button" class="btn btn-primary searchButtons"><span class="glyphicon glyphicon-search"></span></button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+<!-- Click on Author Last Name Letter -->
+<div class="row">
+  <br>
+  <center>
+    <a href="/search/authors/a"><div class="btn btn-default">A</div></a>
+    <a href="/search/authors/b"><div class="btn btn-default">B</div></a>
+    <a href="/search/authors/c"><div class="btn btn-default">C</div></a>
+    <a href="/search/authors/d"><div class="btn btn-default">D</div></a>
+    <a href="/search/authors/e"><div class="btn btn-default">E</div></a>
+    <a href="/search/authors/f"><div class="btn btn-default">F</div></a>
+    <a href="/search/authors/g"><div class="btn btn-default">G</div></a>
+    <a href="/search/authors/h"><div class="btn btn-default">H</div></a>
+    <a href="/search/authors/i"><div class="btn btn-default">I</div></a>
+    <a href="/search/authors/j"><div class="btn btn-default">J</div></a>
+    <a href="/search/authors/k"><div class="btn btn-default">K</div></a>
+    <a href="/search/authors/l"><div class="btn btn-default">L</div></a>
+    <a href="/search/authors/m"><div class="btn btn-default">N</div></a>
+    <a href="/search/authors/o"><div class="btn btn-default">O</div></a>
+    <a href="/search/authors/p"><div class="btn btn-default">P</div></a>
+    <a href="/search/authors/q"><div class="btn btn-default">Q</div></a>
+    <a href="/search/authors/r"><div class="btn btn-default">R</div></a>
+    <a href="/search/authors/s"><div class="btn btn-default">S</div></a>
+    <a href="/search/authors/t"><div class="btn btn-default">T</div></a>
+    <a href="/search/authors/u"><div class="btn btn-default">U</div></a>
+    <a href="/search/authors/v"><div class="btn btn-default">V</div></a>
+    <a href="/search/authors/w"><div class="btn btn-default">W</div></a>
+    <a href="/search/authors/x"><div class="btn btn-default">X</div></a>
+    <a href="/search/authors/y"><div class="btn btn-default">Y</div></a>
+    <a href="/search/authors/z"><div class="btn btn-default">Z</div></a>
+  </center>
+</div>
+
+
+<br>
+
+<!-- Div to Append all Authors -->
+
+<div class="row"> 
+  <div class="col-md-12">
+
+    {{#if hbsObject}}
+
+      {{!-- If found in database, Dynamically Append Authors of Selected Letter --}}
+      {{#each hbsObject}}
+        <div align="center">
+          <a href="/authors/{{lastName}}/{{firstName}}">
+            <div class="author_box" data-lastname="{{lastName}}" data-firstname="{{firstName}}" style="background-color: white;">
+              <img class="author_image" src="https://s3.amazonaws.com/kean-wwii-scrapbook/author-photos/{{lastName}}-{{firstName}}.jpg" alt="{{displayLastName}}, {{displayFirstName}}">
+              <h3 class="author_footer"><center>{{displayLastName}}, {{displayFirstName}}</center></h3>
+            </div>
+          </a>
+        </div>
+      {{/each}}
+
+      {{!-- Otherwise, append the Error Message --}}
+      {{else}}
+        <h3 style="background-color: white; padding: 15px;">Sorry. There are no authors listed under that letter.</h3>
+
+    {{/if}}
+
+  </div>
+</div>
+
+
+
+
+<!-- Link in JavaScript to append authors from API -->
+{{!-- <script src="/assets/javascripts/authorsByName.js"></script> --}}
