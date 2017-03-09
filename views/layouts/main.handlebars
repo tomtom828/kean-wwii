@@ -14,24 +14,95 @@
     <title>Nancy Thompson WWII Scrapbook</title>
 
     <!-- Link in Bootstrap -->
-    <link rel="stylesheet" href="/assets/cdn/bootstrap-3.3.7/css/bootstrap.min.css">
+    {{!-- <link rel="stylesheet" href="/assets/cdn/bootstrap-3.3.7/css/bootstrap.min.css"> --}}
+
+    <!-- Link in Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    
+    {{!-- Materialize Icons --}}
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Link in jQuery CDN -->
+    <script src="/assets/cdn/jquery/jquery-3.1.1.min.js"></script>
+
+    <!-- Link in Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     
     <!-- Link in Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Meddon" rel="stylesheet">
   
     <!-- Link in Custom Styling -->
-    <link href="/assets/style/navbar_style.css" rel="stylesheet" type="text/css">
+    {{!-- <link href="/assets/style/navbar_style.css" rel="stylesheet" type="text/css"> --}}
 
   </head>
 
   <body>
+
+    {{!-- Page Header & Navigation Bar --}}
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper #01579b light-blue darken-4">
+
+          {{!-- Kean Logo and Website Title --}}
+         {{!--  <a href="/" class="brand-logo">
+            
+            <span id="webpage-logo" class="brand-logo"></span>
+          </a> --}}
+
+
+          <a href="/" class="brand-logo">
+            <center>
+              <img id="kean-logo" class="brand-logo" alt="Kean University" src="/assets/images/Kean-Logo.png">
+              Hello my name is tomy
+              </img>
+              <span class="brand-logo" style="margin-left: 65px;">The Nancy Thompson WWII Scrapbook Collection</span>
+            </center>
+          </a>
+
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+
+
+
+
+
+
+  <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="#!">one</a></li>
+  <li><a href="#!">two</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">three</a></li>
+</ul>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Logo</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
     
     <!-- Page Header & Navigation Bar -->
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
+    {{!-- <nav class="navbar navbar-inverse">
+      <div class="container-fluid"> --}}
 
         {{!-- Kean Logo and Mobile Icon --}}
-        <div class="navbar-header">
+        {{!-- <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -46,11 +117,11 @@
               </center>
             </div>
           </a>
-        </div>
+        </div> --}}
 
 
         {{!-- Navigation Bar Content --}}
-        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        {{!-- <div class="collapse navbar-collapse" id="navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
 
             {{!-- Reading Selection --}}
@@ -61,10 +132,10 @@
                 <li><a href="#">LETTERS</a></li>
                 <li><a href="#">MAPPING</a></li>
               </ul>
-            </li>
+            </li> --}}
 
             {{!-- Experiencing Selection --}}
-            <li class="dropdown">
+            {{!-- <li class="dropdown">
               <a href="#" id="nav-experiencing" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">EXPERIENCING</a>
               <ul class="dropdown-menu navbar-drop-menu">
                 <li><a href="#">LETTER WRITING</a></li>
@@ -79,10 +150,10 @@
                 <li><a href="#">THE FALLEN</a></li>
                 <li><a href="#">MEMORY</a></li>
               </ul>
-            </li>
+            </li> --}}
 
             {{!-- Scrapbooking Selection --}}
-            <li class="dropdown">
+           {{!--  <li class="dropdown">
               <a href="#" id="nav-scrapbooking" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">SCRAPBOOKING</a>
               <ul class="dropdown-menu navbar-drop-menu">
                 <li><a href="#">NANCY THOMPSON</a></li>
@@ -91,13 +162,13 @@
                 <li><a href="#">SERVICEMAN&#39;S NEWS</a></li>
                 <li><a href="#">PROJECT HISTORY</a></li>
               </ul>
-            </li>
+            </li> --}}
 
             {{!-- Teaching Selection --}}
-            <li><a id="nav-teaching" href="#">TEACHING</a></li>
+            {{!-- <li><a id="nav-teaching" href="#">TEACHING</a></li> --}}
 
             {{!-- Doing History Selection --}}
-            <li class="dropdown">
+            {{!-- <li class="dropdown">
               <a id="nav-doing" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DOING HISTORY</a>
               <ul class="dropdown-menu navbar-drop-menu">
                 <li><a href="#">STUDENT WORK</a></li>
@@ -111,15 +182,7 @@
 
 
       </div>
-    </nav>
-
-
-
-  <!-- Link in jQuery CDN -->
-  <script src="/assets/cdn/jquery/jquery-3.1.1.min.js"></script>
-
-  <!-- Bootstrap JavaScript (USED FOR THE SEARCH BAR) -->
-  <script src="/assets/cdn/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    </nav> --}}
 
 
   <!-- Whole Page Content Container -->
