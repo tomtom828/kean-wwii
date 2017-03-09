@@ -24,8 +24,8 @@
           <!-- First Name vs. Last Name Search -->
           <button id="authorLastOrFirstName" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last Name <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a id="lastNameSearch" href="#">Last Name</a></li>
-            <li><a id="firstNameSearch" href="#">First Name</a></li>
+            <li><a id="lastNameSearch">Last Name</a></li>
+            <li><a id="firstNameSearch">First Name</a></li>
           </ul>
 
           <!-- Submit Button -->
@@ -96,9 +96,16 @@
           </button>
         {{/each}}
 
-        {{!-- Otherwise, append the Error Message --}}
+        {{!-- Error Handlers --}}
         {{else}}
-          <h3 style="background-color: white; padding: 15px;">Sorry. There are no authors listed under that letter.</h3>
+        
+          {{!-- Faulty Search --}}
+          {{#if errObject}}
+            <h3 style="background-color: white; padding: 15px;">Sorry. There are no authors listed with the {{errObject.type}} of "{{errObject.name}}".</h3>
+          {{!-- Letter Not Found --}}
+          {{else}}
+            <h3 style="background-color: white; padding: 15px;">Sorry. There are no authors listed under that letter.</h3>
+          {{/if}}
 
       {{/if}}
 
@@ -110,4 +117,4 @@
 
 
 <!-- Link in JavaScript to append authors from API -->
-{{!-- <script src="/assets/javascripts/authorsByName.js"></script> --}}
+<script src="/assets/javascripts/search-authors.js"></script>

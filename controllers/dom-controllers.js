@@ -75,18 +75,68 @@ domRouter.get('/search/authors/:letter', function (req, res){
       res.render('search-authors', null);
     }
     
-
     // Disconnect from MySQL
     connection.end();
   });
 
-
-
-
-
-  // res.render('search-authors-by-name');
 });
 
+
+
+
+
+// Search Authors By First or Last Name
+domRouter.get('/search/authors/:type/:name', function (req, res){
+
+  // Get the name and search type from the url parameters
+  var name = req.params.name.toLowerCase();
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+  var type = req.params.type.toLowerCase();
+
+  // Query Database for Author with the Last Name of the letter
+  var connection = mysql.createConnection(
+    dbInfo
+  );
+
+  // Connect to the Database
+  connection.connect(function(err) {
+      if (err) throw err;
+      console.log("connected as id " + connection.threadId);
+  });
+
+  // Read from Database
+  connection.query('SELECT DISTINCT lastname, firstname FROM letters WHERE ' + type + ' = "' + name + '"' + ' ORDER BY ' + type + ' ASC', function(err, response){
+    
+    // Respond with error if database error
+    if(err) throw err;
+
+    // Render authors of said letter
+    if(response.length > 0){
+
+      // Clean repsonse to ensure it is all lowercase
+      var authorNameData = [];
+      for(var i = 0; i < response.length; i++){
+        authorNameData.push({
+          "firstName": response[i].firstname.toLowerCase(),
+          "lastName": response[i].lastname.toLowerCase(),
+          "displayFirstName": response[i].firstname,
+          "displayLastName": response[i].lastname
+        })
+      }
+      // Render the author names
+      res.render('search-authors', {hbsObject: authorNameData});
+
+    }
+    // Otherwise, no author was found
+    else {
+      res.render('search-authors', {errObject: {type: type, name: name}});
+    }
+    
+    // Disconnect from MySQL
+    connection.end();
+  });
+
+});
 
 
 // ----------------------------------------------------
