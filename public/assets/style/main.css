@@ -17,8 +17,8 @@ html{
 
 body {
   background-image: url(../images/Cursive-Background.jpg);
-  background-repeat: no repeat;
-  background-size: cover;
+  background-repeat: repeat;
+  /*background-size: cover;*/
 }
 
 #kean-logo {

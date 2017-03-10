@@ -35,10 +35,16 @@ connection.connect(function(err) {
 
 
 // GET - Index Home Page Render
-domRouter.get('/', function (req, res){
+domRouter.get('/', function (req, res) {
   res.render('index');
 });
 
+
+// REDIRECT - To Search Authors By Starting Letter of Lastname Page Render
+domRouter.get('/search/authors', function (req, res) {
+  // If no letter was selected, re-direct to A
+  res.redirect('/search/authors/a');
+});
 
 
 // GET - Search Authors By Starting Letter of Lastname Page Render
@@ -183,6 +189,98 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
 
 });
 
+
+
+
+// GET - Search All Letters Page Render
+domRouter.get('/search/letters', function (req, res) {
+  
+  // Read Database
+  // connection.query('SELECT filename FROM letters ORDER BY ts_dateguess ASC, filename ASC', function(err, response) {
+  //   if(err) throw err;
+
+  //   // Render All Letters
+  //   res.render('search-letters', {hbsObject: response});
+
+  // });
+
+
+  res.render('search-letters');
+
+});
+
+
+
+  
+// POST - Search All Letters in Database of selected criteria
+domRouter.post('/search/letters', function (req, res) {
+
+  var branch = req.body.branch;
+  var sex = req.body.sex;
+  var year = req.body.year;
+
+  // Set up proper "%" syntax for MySQL matching
+  var myYear = year + "%"; // ex: "1941%" or "1942%" or "%"
+  var myServiceBranch = branch + "%"; // ex: "Army%" or "Army (British)%" or "%"
+  var mySex = sex + "%"; // ex: "M%" or "F%" or "%"
+
+  // Read Database
+  connection.query('SELECT filename FROM letters WHERE gender LIKE ? AND service_branch LIKE ? AND ts_dateguess LIKE ? ORDER BY filename ASC', [mySex, myServiceBranch, myYear], function(err, response) {
+  if(err) throw err;
+
+    // Clean response to display error message if no files found
+    var fileResponse;
+    if (response.length == 0) {
+      fileResponse = null;
+    }
+    else {
+      fileResponse = response;
+    }
+
+    // Clean up search terms
+    var displaySex;
+    if (sex == "F") {
+      displaySex = "women";
+    }
+    else if (sex == "M") {
+      displaySex = "men";
+    }
+    else {
+      displaySex = "anyone";
+    }
+
+    var displayBranch;
+    if (branch == "") {
+      displayBranch = "any service branch";
+    }
+    else {
+      displayBranch = "the " + branch;
+    }
+
+    var displayYear;
+    if (year == "") {
+      displayYear = "any year";
+    }
+    else {
+      displayYear = year;
+    }
+
+    // Create page render object
+    var letterAndFileData = {
+      branch: displayBranch,
+      sex: displaySex,
+      year: displayYear,
+      letterData: fileResponse
+    }
+
+    // Render Letter Search Results
+    res.render('search-letters', {hbsObject: letterAndFileData});
+
+  });
+
+
+
+});
 
 // ----------------------------------------------------
 // Export routes
