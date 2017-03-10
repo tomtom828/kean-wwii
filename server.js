@@ -9,13 +9,11 @@ var app = express();
 var PORT = process.env.PORT || 8080;
 
 
-
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-
 
 
 // Handlebars
@@ -35,9 +33,9 @@ app.use(express.static('public'));
 var domRouter = require('./controllers/dom-controllers.js');
 app.use('/', domRouter);
 
-// Import MySQL database controller
-var dbRouter = require('./controllers/db-controllers.js');
-app.use('/', dbRouter);
+// Import API controller
+var apiRouter = require('./controllers/api-controllers.js');
+app.use('/', apiRouter);
 
 // Import S3 (for .txt files) controller
 var s3Router = require('./controllers/s3-controllers.js');
@@ -49,7 +47,6 @@ app.get('*', function (req, res){
 });
 
 // ============================================================
-
 
 
 

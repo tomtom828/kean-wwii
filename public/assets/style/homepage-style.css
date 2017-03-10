@@ -1,9 +1,3 @@
-body {
-  background-image: url(../images/Cursive-Background.jpg);
-  background-repeat: no repeat;
-  background-size: cover;
-}
-
 a.hide_hyperlink{
   text-decoration: none;
   color: black;

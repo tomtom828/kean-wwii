@@ -48,4 +48,17 @@ $(document).ready(function(){
   });
 
 
+  // Click Listener to change URL (needed for non-Chrome browser)
+  // $('.author_box').on('click', function() {
+
+  //   // Get data attributes
+  //   var firstName = $(this).data('firstname');
+  //   var lastName = $(this).data('lastname');
+
+  //   // Redirect to author page
+  //   window.location = '/authors/' + lastName + '/' + firstName;
+    
+  // });
+  
+
 });
