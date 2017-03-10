@@ -78,6 +78,19 @@ apiRouter.post('/api/map/search', function (req, res) {
   var branch = req.body.branch;
   var sex = req.body.sex;
 
+  // Set up proper "%" syntax for MySQL matching
+  var myYear = year + "%"; // ex: "1941%" or "1942%" or "%"
+  var myServiceBranch = branch + "%"; // ex: "Army%" or "Army (British)%" or "%"
+  var mySex = sex + "%"; // ex: "M%" or "F%" or "%"
+
+  // Read Database
+  connection.query('SELECT * FROM letters, locdata WHERE letters.id = locdata.locationid AND gender LIKE ? AND service_branch LIKE ? AND ts_dateguess LIKE ? ORDER BY ts_dateguess ASC, lng ASC, lat ASC', [mySex, myServiceBranch, myYear] , function(err, response){
+    if(err) throw err;
+
+    // Export to Client Side
+    res.json(response);
+
+  });
 
 });
 

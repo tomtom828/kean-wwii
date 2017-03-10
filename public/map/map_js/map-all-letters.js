@@ -8,15 +8,17 @@ var current_zoomed_coord_index = -1; //iterator for stepping through letters in 
 
 
 // Collect all Lat and Long Points for all letters (and init Google Map with the data)
-function reInitMap(data) {
+function initMap() {
 
   var infoWindow = new google.maps.InfoWindow({maxWidth: 200}); //global infowindow for letter info
 
 
+  // Collect all Lat & Long Points of all letters (API Call)
+  $.get('/api/map/search', function(data){
+
     // Store repsonse
     markers = data;
 
-    console.log('=-====-=-=-=--==-========')
     console.log(markers)
 
     // Author only had 1 letter
@@ -32,7 +34,7 @@ function reInitMap(data) {
         });
         
         // Create Legend and Center Map
-        // createLegend();
+        createLegend();
         document.getElementById("maperror").style.display = "none";
         center = map.center;
       }
@@ -78,7 +80,7 @@ function reInitMap(data) {
         }); //create map, center is derived from latlngbounds
 
         // Create Legend and Center Map
-        // createLegend();
+        createLegend();
         center = bound.getCenter(); //store center in a global
         document.getElementById("maperror").style.display = "none";
       }
@@ -93,7 +95,7 @@ function reInitMap(data) {
         return; //exit early so that the legend div is never created
       }
 
-    }
+  }
 
 
     var oms = new OverlappingMarkerSpiderfier(map,{
@@ -258,6 +260,7 @@ function reInitMap(data) {
         });
       }
 
+  });
 
 
   // Create a Custom Map Legend
