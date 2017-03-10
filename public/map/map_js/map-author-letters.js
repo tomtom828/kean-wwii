@@ -157,12 +157,12 @@ function initMap() {
 
           if(year > "0000") { //if a year is not null, by default make the path point to that year, single icon on the spot
 
-            var marker_icon_filepath = "/marker_icons/" + year.toString() + "_single.png";
+            var marker_icon_filepath = "/map/marker_icons/" + year.toString() + "_single.png";
           }
 
           else { //year is unknown
 
-            var marker_icon_filepath = "/marker_icons/unknown_single.png";
+            var marker_icon_filepath = "/map/marker_icons/unknown_single.png";
           }
 
           var html = '<b><a href="#mapped-letter" class="mapMarkerIconLink">' + 
@@ -205,13 +205,13 @@ function initMap() {
           
           if(year > "0000") {
             marker.setOptions({
-              icon: "/marker_icons/" + year.toString() + "_multiple.png"
+              icon: "/map/marker_icons/" + year.toString() + "_multiple.png"
             }); 
           }
 
           else {
             marker.setOptions({
-              icon: "/marker_icons/unknown_multiple.png"
+              icon: "/map/marker_icons/unknown_multiple.png"
             });
           } 
         }
@@ -278,8 +278,8 @@ function initMap() {
 
     for(var i = 0; i < prefixes.length; i++) {
 
-      var single_icon = "/marker_icons/" + prefixes[i] + "_single.png";
-      var multiple_icon = "/marker_icons/" + prefixes[i] + "_multiple.png";
+      var single_icon = "/map/marker_icons/" + prefixes[i] + "_single.png";
+      var multiple_icon = "/map/marker_icons/" + prefixes[i] + "_multiple.png";
 
       var single_name = prefixes[i] + " (single)";
       var multiple_name = prefixes[i] + " (multiple)";
