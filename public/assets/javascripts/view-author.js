@@ -50,8 +50,9 @@ $(document).ready(function(){
   // Click Listener for Map Icon Link Selection
   $(document).on('click', '.mapMarkerIconLink', function(e){
     
-    // No Prevent Default Click action b/c we want it to scroll up
-    // e.preventDefault();
+    // Added Sexy Scroll to the selected letter
+    e.preventDefault();
+    $("html, body").animate({ scrollTop: $('#mapped-letter').offset().top }, 1000);
 
     // Collect Image / Letter Entry Name
     var letterName = $(this).text();  
@@ -79,7 +80,7 @@ $(document).ready(function(){
 
 
   // Click Listener for Left Click on Archive
-  $('.glyphicon-menu-left').on('click', function(){
+  $('#transcript-button-left').on('click', function(){
 
     // Get Current Image SRC
     var currentLetterImageURL = $("#letterImage").attr("src");
@@ -119,7 +120,7 @@ $(document).ready(function(){
 
 
   // Click Listener for Right Click on Archive
-  $('.glyphicon-menu-right').on('click', function(){
+  $('#transcript-button-right').on('click', function(){
 
     // Get Current Image SRC
     var currentLetterImageURL = $("#letterImage").attr("src");
@@ -155,6 +156,30 @@ $(document).ready(function(){
     }
 
   });
+
+
+
+  // Click Listener to pop out archive image
+  // $('#letterImage').on('click', function() {
+  //   $('.imagepreview').attr('src', $(this).attr('src'));
+  //   $('#imagemodal').modal('show');   
+  // }); 
+
+  //document.body.style.zoom = "200%" 
+
+  $( "#letterImage" ).dblclick(function() {
+    var awsImageLink = $("#letterImage").attr("src");
+    // var win = window.open(awsImageLink, '_blank');
+    var win = window.location = awsImageLink;
+    if (win) {
+      //Browser has allowed it to be opened
+      win.focus();
+    } else {
+      //Browser has blocked it
+      alert('Please allow popups for this website');
+    }
+  });
+
 
 });
 
