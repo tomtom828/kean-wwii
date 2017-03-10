@@ -41,20 +41,6 @@ domRouter.get('/', function (req, res){
 
 
 
-// GET - Authors Page Render
-domRouter.get('/authors', function (req, res){
-  res.render('authorsByName');
-});
-
-
-
-// GET - Selected Author Page Render
-domRouter.get('/authors/:lastname/:firstname', function (req, res){
-  res.render('selectedAuthor');
-});
-
-
-
 // GET - Search Authors By Starting Letter of Lastname Page Render
 domRouter.get('/search/authors/:letter', function (req, res){
 
@@ -145,19 +131,53 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
 });
 
 
-// GET - Retrieve selected Author (Lastname, Firstname) from MySQL
-domRouter.get('/api/letters/all/:lastname/:firstname', function (req, res) {
+
+
+// GET - Author's Bio Page (contains the Picture, Bio, Letters, Map)
+domRouter.get('/authors/:lastname/:firstname', function (req, res) {
   
   // Collect parameters
-  var lastname = req.params.lastname;
-  var firstname = req.params.firstname;
+  var lastName = req.params.lastname.toLowerCase();
+  var firstName = req.params.firstname.toLowerCase();
+
+  // Clean parameters
+  var displayLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+  var displayFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
 
   // Read Database
-  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = ? AND letters.firstname = ? AND letters.filename = archives.filename ORDER BY letters.letterdate DESC', [lastname, firstname], function(err, response) {
+  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = ? AND letters.firstname = ? AND letters.filename = archives.filename ORDER BY letters.letterdate DESC', [lastName, firstName], function(err, response) {
     if(err) throw err;
 
-    // Export to Client Side
-    res.json(response);
+    // Clean response to display error message if no files found
+    var fileResponse;
+    if (response.length == 0) {
+      fileResponse = null;
+      defaultFileName = "Sorry. No Letters Available.";
+      defaultFilePages = 1;
+      awsDefaultFileName = "No+Letter+Found";
+    }
+    // Otherwise, give back the response
+    else {
+      fileResponse = response;
+      defaultFileName = response[0].filename;
+      defaultFilePages = response[0].pages;
+      awsDefaultFileName = defaultFileName.replace(/ /g, "+");
+    }
+
+    // Create page render object
+    var authorAndFileData = {
+      firstName: firstName,
+      lastName: lastName,
+      displayFirstName: displayFirstName,
+      displayLastName: displayLastName,
+      defaultFileName: defaultFileName,
+      defaultFilePages: defaultFilePages,
+      awsDefaultFileName: awsDefaultFileName,
+      letterData: fileResponse
+    }
+
+    // Render Author's Bio Page
+    res.render('view-author', {hbsObject: authorAndFileData});
 
   });
 

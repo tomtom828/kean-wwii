@@ -19,8 +19,7 @@ function initMap() {
 
 
   // Collect all Lat & Long Points via Author Name (API Call)
-  var currentURL = window.location.origin;
-  $.get(currentURL + '/api/map/all/' + lastName + '/' + firstName, function(data){
+  $.get('/api/map/all/' + lastName + '/' + firstName, function(data){
 
     // Store repsonse
     markers = data;

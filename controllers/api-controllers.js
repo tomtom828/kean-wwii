@@ -70,7 +70,26 @@ apiRouter.get('/api/map/all/:lastname/:firstname', function (req, res) {
 
 });
 
-// ===========================================================
+
+
+
+// API - Retrieve selected Author (Lastname, Firstname) from MySQL
+apiRouter.get('/api/letters/all/:lastname/:firstname', function (req, res) {
+  
+  // Collect parameters
+  var lastname = req.params.lastname;
+  var firstname = req.params.firstname;
+
+  // Read Database
+  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = ? AND letters.firstname = ? AND letters.filename = archives.filename ORDER BY letters.letterdate DESC', [lastname, firstname], function(err, response) {
+    if(err) throw err;
+
+    // Export to Client Side
+    res.json(response);
+
+  });
+
+});
 
 
 

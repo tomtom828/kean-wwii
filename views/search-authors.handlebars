@@ -1,46 +1,44 @@
-<!-- Link in Author Page CSS -->
+{{!-- Link in Author Page CSS --}}
 <link href="/assets/style/search-authors.css" rel="stylesheet" type="text/css">
 
 
-<!-- Title -->
+{{!-- Title --}}
 <h2 align="center">AUTHORS</h2>
 
 <br>
 
-<!-- Search Bar Components -->
+{{!-- Search Bar Components --}}
 <div class="row">
 
-  <!-- Empty Div to move search bar to the right -->
+  {{!-- Empty Div to move search bar to the right --}}
   <div class="col-md-3 col-xs-1"></div> 
 
-    <!-- Search Bar -->
+    {{!-- Search Bar --}}
     <div class="col-md-6 col-xs-10">
       <div class="input-group">
 
-        <!-- Input Fields -->
+        {{!-- Input Fields --}}
         <input id="autherSearchBox" placeholder="Search" type="text" class="form-control" aria-label="...">
         <div class="input-group-btn">
 
-          <!-- First Name vs. Last Name Search -->
+          {{!-- First Name vs. Last Name Search --}}
           <button id="authorLastOrFirstName" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last Name <span class="caret"></span></button>
           <ul class="dropdown-menu">
             <li><a id="lastNameSearch">Last Name</a></li>
             <li><a id="firstNameSearch">First Name</a></li>
           </ul>
 
-          <!-- Submit Button -->
+          {{!-- Submit Button --}}
           <button id="authorSearchSubmit" type="button" class="btn btn-primary searchButtons"><span class="glyphicon glyphicon-search"></span></button>
 
         </div>
-
-
 
       </div>
     </div>
   </div>
 
 
-<!-- Click on Author Last Name Letter -->
+{{!-- Click on Author Last Name Letter --}}
 <div class="row">
   <br><br>
   <center>
@@ -75,8 +73,8 @@
 
 <br>
 
-<!-- Div to Append all Authors -->
 
+{{!-- Div to Append all Authors --}}
 <div class="col-md-12">
   <br>
   <center>
@@ -114,7 +112,5 @@
 </div>
 
 
-
-
-<!-- Link in JavaScript to append authors from API -->
+{{!-- Link in JavaScript to append authors from API --}}
 <script src="/assets/javascripts/search-authors.js"></script>
