@@ -1,0 +1,38 @@
+/* Search Box Style */
+.search-selection-dropdown {
+  height: 35px;
+  margin-right: 10px; 
+}
+
+
+
+/* Google Map Style */
+#map {
+  height: 500px;
+  width: 90%;
+}
+
+#legend {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid #000;
+}
+
+#legend h3 {
+  margin-top: 0;
+}
+
+#legend img {
+  vertical-align: middle;
+}
+
+.hide-used-as-placeholder {
+  visibility:hidden;
+}
+
+.transcript-button {
+  border: none;
+  background: transparent;
+}

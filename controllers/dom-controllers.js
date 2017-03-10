@@ -194,18 +194,9 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
 
 // GET - Search All Letters Page Render
 domRouter.get('/search/letters', function (req, res) {
-  
-  // Read Database
-  // connection.query('SELECT filename FROM letters ORDER BY ts_dateguess ASC, filename ASC', function(err, response) {
-  //   if(err) throw err;
 
-  //   // Render All Letters
-  //   res.render('search-letters', {hbsObject: response});
-
-  // });
-
-
-  res.render('search-letters');
+  // Default view of the search letters page
+  res.render('search-letters', null);
 
 });
 
@@ -278,9 +269,20 @@ domRouter.post('/search/letters', function (req, res) {
 
   });
 
-
-
 });
+
+
+
+
+// GET - Mapping of All Letters in Database of selected criteria
+domRouter.get('/search/map', function (req, res) {
+  res.render('search-map')
+});
+
+
+
+
+
 
 // ----------------------------------------------------
 // Export routes

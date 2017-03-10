@@ -34,33 +34,15 @@ connection.connect(function(err) {
 // ===========================================================
 
 
-
-
-// // API - Retrieve all Authors (Lastname, Firstname) from MySQL
-// apiRouter.get('/api/authors/all', function (req, res) {
-
-//   // Read Database
-//   connection.query('SELECT DISTINCT lastname, firstname FROM letters ORDER BY lastname, firstname ASC', function(err, response){
-//     if(err) throw err;
-
-//     // Export to Client Side
-//     res.json(response);
-
-//   });
-
-// });
-
-
-
 // API - Retrieve Lat & Long Coordinates of selected Author (Lastname, Firstname) from MySQL
-apiRouter.get('/api/map/all/:lastname/:firstname', function (req, res) {
+apiRouter.get('/api/map/author/:lastname/:firstname', function (req, res) {
   
   // Collect parameters
   var lastname = req.params.lastname;
   var firstname = req.params.firstname;
 
   // Read Database
-  connection.query('SELECT * FROM letters,locdata WHERE firstname = ? AND lastname = ? AND letters.id = locdata.locationid ORDER BY ts_dateguess', [firstname, lastname], function(err, response){
+  connection.query('SELECT * FROM letters, locdata WHERE firstname = ? AND lastname = ? AND letters.id = locdata.locationid ORDER BY ts_dateguess ASC', [firstname, lastname], function(err, response){
     if(err) throw err;
 
     // Export to Client Side
@@ -72,25 +54,32 @@ apiRouter.get('/api/map/all/:lastname/:firstname', function (req, res) {
 
 
 
-
-// // API - Retrieve selected Author (Lastname, Firstname) from MySQL
-// apiRouter.get('/api/letters/all/:lastname/:firstname', function (req, res) {
+// API - Retrieve Lat & Long Coordinates of All Letters
+apiRouter.get('/api/map/search', function (req, res) {
   
-//   // Collect parameters
-//   var lastname = req.params.lastname;
-//   var firstname = req.params.firstname;
+  // Read Database
+  connection.query('SELECT * FROM letters, locdata WHERE letters.id = locdata.locationid ORDER BY ts_dateguess ASC, lng ASC, lat ASC', function(err, response){
+    if(err) throw err;
 
-//   // Read Database
-//   connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = ? AND letters.firstname = ? AND letters.filename = archives.filename ORDER BY letters.letterdate DESC', [lastname, firstname], function(err, response) {
-//     if(err) throw err;
+    // Export to Client Side
+    res.json(response);
 
-//     // Export to Client Side
-//     res.json(response);
+  });
 
-//   });
+});
 
-// });
 
+
+// API - Retrieve Lat & Long Coordinates of selected Year, Branch, and Sex
+apiRouter.post('/api/map/search', function (req, res) {
+  
+  // Collect parameters
+  var year = req.body.year;
+  var branch = req.body.branch;
+  var sex = req.body.sex;
+
+
+});
 
 
 // ----------------------------------------------------

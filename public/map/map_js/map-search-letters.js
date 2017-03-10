@@ -7,19 +7,14 @@ var valid_markers = []; //only the markers with real location data
 var current_zoomed_coord_index = -1; //iterator for stepping through letters in chrono order -- initially at -1, then set to [0,+infinity]
 
 
-// Collect all Lat and Long Points for the Author (and init Google Map with the data)
+// Collect all Lat and Long Points for all letters (and init Google Map with the data)
 function initMap() {
 
   var infoWindow = new google.maps.InfoWindow({maxWidth: 200}); //global infowindow for letter info
 
-  // Get Author Name from Route
-  var authorRoute = decodeURI(window.location.pathname).split("/");
-  var firstName = authorRoute[3];
-  var lastName = authorRoute[2];
 
-
-  // Collect all Lat & Long Points via Author Name (API Call)
-  $.get('/api/map/author/' + lastName + '/' + firstName, function(data){
+  // Collect all Lat & Long Points of all letters (API Call)
+  $.get('/api/map/search', function(data){
 
     // Store repsonse
     markers = data;
