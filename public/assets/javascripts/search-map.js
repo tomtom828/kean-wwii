@@ -79,8 +79,6 @@ $(document).ready(function(){
       $('#mapSearchQuery').html(newSearchQuery);
 
       // Re run mapping function
-      console.log(response)
-
       reInitMap(response);
 
     });
