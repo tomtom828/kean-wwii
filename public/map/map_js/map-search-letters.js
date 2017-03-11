@@ -304,47 +304,23 @@ function reInitMap(data){
   var markers = data;
 
   // Global Info Window
-  var infoWindow = new google.maps.InfoWindow({
+  infoWindow = new google.maps.InfoWindow({
     maxWidth: 200
   });
-
-  // Iterate over new points
-  // for (var i = 0; i < markers.length; i++) {
-
-  //   // Only take non-null points
-  //   if (markers[i].lat && markers[i].lng) {
-
-  //     // Make Lat - Long Object
-  //     var myLatLong = {
-  //         lat: markers[i].lat,
-  //         lng: markers[i].lng
-  //     };
-
-
-  //     // Call New Marker
-  //     var marker = new google.maps.Marker({
-  //         position: myLatLong,
-  //         title: "Test"
-  //     });
-
-
-  //     // Push Marker to Map
-  //     marker.setMap(map);
-
-  //     // Push to valid markers array
-  //     valid_markers.push(marker);
-
-  //   }
-  // }
-
-
-
 
   // Reset Map View
   reset_map_view();
 
+  // Reset Error Message (if any)
+  $('#searchNotFound').text('');
 
 
+  // Check if there are no letters from the search
+  if (markers.length == 0) {
+    // Nothing was found, so show show the error messsage
+    $('#searchNotFound').text('Sorry no letters were found for this criteria.')
+    return;
+  }
 
 
 

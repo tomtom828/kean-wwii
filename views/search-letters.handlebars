@@ -23,7 +23,7 @@
 
               {{!-- Select Service Branch --}}
               <b>Service Branch: </b>
-              <select name="branch" class="btn btn-default letter-selection-dropdown">
+              <select id="selectedBranch" name="branch" class="btn btn-default letter-selection-dropdown">
                 <option value="" selected>Any</option>
                 <option value="Army">Army</option>
                 <option value="Army (British)">Army (British)</option>
@@ -37,7 +37,7 @@
 
               {{!-- Select Gender --}}
               <b>Sex: </b>
-              <select name="sex" class="btn btn-default letter-selection-dropdown">
+              <select id="selectedSex" name="sex" class="btn btn-default letter-selection-dropdown">
                 <option value="" selected>Any</option>
                 <option value="M">Male</option>
                 <option value="F">Female</option>
@@ -45,7 +45,7 @@
 
               {{!-- Select Year --}}
               <b>Year: </b>
-              <select name="year" class="btn btn-default letter-selection-dropdown">
+              <select id="selectedYear" name="year" class="btn btn-default letter-selection-dropdown">
                 <option value="" selected>All</option>
                 <option value="1941">1941</option>
                 <option value="1942">1942</option>
@@ -68,7 +68,7 @@
             {{!-- Append Search Terms --}}
             <center>
               <br>
-              <p style="background-color: white;">Displaying letters written by <b>{{hbsObject.sex}}</b> from <b>{{hbsObject.branch}}</b> in <b>{{hbsObject.year}}</b>.</p>
+              <p style="background-color: white;">Displaying letters written by <b id="sex-result">{{hbsObject.sex}}</b> from <b id="branch-result">{{hbsObject.branch}}</b> in <b id="year-result">{{hbsObject.year}}</b>.</p>
             </center>
           {{/if}}
 
@@ -127,5 +127,5 @@
 </div>
 
 
-{{!-- Link in JavaScript to append authors from API --}}
-{{!-- <script src="/assets/javascripts/search-authors.js"></script> --}}
+{{!-- Link in JavaScript to remember last query --}}
+<script src="/assets/javascripts/search-letters.js"></script>

@@ -78,7 +78,7 @@ $(document).ready(function(){
         displayYear + '</b>.</p>';
       $('#mapSearchQuery').html(newSearchQuery);
 
-      // Re run mapping function
+      // Re run mapping function (global variable from the map-search-letter.js script)
       reInitMap(response);
 
     });
