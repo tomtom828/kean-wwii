@@ -4,6 +4,10 @@ $(document).ready(function(){
 
   // Immediately on Page Load
   // ======================================================
+
+  // Load Google Maps (global function)
+  initMap();
+  
   var initSearchQuery = '<br><p>Displaying letters written by <b>anyone</b> from <b>any service branch</b> in <b>any year</b>.</p>'
   $('#mapSearchQuery').html(initSearchQuery);
 

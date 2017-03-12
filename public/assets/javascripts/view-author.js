@@ -5,6 +5,9 @@ $(document).ready(function(){
   // Immediately on Page Load
   // ======================================================
 
+  // Load Google Maps (global function)
+  initMap();
+
   // Check for a hashed location (i.e. user is returning from AWS Image Viewer)
   if (window.location.hash != "" && window.location.hash != "#view-letter"){
 
