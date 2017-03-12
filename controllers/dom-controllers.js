@@ -173,23 +173,32 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
       awsDefaultFileName = defaultFileName.replace(/ /g, "+");
     }
 
-    // Create page render object
-    var authorAndFileData = {
-      firstName: firstName,
-      lastName: lastName,
-      displayFirstName: displayFirstName,
-      displayLastName: displayLastName,
-      defaultFileName: defaultFileName,
-      defaultFilePages: defaultFilePages,
-      awsDefaultFileName: awsDefaultFileName,
-      letterData: fileResponse
-    }
+    // Get Text File Data from AWS S3
+    getS3Text(defaultFileName, function(awsText) {
 
-    // Render Author's Bio Page
-    res.render('view-author', {hbsObject: authorAndFileData});
+      // Note that /n needs to be changed to <br>
+      var defaultFileText = awsText.replace(/\n/g, "<br>");
 
-  });
+      // Create page render object
+      var authorAndFileData = {
+        firstName: firstName,
+        lastName: lastName,
+        displayFirstName: displayFirstName,
+        displayLastName: displayLastName,
+        defaultFileName: defaultFileName,
+        defaultFilePages: defaultFilePages,
+        defaultFileText: defaultFileText,
+        awsDefaultFileName: awsDefaultFileName,
+        letterData: fileResponse
+      }
 
+      // Render Author's Bio Page
+      res.render('view-author', {hbsObject: authorAndFileData});
+
+    }); // end S3 query
+
+  }); // end MySQL query
+  
 });
 
 

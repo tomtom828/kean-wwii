@@ -40,19 +40,7 @@ $(document).ready(function(){
     window.location.hash = 'view-letter';
 
   }
-  // Otherwise, get the default (first archive)
-  else {
-
-    // Get the default letter selection
-    var defaultFileName = $('#currentLetter').text();
-    // Then, Hit the API to collect article text
-    getLetterText(defaultFileName);
-
-  }
-
-
-
-
+  // Otherwise, the default file (first archive) text will be appended via Handlebars
 
 
 
