@@ -7,7 +7,7 @@ var mysql = require('mysql');
 
 
 // Import DB Connection JSON (used if on localhost)
-var dbInfo = require('../dbInfo.json');
+var dbInfo = require('../models/dbInfo.json');
 
 
 // MySQL Connections

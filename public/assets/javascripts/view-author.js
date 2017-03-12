@@ -5,11 +5,51 @@ $(document).ready(function(){
   // Immediately on Page Load
   // ======================================================
 
-  // Get the default letter selection
-  var defaultFileName = $('#currentLetter').text();
+  // Check for a hashed location (i.e. user is returning from AWS Image Viewer)
+  if (window.location.hash != "" && window.location.hash != "#view-letter"){
 
-  // Then, Hit the API to collect article text
-  getLetterText(defaultFileName)
+    // Remove the hash symbol
+    var archiveImageHash = window.location.hash;
+    archiveImageHash = archiveImageHash.slice(1);
+
+    // Set the previous archive image 
+    var archiveImageName = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + archiveImageHash + ".jpg";
+    $('#letterImage').attr('src', archiveImageName);
+    
+    // Update the X of X in View Archive Clickers
+    var currentLetterImageNumber = archiveImageHash.split("-");
+    currentLetterImageNumber = currentLetterImageNumber[0].slice( (currentLetterImageNumber[0].length - 1) );
+    var lastLetterImageNumber = archiveImageHash.slice( (archiveImageHash.length - 1) );
+    $("#currentLetterNumber").html(currentLetterImageNumber);
+    $('#lastLetterNumber').html(lastLetterImageNumber);
+
+    // Get Filename and Letter Text
+    var fileName = archiveImageHash.split("-");
+    fileName = fileName[0].slice(0, (fileName[0].length - 2) );;
+    fileName = fileName.replace(/\+/g, " ");
+    fileName = fileName.trim();
+    getLetterText(fileName);
+    
+    // Change Dropdown Selection to Filename
+    $('#currentLetter').text(fileName);
+
+    // Finally, refresh the hash so all seems at peace in the universe
+    window.location.hash = 'view-letter';
+
+  }
+  // Otherwise, get the default (first archive)
+  else {
+
+    // Get the default letter selection
+    var defaultFileName = $('#currentLetter').text();
+    // Then, Hit the API to collect article text
+    getLetterText(defaultFileName);
+
+  }
+
+
+
+
 
 
 
@@ -52,7 +92,7 @@ $(document).ready(function(){
     
     // Added Sexy Scroll to the selected letter
     e.preventDefault();
-    $("html, body").animate({ scrollTop: $('#mapped-letter').offset().top }, 1000);
+    $("html, body").animate({ scrollTop: $('#view-letter').offset().top }, 1000);
 
     // Collect Image / Letter Entry Name
     var letterName = $(this).text();  
@@ -167,6 +207,8 @@ $(document).ready(function(){
 
   //document.body.style.zoom = "200%" 
 
+
+  // Archive Double Click ==> View Archive Image on AWS (full screen)
   $( "#letterImage" ).dblclick(function() {
     var awsImageLink = $("#letterImage").attr("src");
     // var win = window.open(awsImageLink, '_blank');
@@ -178,6 +220,24 @@ $(document).ready(function(){
       //Browser has blocked it
       alert('Please allow popups for this website');
     }
+  });
+
+
+
+  // Archive Single Click ==> Hash the Archive Selection (used to get back to the right spot after clicking back from AWS)
+  $( "#letterImage" ).on('click', function() { 
+
+    // Get the src of the clicked image
+    var archiveImageURL = $(this).attr("src");
+
+    // Parse off most of the URL
+    var hashFileName = archiveImageURL.split("/");
+    hashFileName = hashFileName[5];
+    hashFileName = hashFileName.split(".jpg");
+    hashFileName = hashFileName[0];
+
+    // Hash the file name to the URL
+    window.location.hash = hashFileName;
   });
 
 

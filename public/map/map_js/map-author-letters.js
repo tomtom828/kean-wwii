@@ -165,7 +165,7 @@ function initMap() {
             var marker_icon_filepath = "/map/marker_icons/unknown_single.png";
           }
 
-          var html = '<b><a href="#mapped-letter" class="mapMarkerIconLink">' + 
+          var html = '<b><a href="#view-letter" class="mapMarkerIconLink">' + 
                       name + '</a>'+ 
                       '</b> <br>' + 
                       address +
