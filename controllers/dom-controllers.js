@@ -6,6 +6,9 @@ var domRouter = express.Router();
 var mysql = require('mysql');
 
 
+// Import AWS S3 Get TXT File Function
+var getS3Text = require('./s3-controllers.js').getS3Text;
+
 // Import DB Connection JSON (used if on localhost)
 var dbInfo = require('../models/dbInfo.json');
 
@@ -276,10 +279,45 @@ domRouter.post('/search/letters', function (req, res) {
 
 // GET - Mapping of All Letters in Database of selected criteria
 domRouter.get('/search/map', function (req, res) {
-  res.render('search-map')
+  res.render('search-map');
 });
 
 
+
+// POST - View a Single Letter and Transribe (selected from the map or letter search pages)
+domRouter.get('/view/letter/:filename', function (req, res) {
+
+  // Get filename from parameters
+  var fileName = req.params.filename;
+
+  // console.log(fileName)
+
+
+  // ************* NEED TO GET PAGE NUMBERS FROM MYSQL AND THEN BUILD AWS ROUTE *************
+
+
+  // Get Text File Data from AWS S3
+  getS3Text(fileName, function(awsText) {
+
+    // Note that /n needs to be changed to <br>
+    awsText = awsText.replace(/\n/g, "<br>");
+
+    // Create Handlebars Object
+    var letterData = {
+      fileName: fileName,
+      filePages: 2,
+      awsfileName: "Edward+Ambry+September+28+1944",
+      awsText: awsText
+    };
+
+    // Render Page with Letter
+    res.render('view-letter', {hbsObject: letterData});
+
+  });
+
+
+  
+});
 
 
 

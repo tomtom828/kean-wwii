@@ -1,0 +1,80 @@
+{{!-- Link in View Author Letters Page CSS --}}
+<link href="/assets/style/view-letter.css" rel="stylesheet" type="text/css">
+
+{{!-- Letter Title --}}
+<div class="row">
+  <div class="col-md-12">
+    <center><h2 id="view-letter">{{hbsObject.fileName}}</h2></center>
+  </div>
+</div>
+
+<br/>
+
+
+
+{{!-- Row for Letters --}}
+<div class="row">
+
+  {{!-- Side By Side Letters and Transcribe --}}
+  <div class="row">
+
+   {{!-- Letter Images --}}
+    <div class="col-md-6 col-xs-12">
+      <center>
+        <h4>
+          {{!-- <a href="#" aria-label="Previous"><span aria-hidden="true">&lsaquo;</span></a> --}}
+          <a id="transcript-button-left" class="btn btn-default transcript-button"><i class="glyphicon glyphicon-menu-left"></i></a>
+          View Archive <span id="currentLetterNumber">1</span> of <span id="lastLetterNumber">{{hbsObject.filePages}}</span> 
+          <a id="transcript-button-right" class="btn btn-default transcript-button"><i class="glyphicon glyphicon-menu-right"></i></a>
+          {{!-- <a href="#" aria-label="Next"><span aria-hidden="true">&rsaquo;</span></a> --}}
+        </h4>
+        <img id="letterImage" src="https://s3.amazonaws.com/kean-wwii-scrapbook/archives/{{hbsObject.awsfileName}}+1-{{hbsObject.filePages}}.jpg" alt="{{hbsObject.fileName}}" width="90%" style="height: 650px; background-color: #ffffff; margin-bottom: 20px;">
+        <p><b>Double click archive to view full size.</b></p>
+      </center>
+    </div>
+
+    {{!-- Letter Transcribe --}}
+    <div class="col-md-6 col-xs-12">
+      <center>
+
+        <h4>
+          View Transcript
+        </h4>
+
+        <div class="panel panel-default" style="margin-top: 25px;">
+          <div class="panel-body" style="height: 650px; overflow: auto; padding-top: 30px; background-color: #f2efe6;">
+            {{!-- Dynamically Append Letter Text --}}
+            <p id="letterText" style="text-align: left;">{{{hbsObject.awsText}}}</p>
+          </div>
+        </div>
+
+      <p><b>Double click transcribe to view full size.</b></p>
+      </center>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">              
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <center>
+          <img src="" class="imagepreview" style="width: 50%;" >
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{{!-- Link in JavaScript to collect all letter names from API --}}
+<script src="/assets/javascripts/view-letter.js"></script>
+

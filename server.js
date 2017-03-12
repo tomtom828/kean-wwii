@@ -38,7 +38,7 @@ var apiRouter = require('./controllers/api-controllers.js');
 app.use('/', apiRouter);
 
 // Import S3 (for .txt files) controller
-var s3Router = require('./controllers/s3-controllers.js');
+var s3Router = require('./controllers/s3-controllers.js').s3Router;
 app.use('/', s3Router);
 
 // Catch all (404 route) - MUST BE THE LAST ONE LISTED

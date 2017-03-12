@@ -1,0 +1,143 @@
+/* Page Style */
+#author-signature {
+/*	font-family: 'Meddon', cursive;
+	font-weight: bold;*/
+  max-height: 85px;
+  max-width: 95%;
+}
+
+#author-photo {
+  height: 450px;
+  /*max-width: 95%;*/
+}
+
+
+/* Mapping Styling */
+/*#map {
+  height: 75%;
+  width: 750px;
+  position: relative;
+    height: 500px;
+    width: 100%;
+}
+#maperror {
+  height: 3%;
+}
+#legend { 
+  background:white;
+  padding:10px;
+  display:none;
+}*/
+
+
+/* Google Map Style */
+#map {
+  height: 500px;
+  width: 90%;
+}
+
+#legend {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid #000;
+}
+
+#legend h3 {
+  margin-top: 0;
+}
+
+#legend img {
+  vertical-align: middle;
+}
+
+.hide-used-as-placeholder {
+  visibility:hidden;
+}
+
+.transcript-button {
+  border: none;
+  background: transparent;
+}
+
+
+/* View Archive Modal Style */
+/*.modal-dialog {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content {
+  min-height: 100%;
+  height: auto;
+  border-radius: 0;
+}
+*/
+/*body.modal-open {
+  overflow: hidden;
+  position: fixed;
+}*/
+
+/*.portfolio-modal .modal-content {
+  border-radius: 0;
+  background-clip: border-box;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: none;
+  min-height: 100%;
+  padding: 100px 0;
+  text-align: center;
+}
+.portfolio-modal .modal-content h2 {
+  margin: 0;
+  font-size: 3em;
+}
+.portfolio-modal .modal-content img {
+  margin-bottom: 30px;
+}
+.portfolio-modal .modal-content .item-details {
+  margin: 30px 0;
+}
+.portfolio-modal .close-modal {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  background-color: transparent;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+}
+.portfolio-modal .close-modal:hover {
+  opacity: 0.3;
+}
+.portfolio-modal .close-modal .lr {
+  height: 75px;
+  width: 1px;
+  margin-left: 35px;
+  background-color: #2C3E50;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  /* IE 9 */
+  -webkit-transform: rotate(45deg);
+  /* Safari and Chrome */
+  z-index: 1051;
+}
+.portfolio-modal .close-modal .lr .rl {
+  height: 75px;
+  width: 1px;
+  background-color: #2C3E50;
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(90deg);
+  /* Safari and Chrome */
+  z-index: 1052;
+}
+.portfolio-modal .modal-backdrop {
+  opacity: 0;
+  display: none;
+}*/

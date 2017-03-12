@@ -58,6 +58,48 @@ s3Router.get('/resources/letters/:letterName', function (req, res) {
 });
 
 
+
+// BACKEND - Function to Query AWS for TXT file from within other routes
+function getS3Text(fileName, _callback) {
+
+  // Use the Filename to create the link to the "transcript" folder in the "kean-wwii-scrapbook" bucket
+  var awsTextFileKey = 'transcripts/' + fileName + '.txt';
+  var params = {
+    Bucket: 'kean-wwii-scrapbook',
+    Key: awsTextFileKey
+  }
+
+  // Get back the text from the .txt file in AWS S3
+  s3.getObject(params, function(err, data) {
+
+    // If there was an error (file was not found or not read)
+    if (err) {
+
+      // Log error
+      // console.log(err, err.stack);
+      // Respond to DOM with Error
+      var fileText = "Transcript not available at this time.";
+      return _callback(fileText);
+
+    }
+    // Otherwise, it was a succes
+    else{
+
+      // Get .txt file's text
+      var fileText = data.Body.toString();
+      // Respond with Letter Text
+      return _callback(fileText);
+
+    } 
+
+  });
+
+}
+
+
 // ----------------------------------------------------
-// Export routes
-module.exports = s3Router;
+// Export router
+module.exports.s3Router = s3Router;
+
+// Export backend function
+module.exports.getS3Text = getS3Text;
