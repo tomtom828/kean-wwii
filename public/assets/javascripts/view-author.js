@@ -209,7 +209,7 @@ $(document).ready(function(){
       win.focus();
     } else {
       //Browser has blocked it
-      alert('Please allow popups for this website');
+      alert('Please allow popups for this website.');
     }
   });
 
@@ -230,6 +230,101 @@ $(document).ready(function(){
     // Hash the file name to the URL
     window.location.hash = hashFileName;
   });
+
+
+  // Better for mobile ==> Click link to View Archive Image on AWS (full screen)
+  $('#viewFullSizedArchive').on('click', function() {
+
+    // Step 1 - Hash the current Selection
+    // Get the src of the clicked image
+    var archiveImageURL = $('#letterImage').attr("src");
+    // Parse off most of the URL
+    var hashFileName = archiveImageURL.split("/");
+    hashFileName = hashFileName[5];
+    hashFileName = hashFileName.split(".jpg");
+    hashFileName = hashFileName[0];
+    // Hash the file name to the URL
+    window.location.hash = hashFileName;
+
+    // Step 2 - Navigate to AWS
+    var awsImageLink = $("#letterImage").attr("src");
+    // var win = window.open(awsImageLink, '_blank');
+    var win = window.location = awsImageLink;
+    if (win) {
+      //Browser has allowed it to be opened
+      win.focus();
+    } else {
+      //Browser has blocked it
+      alert('Please allow popups for this website.');
+    }
+
+  });
+
+
+
+  // Archive Double Click ==> View Archive Text on AWS (full screen)
+  $('#letterText').dblclick(function() {
+
+    // Step 1 - Hash the current Selection
+    // Get the src of the clicked image
+    var archiveImageURL = $('#letterImage').attr("src");
+    // Parse off most of the URL
+    var hashFileName = archiveImageURL.split("/");
+    hashFileName = hashFileName[5];
+    hashFileName = hashFileName.split(".jpg");
+    hashFileName = hashFileName[0];
+    // Hash the file name to the URL
+    window.location.hash = hashFileName;
+
+    // Step 2 - Navigate to AWS
+    // Get the File Name from the title
+    var fileName = $('#currentLetter').text();
+    var awsArchiveTextURL = fileName.replace(/ /g, "%20");
+    awsArchiveTextURL = " https://s3.amazonaws.com/kean-wwii-scrapbook/transcripts/" + awsArchiveTextURL + ".txt";
+    // Navigate to AWS Link
+    var win = window.location = awsArchiveTextURL;
+    if (win) {
+      //Browser has allowed it to be opened
+      win.focus();
+    } else {
+      //Browser has blocked it
+      alert('Please allow popups for this website.');
+    }
+    
+  }); 
+
+
+
+  // Better for mobile ==> Click link to View Archive Text on AWS (full screen)
+  $('#viewFullSizedTranscribe').on('click', function() {
+
+    // Step 1 - Hash the current Selection
+    // Get the src of the clicked image
+    var archiveImageURL = $('#letterImage').attr("src");
+    // Parse off most of the URL
+    var hashFileName = archiveImageURL.split("/");
+    hashFileName = hashFileName[5];
+    hashFileName = hashFileName.split(".jpg");
+    hashFileName = hashFileName[0];
+    // Hash the file name to the URL
+    window.location.hash = hashFileName;
+
+    // Step 2 - Navigate to AWS
+    // Get the File Name from the title
+    var fileName = $('#currentLetter').text();
+    var awsArchiveTextURL = fileName.replace(/ /g, "%20");
+    awsArchiveTextURL = " https://s3.amazonaws.com/kean-wwii-scrapbook/transcripts/" + awsArchiveTextURL + ".txt";
+    // Navigate to AWS Link
+    var win = window.location = awsArchiveTextURL;
+    if (win) {
+      //Browser has allowed it to be opened
+      win.focus();
+    } else {
+      //Browser has blocked it
+      alert('Please allow popups for this website.');
+    }
+  });
+
 
 
 });

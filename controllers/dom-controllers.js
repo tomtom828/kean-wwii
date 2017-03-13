@@ -198,7 +198,7 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
     }); // end S3 query
 
   }); // end MySQL query
-  
+
 });
 
 
@@ -293,36 +293,47 @@ domRouter.get('/search/map', function (req, res) {
 
 
 
-// POST - View a Single Letter and Transribe (selected from the map or letter search pages)
+// GET - View a Single Letter and Transribe (selected from the map or letter search pages)
 domRouter.get('/view/letter/:filename', function (req, res) {
 
   // Get filename from parameters
   var fileName = req.params.filename;
 
-  // console.log(fileName)
+  // Read Database
+  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.filename = ? AND letters.filename = archives.filename', [fileName], function(err, response) {
+    if(err) throw err;
 
+    // Clean response to display error message if no files found
+    if (response.length == 0) {
+      filePages = 1;
+      awsFileName = "No+Letter+Found";
+    }
+    // Otherwise, give back the response
+    else {
+      filePages = response[0].pages;
+      awsFileName = fileName.replace(/ /g, "+");
+    }
 
-  // ************* NEED TO GET PAGE NUMBERS FROM MYSQL AND THEN BUILD AWS ROUTE *************
+    // Get Text File Data from AWS S3
+    getS3Text(fileName, function(awsText) {
 
+      // Note that /n needs to be changed to <br>
+      var fileText = awsText.replace(/\n/g, "<br>");
 
-  // Get Text File Data from AWS S3
-  getS3Text(fileName, function(awsText) {
+      // Create page render object
+      var authorAndFileData = {
+        fileName: fileName,
+        filePages: filePages,
+        fileText: fileText,
+        awsFileName: awsFileName
+      }
 
-    // Note that /n needs to be changed to <br>
-    awsText = awsText.replace(/\n/g, "<br>");
+      // Render Author's Bio Page
+      res.render('view-letter', {hbsObject: authorAndFileData});
 
-    // Create Handlebars Object
-    var letterData = {
-      fileName: fileName,
-      filePages: 2,
-      awsfileName: "Edward+Ambry+September+28+1944",
-      awsText: awsText
-    };
+    }); // end S3 query
 
-    // Render Page with Letter
-    res.render('view-letter', {hbsObject: letterData});
-
-  });
+  }); // end MySQL query
 
 
   
