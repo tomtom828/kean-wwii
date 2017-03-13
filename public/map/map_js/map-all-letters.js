@@ -1,4 +1,4 @@
-// Takes all Lat & Long from selected Author and puts them on the Google Map
+// Takes all Lat & Long from all Letters and puts them on the Google Map
 
 
 var map; //global ref to google map
@@ -152,6 +152,9 @@ function initMap() {
           var letterid = markers[i].id;
           var year = markers[i].ts_dateguess.substring(0, 4);;
 
+          // *** NEW BY TOMMY ***
+          var letterURL = "/view/letter/" + name.replace(/ /g, "%20");
+
           if(year > "0000") { //if a year is not null, by default make the path point to that year, single icon on the spot
 
             var marker_icon_filepath = "/map/marker_icons/" + year.toString() + "_single.png";
@@ -162,7 +165,7 @@ function initMap() {
             var marker_icon_filepath = "/map/marker_icons/unknown_single.png";
           }
 
-          var html = '<b><a href="#mapped-letter" class="mapMarkerIconLink">' + 
+          var html = '<b><a href="' + letterURL + '" class="mapMarkerIconLink">' + 
                       name + '</a>'+ 
                       '</b> <br>' + 
                       address +

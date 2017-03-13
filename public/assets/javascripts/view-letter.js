@@ -63,9 +63,6 @@ $(document).ready(function(){
       var newLetterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + rootLetterImageName + (currentLetterImageNumber - 1) + "-" + lastLetterImageNumber + ".jpg";
       $("#currentLetterNumber").html(currentLetterImageNumber - 1);
       $("#letterImage").attr("src", newLetterImageURL);
-
-      // Hash the page # to the URL
-      window.location.hash = (currentLetterImageNumber - 1);
     }
 
   });
@@ -105,9 +102,6 @@ $(document).ready(function(){
       var newLetterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + rootLetterImageName + (currentLetterImageNumber + 1) + "-" + lastLetterImageNumber + ".jpg";
       $("#currentLetterNumber").html(currentLetterImageNumber + 1);
       $("#letterImage").attr("src", newLetterImageURL);
-
-      // Hash the page # to the URL
-      window.location.hash = (currentLetterImageNumber + 1);
     }
 
   });
@@ -116,6 +110,10 @@ $(document).ready(function(){
 
   // Archive Double Click ==> View Archive Text on AWS (full screen)
   $('#letterText').dblclick(function() {
+
+    // Hash the page # to the URL
+    window.location.hash = $('#currentLetterNumber').text();
+
     // Get the File Name from the title
     var fileName = $('#view-letter').text();
     var awsArchiveTextURL = fileName.replace(/ /g, "%20");
@@ -136,6 +134,10 @@ $(document).ready(function(){
 
   // Archive Double Click ==> View Archive Image on AWS (full screen)
   $( "#letterImage" ).dblclick(function() {
+
+    // Hash the page # to the URL
+    window.location.hash = $('#currentLetterNumber').text();
+
     var awsImageLink = $("#letterImage").attr("src");
     // var win = window.open(awsImageLink, '_blank');
     var win = window.location = awsImageLink;
@@ -152,6 +154,10 @@ $(document).ready(function(){
 
   // Better for mobile ==> Click link to View Archive Image on AWS (full screen)
   $('#viewFullSizedArchive').on('click', function() {
+
+    // Hash the page # to the URL
+    window.location.hash = $('#currentLetterNumber').text();
+
     var awsImageLink = $("#letterImage").attr("src");
     // var win = window.open(awsImageLink, '_blank');
     var win = window.location = awsImageLink;
@@ -168,6 +174,10 @@ $(document).ready(function(){
 
   // Better for mobile ==> Click link to View Archive Text on AWS (full screen)
   $('#viewFullSizedTranscribe').on('click', function() {
+    
+    // Hash the page # to the URL
+    window.location.hash = $('#currentLetterNumber').text();
+
     // Get the File Name from the title
     var fileName = $('#view-letter').text();
     var awsArchiveTextURL = fileName.replace(/ /g, "%20");
