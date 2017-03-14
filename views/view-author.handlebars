@@ -29,24 +29,26 @@
   {{!-- Bio --}}
   <div class="col-md-6 col-xs-12">
     {{!-- background-image: url('/assets/images/Newspaper-Texture.jpg') or #e1e8e6 --}}
-    <div class="panel panel-default" style="margin-top: 25px; background-color: #f2efe6;">
-      <div class="panel-body" style="font-size: 15px; height: 400px;">
+    <center>
+      <div class="panel panel-default" style="margin-top: 25px; background-color: #f2efe6; width: 90%; height: 400px;">
+        <div class="panel-body" style="font-size: 15px; text-align: left;">
 
-        {{!-- Repeat their name --}}
-        <h2 class="author-name"><b>{{hbsObject.displayFirstName}} {{hbsObject.displayLastName}}</b></h2>
-        
-        {{!-- Important Facts --}}
-        <ul>
-          <li id="bio-birth"><b>Date of Birth: </b> </li>
-          <li id="bio-death"><b>Date of Death: </b> </li>
-          <li id="bio-enrolled"><b>Enrolled: </b> </li>
-          <li id="bio-left"><b>Left N.S.T.C. for service: </b> </li>
-          <li id="bio-return"><b>Return to N.S.T.C. from service: </b> </li>
-          <li id="bio-graduated"><b>Graduated from N.S.T.C.: </b> </li>
-          <li id="bio-degree"><b>Degree: </b> </li>
-        <ul>
+          {{!-- Repeat their name --}}
+          <h2 class="author-name"><b>{{hbsObject.displayFirstName}} {{hbsObject.displayLastName}}</b></h2>
+          
+          {{!-- Important Facts --}}
+          <ul>
+            <li id="bio-birth"><b>Date of Birth: </b> </li>
+            <li id="bio-death"><b>Date of Death: </b> </li>
+            <li id="bio-enrolled"><b>Enrolled: </b> </li>
+            <li id="bio-left"><b>Left N.S.T.C. for service: </b> </li>
+            <li id="bio-return"><b>Return to N.S.T.C. from service: </b> </li>
+            <li id="bio-graduated"><b>Graduated from N.S.T.C.: </b> </li>
+            <li id="bio-degree"><b>Degree: </b> </li>
+          <ul>
+        </div>
       </div>
-    </div>
+    </center>
 
   </div>
 
@@ -121,9 +123,9 @@
     <div class="col-md-6 col-xs-12">
       <center>
         <h4>
-          {{!-- <button class="btn btn-default hide-used-as-placeholder"><i class="glyphicon glyphicon-menu-up"></i></button> --}}
+          <button class="btn btn-default hide-used-as-placeholder"><i class="glyphicon glyphicon-menu-up"></i></button>
           View Transcript
-          {{!-- <button class="btn btn-default hide-used-as-placeholder"><i class="glyphicon glyphicon-menu-down"></i></button> --}}
+          <button class="btn btn-default hide-used-as-placeholder"><i class="glyphicon glyphicon-menu-down"></i></button>
         </h4>
 
 
@@ -134,9 +136,8 @@
         {{!-- </div> --}}
 
 
-
-        <div class="panel panel-default" style="margin-top: 25px;">
-          <div class="panel-body" style="height: 650px; overflow: auto; padding-top: 30px; background-color: #f2efe6;">
+        <div class="panel panel-default" style="overflow: auto; width: 90%; height: 650px; padding: 15px; background-color: #f2efe6;">
+          <div class="panel-body">
             {{!-- Dynamically Append Letter Text --}}
             <p id="letterText" style="text-align: left;">{{{hbsObject.defaultFileText}}}</p>
           </div>

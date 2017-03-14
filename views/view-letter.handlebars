@@ -38,11 +38,13 @@
       <center>
 
         <h4>
-          View Transcript
+          <button class="btn btn-default hide-used-as-placeholder"><i class="glyphicon glyphicon-menu-up"></i></button>
+            View Transcript
+          <button class="btn btn-default hide-used-as-placeholder"><i class="glyphicon glyphicon-menu-down"></i></button>
         </h4>
 
-        <div class="panel panel-default" style="margin-top: 25px;">
-          <div class="panel-body" style="height: 650px; overflow: auto; padding-top: 30px; background-color: #f2efe6;">
+        <div class="panel panel-default" style="overflow: auto; width: 90%; height: 650px; padding: 15px; background-color: #f2efe6;">
+          <div class="panel-body">
             {{!-- Dynamically Append Letter Text --}}
             <p id="letterText" style="text-align: left;">{{{hbsObject.fileText}}}</p>
           </div>

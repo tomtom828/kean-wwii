@@ -176,8 +176,11 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
     // Get Text File Data from AWS S3
     getS3Text(defaultFileName, function(awsText) {
 
-      // Note that /n needs to be changed to <br>
+      // Note that /n (enter key) needs to be changed to <br>
       var defaultFileText = awsText.replace(/\n/g, "<br>");
+
+      // Note that /t (tab key) needs to be changed to a tab, using a <i> tag and CSS
+      defaultFileText = defaultFileText.replace(/\t/g, '<i style="padding-left: 5em";></i>')
 
       // Create page render object
       var authorAndFileData = {
@@ -268,6 +271,7 @@ domRouter.post('/search/letters', function (req, res) {
       displayYear = year;
     }
 
+
     // Create page render object
     var letterAndFileData = {
       branch: displayBranch,
@@ -317,8 +321,11 @@ domRouter.get('/view/letter/:filename', function (req, res) {
     // Get Text File Data from AWS S3
     getS3Text(fileName, function(awsText) {
 
-      // Note that /n needs to be changed to <br>
-      var fileText = awsText.replace(/\n/g, "<br>");
+      // Note that /n (enter key) needs to be changed to <br>
+      var fileText = awsText.replace(/\n/g, '<br>');
+
+      // Note that /t (tab key) needs to be changed to a tab, using a <i> tag and CSS
+      fileText = fileText.replace(/\t/g, '<i style="padding-left: 5em";></i>')
 
       // Create page render object
       var authorAndFileData = {

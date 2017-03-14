@@ -336,7 +336,15 @@ $(document).ready(function(){
 // Get the Article Text
 var getLetterText = function(letterName){
   $.get('/resources/letters/' + letterName, function(data){
-    // Append Text to DOM (note that \n is needed to be changed to <br> tag for jQuery to work right)
-    $('#letterText').html( data.replace(/\n/g, "<br />") );
+
+    // Note that /n (enter key) needs to be changed to <br>
+    var fileText = data.replace(/\n/g, "<br>");
+
+    // Note that /t (tab key) needs to be changed to a tab, using a <i> tag and CSS
+    fileText = fileText.replace(/\t/g, '<i style="padding-left: 5em";></i>');
+
+    // Append Text to DOM
+    $('#letterText').html(fileText);
+
   });
 }

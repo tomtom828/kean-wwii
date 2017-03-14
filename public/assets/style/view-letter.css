@@ -1,4 +1,9 @@
 /* Page Style */
+
+.hide-used-as-placeholder {
+  visibility:hidden;
+}
+
 .transcript-button {
   border: none;
   background: transparent;
