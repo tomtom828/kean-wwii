@@ -1,0 +1,42 @@
+a.hide_hyperlink{
+  text-decoration: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 50px;
+}
+
+#authors {
+  height: 120px;
+  width: 90%;
+  background-image:url(/assets/images/Authors-Tile.jpg);
+  background-repeat: no repeat;
+  background-size: cover;
+  color: white;
+  display: inline-block;
+  padding-top: 30px;
+  font-size: 14px;
+}
+
+#letters {
+  height: 120px;
+  width: 90%;
+  background-image:url(/assets/images/Letters-Tile.jpg);
+  background-repeat: no repeat;
+  background-size: cover;
+  color: white;
+  display: inline-block;
+  padding-top: 30px;
+  font-size: 14px;
+}
+
+#map {
+  height: 120px;
+  width: 90%;
+  background-image:url(/assets/images/Map-Tile.jpg);
+  background-repeat: no repeat;
+  background-size: cover;
+  color: white;
+  display: inline-block;
+  padding-top: 30px;
+  font-size: 14px;
+}

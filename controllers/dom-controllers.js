@@ -43,6 +43,14 @@ domRouter.get('/', function (req, res) {
 });
 
 
+
+// GET - Reading Page Render
+domRouter.get('/reading', function (req, res) {
+  res.render('reading');
+});
+
+
+
 // REDIRECT - To Search Authors By Starting Letter of Lastname Page Render
 domRouter.get('/search/authors', function (req, res) {
   // If no letter was selected, re-direct to A
