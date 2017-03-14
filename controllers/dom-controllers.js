@@ -162,7 +162,7 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
   var displayFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
 
   // Read Database
-  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = ? AND letters.firstname = ? AND letters.filename = archives.filename ORDER BY letters.letterdate DESC', [lastName, firstName], function(err, response) {
+  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = ? AND letters.firstname = ? AND letters.filename = archives.filename ORDER BY letters.ts_dateguess ASC, letters.filename ASC', [lastName, firstName], function(err, response) {
     if(err) throw err;
 
     // Clean response to display error message if no files found
