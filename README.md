@@ -24,3 +24,9 @@ If you wish to clone the website down and run it on localhost...
     * Also double check that the localhost connnection is correct in `models/dbInfo.json`.
   4. Run the server with `node server.js`.
   5. Navigate to `localhost:8080` in your browser.
+
+
+## Future Kean Developers!
+Feel free to fork this repo.
+Then refer to the documentation stored in keanwwiiscrapbook@gmail.com account.
+The account's Google Drive will contain a document with instructions on how to add yourself as a corraborator.
