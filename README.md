@@ -31,4 +31,4 @@ If you wish to clone the website down and run it on localhost...
 ## Future Kean Developers!
 Feel free to fork this repo.
 Then refer to the documentation stored in the keanwwiiscrapbook@gmail.com account.
-The account's Google Drive will contain a document with instructions on how to add yourself as a corraborator.
+The account's Google Drive will contain a document with instructions on how to add yourself as a collaborator.
