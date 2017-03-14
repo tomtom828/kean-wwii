@@ -18,8 +18,8 @@ INSERT INTO `dummytable` VALUES (32,'Fort Washington Road, Fort Washington, Mary
 
 --- ============= COPY THE LINES BELOW HERE TO SEED THE DEPLOYMENT DATABASE =============
 
--- Remove Strict Mode
 
+-- Remove Strict Mode (to put in 0000-00-00 dates)
 SET sql_mode = '';
 
 
@@ -950,6 +950,3 @@ VALUES ("Howard Ackerman April 4 1943", 5),
   ("Red Cross Generous Giving Award", 1),
   ("Teachers Education Journal September 1942", 1),
   ("US Treasury Department War Bond Drive Certificate", 1);
-
-
-
