@@ -1,6 +1,7 @@
 # Kean WWII Digital Library
 A Freelance Web Development project to help the Kean University history department with their WWII archives.
 Please view the website at [www.worldwariiscrapbook.com](http://www.worldwariiscrapbook.com).
+The archives are a collection of letters from WWII soldiers written to a Kean librarian during the war.
 
 This project was a continuation of the code developed by a [Kean Student](https://github.com/joseph-galindo/digital-library-kean), where PHP was replaced with NodeJS, the UI was re-done, and more pages and functionality were added.
 
