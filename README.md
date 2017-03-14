@@ -20,8 +20,8 @@ If you wish to clone the website down and run it on localhost...
   1. Ensure that you have MySQL and NodeJS set up on your laptop.
   2. Once you are set up, `cd` into this repo and run `npm install`.
   3. Then seed the database using MySQL Workbench.
-    * The schema is found in `models/db.sql`.
-    * Also double check that the localhost connnection is correct in `models/dbInfo.json`.
+      * The schema is found in `models/db.sql`.
+      * Also double check that the localhost connnection is correct in `models/dbInfo.json`.
   4. Run the server with `node server.js`.
   5. Navigate to `localhost:8080` in your browser.
 
