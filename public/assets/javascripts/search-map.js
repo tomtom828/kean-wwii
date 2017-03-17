@@ -89,7 +89,7 @@ $(document).ready(function(){
     .done(function(response){
 
       // Re run mapping function (global variable from the map-search-letter.js script)
-      setTimeout(function(){reInitMap(response)}, 750); // hacky fix to allow enough time for initMap() to fire, was 2100
+      setTimeout(function(){reInitMap(response)}, 1100); // hacky fix to allow enough time for initMap() to fire, was 2100
 
     });
 
