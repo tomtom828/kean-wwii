@@ -112,7 +112,8 @@ $(document).ready(function(){
   $('#letterText').dblclick(function() {
 
     // Hash the page # to the URL
-    window.location.hash = $('#currentLetterNumber').text();
+    // window.location.hash = $('#currentLetterNumber').text();
+    location.replace( "#" + $('#currentLetterNumber').text() );
 
     // Get the File Name from the title
     var fileName = $('#view-letter').text();
@@ -136,7 +137,8 @@ $(document).ready(function(){
   $( "#letterImage" ).dblclick(function() {
 
     // Hash the page # to the URL
-    window.location.hash = $('#currentLetterNumber').text();
+    // window.location.hash = $('#currentLetterNumber').text();
+    location.replace( "#" + $('#currentLetterNumber').text() );
 
     var awsImageLink = $("#letterImage").attr("src");
     // var win = window.open(awsImageLink, '_blank');
@@ -156,7 +158,8 @@ $(document).ready(function(){
   $('#viewFullSizedArchive').on('click', function() {
 
     // Hash the page # to the URL
-    window.location.hash = $('#currentLetterNumber').text();
+    // window.location.hash = $('#currentLetterNumber').text();
+    location.replace( "#" + $('#currentLetterNumber').text() );
 
     var awsImageLink = $("#letterImage").attr("src");
     // var win = window.open(awsImageLink, '_blank');
@@ -176,7 +179,8 @@ $(document).ready(function(){
   $('#viewFullSizedTranscribe').on('click', function() {
     
     // Hash the page # to the URL
-    window.location.hash = $('#currentLetterNumber').text();
+    // window.location.hash = $('#currentLetterNumber').text();
+    location.replace( "#" + $('#currentLetterNumber').text() );
 
     // Get the File Name from the title
     var fileName = $('#view-letter').text();

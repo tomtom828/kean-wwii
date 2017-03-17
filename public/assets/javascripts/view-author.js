@@ -201,6 +201,21 @@ $(document).ready(function(){
 
   // Archive Double Click ==> View Archive Image on AWS (full screen)
   $( "#letterImage" ).dblclick(function() {
+
+    // Step 1 - Hash the current Selection
+    // Get the src of the clicked image
+    var archiveImageURL = $(this).attr("src");
+    // Parse off most of the URL
+    var hashFileName = archiveImageURL.split("/");
+    hashFileName = hashFileName[5];
+    hashFileName = hashFileName.split(".jpg");
+    hashFileName = hashFileName[0];
+    // Hash the file name to the URL
+    // window.location.hash = hashFileName;
+    location.replace("#" + hashFileName);
+
+    // Step 2 - Navigate to AWS
+    // Get selected Archive
     var awsImageLink = $("#letterImage").attr("src");
     // var win = window.open(awsImageLink, '_blank');
     var win = window.location = awsImageLink;
@@ -211,24 +226,6 @@ $(document).ready(function(){
       //Browser has blocked it
       alert('Please allow popups for this website.');
     }
-  });
-
-
-
-  // Archive Single Click ==> Hash the Archive Selection (used to get back to the right spot after clicking back from AWS)
-  $( "#letterImage" ).on('click', function() { 
-
-    // Get the src of the clicked image
-    var archiveImageURL = $(this).attr("src");
-
-    // Parse off most of the URL
-    var hashFileName = archiveImageURL.split("/");
-    hashFileName = hashFileName[5];
-    hashFileName = hashFileName.split(".jpg");
-    hashFileName = hashFileName[0];
-
-    // Hash the file name to the URL
-    window.location.hash = hashFileName;
   });
 
 
@@ -244,7 +241,8 @@ $(document).ready(function(){
     hashFileName = hashFileName.split(".jpg");
     hashFileName = hashFileName[0];
     // Hash the file name to the URL
-    window.location.hash = hashFileName;
+    // window.location.hash = hashFileName;
+    location.replace("#" + hashFileName);
 
     // Step 2 - Navigate to AWS
     var awsImageLink = $("#letterImage").attr("src");
@@ -274,7 +272,8 @@ $(document).ready(function(){
     hashFileName = hashFileName.split(".jpg");
     hashFileName = hashFileName[0];
     // Hash the file name to the URL
-    window.location.hash = hashFileName;
+    // window.location.hash = hashFileName;
+    location.replace("#" + hashFileName);
 
     // Step 2 - Navigate to AWS
     // Get the File Name from the title
@@ -307,7 +306,8 @@ $(document).ready(function(){
     hashFileName = hashFileName.split(".jpg");
     hashFileName = hashFileName[0];
     // Hash the file name to the URL
-    window.location.hash = hashFileName;
+    // window.location.hash = hashFileName;
+    location.replace("#" + hashFileName);
 
     // Step 2 - Navigate to AWS
     // Get the File Name from the title

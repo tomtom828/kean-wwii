@@ -148,7 +148,8 @@ $(document).ready(function(){
     branch == '' ? branch = 'Any' : branch = branch.replace(/ /g, "%20");
     sex == '' ? sex = 'Any' : sex = sex;
     year == '' ? year = 'All' : year = year;
-    window.location.hash = branch + "+" + sex + "+" + year;
+    // window.location.hash = branch + "+" + sex + "+" + year;
+    location.replace("#" + branch + "+" + sex + "+" + year);
 
 
 
