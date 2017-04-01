@@ -100,6 +100,58 @@ function getS3Text(fileName, _callback) {
 }
 
 
+
+
+// GET - the Letter content from the .DOC file in Resources
+s3Router.get('/resources/:letterName', function (req, res) {
+
+  // Get File Name
+  var fileName = req.params.letterName;
+
+  // Use the Filename to create the link to the "transcript" folder in the "kean-wwii-scrapbook" bucket
+  var awsTextFileKey = 'transcripts/' + fileName + '.docx';  // <==== replace .docx with .txt here for a working .txt example
+  var params = {
+    Bucket: 'kean-wwii-scrapbook',
+    Key: awsTextFileKey
+  }
+
+  // Get back the text from the .txt file in AWS S3
+  s3.getObject(params, function(err, data) {
+
+    // If there was an error (file was not found or not read)
+    if (err) {
+
+      // Log error
+      console.log(err, err.stack);
+      // Respond to DOM with Error
+      res.json("Transcript not available at this time.");
+
+    }
+    // Otherwise, it was a succes
+    else{
+
+      // Get .txt file's text
+      var fileText = data.Body.toString();
+      // Respond with Letter Text
+      res.json(fileText);
+
+    } 
+
+  });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
 // ----------------------------------------------------
 // Export router
 module.exports.s3Router = s3Router;
