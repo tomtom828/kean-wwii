@@ -16,6 +16,9 @@ aws.config.update({
 // Create New S3 Connection
 var s3 = new aws.S3();
 
+// Refer to the following Stack Overflow Link for reading txt files from AWS S3
+// http://stackoverflow.com/questions/27299139/read-file-from-aws-s3-bucket-using-node-fs
+
 
 
 // GET - the Letter content from the .TXT file in Resources
