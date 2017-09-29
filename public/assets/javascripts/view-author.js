@@ -15,10 +15,10 @@ $(document).ready(function(){
     var archiveImageHash = window.location.hash;
     archiveImageHash = archiveImageHash.slice(1);
 
-    // Set the previous archive image 
+    // Set the previous archive image
     var archiveImageName = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + archiveImageHash + ".jpg";
     $('#letterImage').attr('src', archiveImageName);
-    
+
     // Update the X of X in View Archive Clickers
     var currentLetterImageNumber = archiveImageHash.split("-");
     currentLetterImageNumber = currentLetterImageNumber[0].slice( (currentLetterImageNumber[0].length - 1) );
@@ -32,7 +32,7 @@ $(document).ready(function(){
     fileName = fileName.replace(/\+/g, " ");
     fileName = fileName.trim();
     getLetterText(fileName);
-    
+
     // Change Dropdown Selection to Filename
     $('#currentLetter').text(fileName);
 
@@ -49,9 +49,15 @@ $(document).ready(function(){
 
   // Click Listener for Letter Selection
   $(document).on('click', '.letterListItem', function(e){
-    
+
     // Prevent Default Click action
     e.preventDefault();
+
+    // Render Loading Gif before any changes for better user experience
+    $('#letterImage').attr({
+      src: '/assets/images/Loading.gif',
+      alt: 'Loading Archive'
+    });
 
     // Collect Image / Letter Entry Name
     var letterName = $(this).text();
@@ -63,7 +69,7 @@ $(document).ready(function(){
 
     // Render the proper Letter image
     var letterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + letterName.replace(/ /g, "+") + "+1-" + letterPages + ".jpg";
-    console.log(letterImageURL)
+    
     $('#letterImage').attr({
       src: letterImageURL,
       alt: letterName
@@ -80,13 +86,13 @@ $(document).ready(function(){
 
   // Click Listener for Map Icon Link Selection
   $(document).on('click', '.mapMarkerIconLink', function(e){
-    
+
     // Added Sexy Scroll to the selected letter
     e.preventDefault();
     $("html, body").animate({ scrollTop: $('#view-letter').offset().top }, 1000);
 
     // Collect Image / Letter Entry Name
-    var letterName = $(this).text();  
+    var letterName = $(this).text();
 
     // Need to pull letter pages from dropdown since the "map_author_letters.js" file is too tangled up
     var letterPages = $('a:contains("' + letterName + '")').data('pages');
@@ -193,10 +199,10 @@ $(document).ready(function(){
   // Click Listener to pop out archive image
   // $('#letterImage').on('click', function() {
   //   $('.imagepreview').attr('src', $(this).attr('src'));
-  //   $('#imagemodal').modal('show');   
-  // }); 
+  //   $('#imagemodal').modal('show');
+  // });
 
-  //document.body.style.zoom = "200%" 
+  //document.body.style.zoom = "200%"
 
 
   // Archive Double Click ==> View Archive Image on AWS (full screen)
@@ -289,8 +295,8 @@ $(document).ready(function(){
       //Browser has blocked it
       alert('Please allow popups for this website.');
     }
-    
-  }); 
+
+  });
 
 
 
@@ -335,6 +341,11 @@ $(document).ready(function(){
 // ======================================================
 // Get the Article Text
 var getLetterText = function(letterName){
+
+  // Before API call, write loading message
+  $('#letterText').html("Loading text...");
+
+  // API call
   $.get('/resources/letters/' + letterName, function(data){
 
     // Note that /n (enter key) needs to be changed to <br>
