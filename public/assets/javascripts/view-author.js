@@ -5,6 +5,12 @@ $(document).ready(function(){
   // Immediately on Page Load
   // ======================================================
 
+  // Render Loading Gif before any changes for better user experience
+  $('#letterImage').attr({
+    src: '/assets/images/Loading.gif',
+    alt: 'Loading Archive'
+  });
+
   // Load Google Maps (global function)
   initMap();
 
