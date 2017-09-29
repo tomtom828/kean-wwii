@@ -69,7 +69,7 @@ $(document).ready(function(){
 
     // Render the proper Letter image
     var letterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + letterName.replace(/ /g, "+") + "+1-" + letterPages + ".jpg";
-    
+
     $('#letterImage').attr({
       src: letterImageURL,
       alt: letterName
@@ -122,6 +122,12 @@ $(document).ready(function(){
     // Get Current Image SRC
     var currentLetterImageURL = $("#letterImage").attr("src");
 
+    // Render Loading Gif before any changes for better user experience
+    $('#letterImage').attr({
+      src: '/assets/images/Loading.gif',
+      alt: 'Loading Archive'
+    });
+
     // Split URL to get image file name
     var currentLetterImageName = currentLetterImageURL.split("/");
     currentLetterImageName = currentLetterImageName[5];
@@ -151,6 +157,9 @@ $(document).ready(function(){
       $("#currentLetterNumber").html(currentLetterImageNumber - 1);
       $("#letterImage").attr("src", newLetterImageURL);
     }
+    else {
+      $("#letterImage").attr("src", currentLetterImageURL);
+    }
 
   });
 
@@ -161,6 +170,12 @@ $(document).ready(function(){
 
     // Get Current Image SRC
     var currentLetterImageURL = $("#letterImage").attr("src");
+
+    // Render Loading Gif before any changes for better user experience
+    $('#letterImage').attr({
+      src: '/assets/images/Loading.gif',
+      alt: 'Loading Archive'
+    });
 
     // Split URL to get image file name
     var currentLetterImageName = currentLetterImageURL.split("/");
@@ -190,6 +205,9 @@ $(document).ready(function(){
       console.log(newLetterImageURL);
       $("#currentLetterNumber").html(currentLetterImageNumber + 1);
       $("#letterImage").attr("src", newLetterImageURL);
+    }
+    else {
+      $("#letterImage").attr("src", currentLetterImageURL);
     }
 
   });
