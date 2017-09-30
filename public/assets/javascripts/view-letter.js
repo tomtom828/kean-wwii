@@ -36,6 +36,12 @@ $(document).ready(function(){
     // Get Current Image SRC
     var currentLetterImageURL = $("#letterImage").attr("src");
 
+    // Render Loading Gif before any changes for better user experience
+    $('#letterImage').attr({
+      src: '/assets/images/Loading.gif',
+      alt: 'Loading Archive'
+    });
+
     // Split URL to get image file name
     var currentLetterImageName = currentLetterImageURL.split("/");
     currentLetterImageName = currentLetterImageName[5];
@@ -64,6 +70,9 @@ $(document).ready(function(){
       $("#currentLetterNumber").html(currentLetterImageNumber - 1);
       $("#letterImage").attr("src", newLetterImageURL);
     }
+    else {
+      $("#letterImage").attr("src", currentLetterImageURL);
+    }
 
   });
 
@@ -74,6 +83,12 @@ $(document).ready(function(){
 
     // Get Current Image SRC
     var currentLetterImageURL = $("#letterImage").attr("src");
+
+    // Render Loading Gif before any changes for better user experience
+    $('#letterImage').attr({
+      src: '/assets/images/Loading.gif',
+      alt: 'Loading Archive'
+    });
 
     // Split URL to get image file name
     var currentLetterImageName = currentLetterImageURL.split("/");
@@ -103,6 +118,9 @@ $(document).ready(function(){
       $("#currentLetterNumber").html(currentLetterImageNumber + 1);
       $("#letterImage").attr("src", newLetterImageURL);
     }
+    else {
+      $("#letterImage").attr("src", currentLetterImageURL);
+    }
 
   });
 
@@ -129,7 +147,7 @@ $(document).ready(function(){
       //Browser has blocked it
       alert('Please allow popups for this website.');
     }
-  }); 
+  });
 
 
 
@@ -177,7 +195,7 @@ $(document).ready(function(){
 
   // Better for mobile ==> Click link to View Archive Text on AWS (full screen)
   $('#viewFullSizedTranscribe').on('click', function() {
-    
+
     // Hash the page # to the URL
     // window.location.hash = $('#currentLetterNumber').text();
     location.replace( "#" + $('#currentLetterNumber').text() );

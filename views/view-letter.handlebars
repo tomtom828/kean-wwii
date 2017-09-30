@@ -1,5 +1,7 @@
 {{!-- Link in View Author Letters Page CSS --}}
 <link href="/assets/style/view-letter.css" rel="stylesheet" type="text/css">
+{{!-- Add hidden loading gif to pre-load image --}}
+<img style="display: none;" src="/assets/images/Loading.gif" alt="hidden loading gif" />
 
 {{!-- Letter Title --}}
 <div class="row">
@@ -24,7 +26,7 @@
         <h4>
           {{!-- <a href="#" aria-label="Previous"><span aria-hidden="true">&lsaquo;</span></a> --}}
           <a id="transcript-button-left" class="btn btn-default transcript-button"><i class="glyphicon glyphicon-menu-left"></i></a>
-          View Archive <span id="currentLetterNumber">1</span> of <span id="lastLetterNumber">{{hbsObject.filePages}}</span> 
+          View Archive <span id="currentLetterNumber">1</span> of <span id="lastLetterNumber">{{hbsObject.filePages}}</span>
           <a id="transcript-button-right" class="btn btn-default transcript-button"><i class="glyphicon glyphicon-menu-right"></i></a>
           {{!-- <a href="#" aria-label="Next"><span aria-hidden="true">&rsaquo;</span></a> --}}
         </h4>
@@ -63,7 +65,7 @@
 
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">              
+    <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <center>
@@ -79,4 +81,3 @@
 
 {{!-- Link in JavaScript to collect all letter names from API --}}
 <script src="/assets/javascripts/view-letter.js"></script>
-
