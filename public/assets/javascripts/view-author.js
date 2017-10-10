@@ -226,6 +226,12 @@ $(document).ready(function(){
   // Archive Double Click ==> View Archive Image on AWS (full screen)
   $( "#letterImage" ).dblclick(function() {
 
+    // Step 0 - Check if there is actaully a photo
+    if ( isBadLink($(this).attr("src")) ) {
+      alert("Image Not Available");
+      return;
+    }
+
     // Step 1 - Hash the current Selection
     // Get the src of the clicked image
     var archiveImageURL = $(this).attr("src");
@@ -255,6 +261,12 @@ $(document).ready(function(){
 
   // Better for mobile ==> Click link to View Archive Image on AWS (full screen)
   $('#viewFullSizedArchive').on('click', function() {
+
+    // Step 0 - Check if there is actaully a photo
+    if ( isBadLink($('#letterImage').attr("src")) ) {
+      alert("Image Not Available");
+      return;
+    }
 
     // Step 1 - Hash the current Selection
     // Get the src of the clicked image
@@ -286,6 +298,12 @@ $(document).ready(function(){
 
   // Archive Double Click ==> View Archive Text on AWS (full screen)
   $('#letterText').dblclick(function() {
+
+    // Step 0 - Check if there is actaully a transcript
+    if ( isBadLink($(this).html()) ) {
+      alert("Transcript Not Available");
+      return;
+    }
 
     // Step 1 - Hash the current Selection
     // Get the src of the clicked image
@@ -321,6 +339,12 @@ $(document).ready(function(){
   // Better for mobile ==> Click link to View Archive Text on AWS (full screen)
   $('#viewFullSizedTranscribe').on('click', function() {
 
+    // Step 0 - Check if there is actaully a transcript
+    if ( isBadLink($("#letterText").html()) ) {
+      alert("Transcript Not Available");
+      return;
+    }
+
     // Step 1 - Hash the current Selection
     // Get the src of the clicked image
     var archiveImageURL = $('#letterImage').attr("src");
@@ -348,6 +372,29 @@ $(document).ready(function(){
       alert('Please allow popups for this website.');
     }
   });
+
+
+
+  // Prevent User from going to broken AWS URL
+  function isBadLink(link) {
+    // Bad Image
+    if (link == "/assets/images/Image-Not-Found.png") {
+      return true;
+    }
+    // Bad Transcript
+    else if (link == "Transcript not available at this time.") {
+      return true;
+    }
+    // Otherwise return false
+    return false;
+  };
+
+
+  // Error Image Handler (change to default)
+  $("#letterImage").on("error", function(){
+    $("#letterImage").attr("src", "/assets/images/Image-Not-Found.png");
+  });
+
 
 
 
