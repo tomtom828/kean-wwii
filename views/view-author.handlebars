@@ -76,25 +76,23 @@
         {{!-- Drop Down --}}
         <div class="input-group">
           <b>Select a Letter: </b>
-          <button id="selectLetter" type="button" class="btn btn-default dropdown-toggle searchButtons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i><span id="currentLetter">{{hbsObject.defaultFileName}}</span> </i><span class="caret"></span>
-          </button>
-          <ul id="letterDropDown" class="dropdown-menu">
+          <select id="selectLetter" type="button" class="btn btn-default searchButtons">
 
             {{!-- Create Drop Down Menu for Letters --}}
             {{#if hbsObject.letterData}}
 
               {{!-- Dynamically Append File Names to the Read Drop Down Menu --}}
               {{#each hbsObject.letterData}}
-                <li class="letterListItem" data-pages="{{pages}}"><a data-pages="{{pages}}">{{filename}}</a></li>
+                <option class="letterListItem" data-pages="{{pages}}"><a data-pages="{{pages}}">{{filename}}</a></option>
               {{/each}}
 
             {{!-- Otherwise, no letters were found --}}
             {{else}}
-              <li class="letterListItem" data-pages="1"><a>{{hbsObject.defaultFileName}}</a></li>
+              <option class="letterListItem" data-pages="1"><a>{{hbsObject.defaultFileName}}</a></option>
             {{/if}}
 
-          </ul>
+          </select>
+
         </div>
       </center>
     </div>

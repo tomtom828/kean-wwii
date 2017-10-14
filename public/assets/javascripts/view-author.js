@@ -43,12 +43,11 @@ $(document).ready(function(){
   // Otherwise, the default file (first archive) text will be appended via Handlebars
 
 
-
   // Click Listeners
   // ======================================================
 
   // Click Listener for Letter Selection
-  $(document).on('click', '.letterListItem', function(e){
+  $('#selectLetter').on('change', function(e){
 
     // Prevent Default Click action
     e.preventDefault();
@@ -60,9 +59,8 @@ $(document).ready(function(){
     });
 
     // Collect Image / Letter Entry Name
-    var letterName = $(this).text();
-    var letterPages = $(this).data("pages");
-
+    var letterName = $(this).val();
+    var letterPages = $(this).find(":selected").data("pages");
 
     // Update Dropdown Button Text
     $('#currentLetter').html(letterName);
@@ -176,6 +174,7 @@ $(document).ready(function(){
       src: '/assets/images/Loading.gif',
       alt: 'Loading Archive'
     });
+
 
     // Split URL to get image file name
     var currentLetterImageName = currentLetterImageURL.split("/");
