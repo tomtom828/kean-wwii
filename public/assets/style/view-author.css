@@ -11,6 +11,11 @@
   /*max-width: 95%;*/
 }
 
+.letter-selection-dropdown {
+  height: 35px;
+  margin-right: 10px;
+}
+
 
 /* Mapping Styling */
 /*#map {
@@ -23,7 +28,7 @@
 #maperror {
   height: 3%;
 }
-#legend { 
+#legend {
   background:white;
   padding:10px;
   display:none;

@@ -43,12 +43,11 @@ $(document).ready(function(){
   // Otherwise, the default file (first archive) text will be appended via Handlebars
 
 
-
   // Click Listeners
   // ======================================================
 
   // Click Listener for Letter Selection
-  $(document).on('click', '.letterListItem', function(e){
+  $('#selectLetter').on('change', function(e){
 
     // Prevent Default Click action
     e.preventDefault();
@@ -60,9 +59,8 @@ $(document).ready(function(){
     });
 
     // Collect Image / Letter Entry Name
-    var letterName = $(this).text();
-    var letterPages = $(this).data("pages");
-
+    var letterName = $(this).val();
+    var letterPages = $(this).find(":selected").data("pages");
 
     // Update Dropdown Button Text
     $('#currentLetter').html(letterName);
@@ -95,10 +93,10 @@ $(document).ready(function(){
     var letterName = $(this).text();
 
     // Need to pull letter pages from dropdown since the "map_author_letters.js" file is too tangled up
-    var letterPages = $('a:contains("' + letterName + '")').data('pages');
+    var letterPages = $('option:contains("' + letterName + '")').data('pages');
 
     // Update Dropdown Button Text
-    $('#currentLetter').html(letterName);
+    $('option:selected').text(letterName);
 
     // Render the proper Letter image
     var letterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + letterName.replace(/ /g, "+") + "+1-" + letterPages + ".jpg";
@@ -128,27 +126,54 @@ $(document).ready(function(){
       alt: 'Loading Archive'
     });
 
-    // Split URL to get image file name
-    var currentLetterImageName = currentLetterImageURL.split("/");
-    currentLetterImageName = currentLetterImageName[5];
+    // Image Related Variables
+    var rootLetterImageName;
+    var currentLetterImageNumber;
+    var lastLetterImageNumber;
 
-    // Split File Name to get end , i.e. "1-x.png"
-    var currentLetterImagePosition = currentLetterImageName.split("+");
-    var end = currentLetterImagePosition.length - 1;
+    // If a valid image URL, use the URL to generate next image
+    if (currentLetterImageURL != "/assets/images/Image-Not-Found.png") {
 
-    // Split File Name to get root image name (ends with a "+")
-    var rootLetterImageName = "";
-    for(var i=0; i<end; i++){
-      rootLetterImageName += currentLetterImagePosition[i] + "+";
+      // Split URL to get image file name
+      var currentLetterImageName = currentLetterImageURL.split("/");
+      currentLetterImageName = currentLetterImageName[5];
+
+      console.log(currentLetterImageName)
+
+      // Split File Name to get end , i.e. "1-x.png"
+      currentLetterImagePosition = currentLetterImageName.split("+");
+      var end = currentLetterImagePosition.length - 1;
+
+      // Split File Name to get root image name (ends with a "+")
+      rootLetterImageName = "";
+      for(var i=0; i<end; i++){
+        rootLetterImageName += currentLetterImagePosition[i] + "+";
+      }
+      console.log(rootLetterImageName)
+
+      // Split File Name to get current image position
+      currentLetterImagePosition = currentLetterImagePosition[end].split("-");
+      currentLetterImageNumber = parseInt(currentLetterImagePosition[0]);
+
+      // Split File Name to get last image position
+      lastLetterImageNumber = currentLetterImagePosition[1].split(".jpg");
+      lastLetterImageNumber = parseInt(lastLetterImageNumber[0]);
+
     }
+    // Otherwise, use the Select dropdown and page html to get the next image
+    else {
 
-    // Split File Name to get current image position
-    currentLetterImagePosition = currentLetterImagePosition[end].split("-");
-    currentLetterImageNumber = parseInt(currentLetterImagePosition[0]);
+      // Get Letter Name from dropdown and create root image name via join
+      var letterSelectOption = $('option:selected').html();
+      rootLetterImageName = letterSelectOption.split(" ").join("+") + "+";
 
-    // Split File Name to get last image position
-    var lastLetterImageNumber = currentLetterImagePosition[1].split(".jpg");
-    lastLetterImageNumber = parseInt(lastLetterImageNumber[0]);
+      // Get current and last image numbers via html already on page
+      currentLetterImageNumber = $('#currentLetterNumber').html();
+      currentLetterImageNumber = parseInt(currentLetterImageNumber);
+      lastLetterImageNumber = $('#lastLetterNumber').html();
+      lastLetterImageNumber = parseInt(lastLetterImageNumber);
+
+    }
 
     // Go Back 1 file name only if current postion is greater than 1
     if(currentLetterImageNumber > 1) {
@@ -177,27 +202,54 @@ $(document).ready(function(){
       alt: 'Loading Archive'
     });
 
-    // Split URL to get image file name
-    var currentLetterImageName = currentLetterImageURL.split("/");
-    currentLetterImageName = currentLetterImageName[5];
+    // Image Related Variables
+    var rootLetterImageName;
+    var currentLetterImageNumber;
+    var lastLetterImageNumber;
 
-    // Split File Name to get end , i.e. "1-x.png"
-    var currentLetterImagePosition = currentLetterImageName.split("+");
-    var end = currentLetterImagePosition.length - 1;
+    // If a valid image URL, use the URL to generate next image
+    if (currentLetterImageURL != "/assets/images/Image-Not-Found.png") {
 
-    // Split File Name to get root image name (ends with a "+")
-    var rootLetterImageName = "";
-    for(var i=0; i<end; i++){
-      rootLetterImageName += currentLetterImagePosition[i] + "+";
+      // Split URL to get image file name
+      var currentLetterImageName = currentLetterImageURL.split("/");
+      currentLetterImageName = currentLetterImageName[5];
+
+      console.log(currentLetterImageName)
+
+      // Split File Name to get end , i.e. "1-x.png"
+      currentLetterImagePosition = currentLetterImageName.split("+");
+      var end = currentLetterImagePosition.length - 1;
+
+      // Split File Name to get root image name (ends with a "+")
+      rootLetterImageName = "";
+      for(var i=0; i<end; i++){
+        rootLetterImageName += currentLetterImagePosition[i] + "+";
+      }
+      console.log(rootLetterImageName)
+
+      // Split File Name to get current image position
+      currentLetterImagePosition = currentLetterImagePosition[end].split("-");
+      currentLetterImageNumber = parseInt(currentLetterImagePosition[0]);
+
+      // Split File Name to get last image position
+      lastLetterImageNumber = currentLetterImagePosition[1].split(".jpg");
+      lastLetterImageNumber = parseInt(lastLetterImageNumber[0]);
+
     }
+    // Otherwise, use the Select dropdown and page html to get the next image
+    else {
 
-    // Split File Name to get current image position
-    currentLetterImagePosition = currentLetterImagePosition[end].split("-");
-    currentLetterImageNumber = parseInt(currentLetterImagePosition[0]);
+      // Get Letter Name from dropdown and create root image name via join
+      var letterSelectOption = $('option:selected').html();
+      rootLetterImageName = letterSelectOption.split(" ").join("+") + "+";
 
-    // Split File Name to get last image position
-    var lastLetterImageNumber = currentLetterImagePosition[1].split(".jpg");
-    lastLetterImageNumber = parseInt(lastLetterImageNumber[0]);
+      // Get current and last image numbers via html already on page
+      currentLetterImageNumber = $('#currentLetterNumber').html();
+      currentLetterImageNumber = parseInt(currentLetterImageNumber);
+      lastLetterImageNumber = $('#lastLetterNumber').html();
+      lastLetterImageNumber = parseInt(lastLetterImageNumber);
+
+    }
 
     // Go Forward 1 file name only if current postion is greater than 1
     if(currentLetterImageNumber < lastLetterImageNumber) {
@@ -306,20 +358,17 @@ $(document).ready(function(){
     }
 
     // Step 1 - Hash the current Selection
-    // Get the src of the clicked image
-    var archiveImageURL = $('#letterImage').attr("src");
-    // Parse off most of the URL
-    var hashFileName = archiveImageURL.split("/");
-    hashFileName = hashFileName[5];
-    hashFileName = hashFileName.split(".jpg");
-    hashFileName = hashFileName[0];
+    // Get the filename of current selection
+    var hashFileName = $('option:selected').text();
+    hashFileName = hashFileName.split(" ").join("+") + "+" + $('#currentLetterNumber').html() + "-" + $('#lastLetterNumber').html();
+
     // Hash the file name to the URL
-    // window.location.hash = hashFileName;
+    window.location.hash = hashFileName;
     location.replace("#" + hashFileName);
 
     // Step 2 - Navigate to AWS
     // Get the File Name from the title
-    var fileName = $('#currentLetter').text();
+    var fileName = $('option:selected').text();
     var awsArchiveTextURL = fileName.replace(/ /g, "%20");
     awsArchiveTextURL = " https://s3.amazonaws.com/kean-wwii-scrapbook/transcripts/" + awsArchiveTextURL + ".txt";
     // Navigate to AWS Link
@@ -346,20 +395,17 @@ $(document).ready(function(){
     }
 
     // Step 1 - Hash the current Selection
-    // Get the src of the clicked image
-    var archiveImageURL = $('#letterImage').attr("src");
-    // Parse off most of the URL
-    var hashFileName = archiveImageURL.split("/");
-    hashFileName = hashFileName[5];
-    hashFileName = hashFileName.split(".jpg");
-    hashFileName = hashFileName[0];
+    // Get the filename of current selection
+    var hashFileName = $('option:selected').text();
+    hashFileName = hashFileName.split(" ").join("+") + "+" + $('#currentLetterNumber').html() + "-" + $('#lastLetterNumber').html();
+
     // Hash the file name to the URL
-    // window.location.hash = hashFileName;
+    window.location.hash = hashFileName;
     location.replace("#" + hashFileName);
 
     // Step 2 - Navigate to AWS
     // Get the File Name from the title
-    var fileName = $('#currentLetter').text();
+    var fileName = $('option:selected').text();
     var awsArchiveTextURL = fileName.replace(/ /g, "%20");
     awsArchiveTextURL = " https://s3.amazonaws.com/kean-wwii-scrapbook/transcripts/" + awsArchiveTextURL + ".txt";
     // Navigate to AWS Link
@@ -371,6 +417,7 @@ $(document).ready(function(){
       //Browser has blocked it
       alert('Please allow popups for this website.');
     }
+    
   });
 
 
