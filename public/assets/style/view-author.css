@@ -6,6 +6,12 @@
   max-width: 95%;
 }
 
+/* Author Signature Error Handling */
+#author-signature-backup {
+  font-family: 'Meddon', cursive;
+  font-weight: bold;
+}
+
 #author-photo {
   height: 450px;
   /*max-width: 95%;*/

@@ -10,8 +10,8 @@
 {{!-- <h1  class="author-name" align="center"></h1> --}}
 <div class="row">
   <div class="col-md-8 col-md-offset-2 col-xs-12">
-    <center>
-      <img id="author-signature" src="https://s3.amazonaws.com/kean-wwii-scrapbook/author-signatures/{{hbsObject.lastName}}-{{hbsObject.firstName}}.png" alt="{{hbsObject.displayFirstName}} {{hbsObject.displayLastName}}">
+    <center id="author-signature-location">
+      <img id="author-signature" src="https://s3.amazonaws.com/kean-wwii-scrapbook/author-signatures/{{hbsObject.lastName}}-{{hbsObject.firstName}}.png" alt="{{hbsObject.displayFirstName}} {{hbsObject.displayLastName}}" onerror="$('#author-signature').remove(); $('#author-signature-location').append('<h1 id=&quot;author-signature-backup&quot;>{{hbsObject.displayFirstName}} {{hbsObject.displayLastName}}</h1>')">
     </center>
   </div>
 </div>
