@@ -42,31 +42,59 @@ $(document).ready(function(){
       alt: 'Loading Archive'
     });
 
-    // Split URL to get image file name
-    var currentLetterImageName = currentLetterImageURL.split("/");
-    currentLetterImageName = currentLetterImageName[5];
+    // Image Related Variables
+    var rootLetterImageName;
+    var currentLetterImageNumber;
+    var lastLetterImageNumber;
 
-    // Split File Name to get end , i.e. "1-x.png"
-    var currentLetterImagePosition = currentLetterImageName.split("+");
-    var end = currentLetterImagePosition.length - 1;
+    // If a valid image URL, use the URL to generate next image
+    if (currentLetterImageURL != "/assets/images/Image-Not-Found.png") {
 
-    // Split File Name to get root image name (ends with a "+")
-    var rootLetterImageName = "";
-    for(var i=0; i<end; i++){
-      rootLetterImageName += currentLetterImagePosition[i] + "+";
+      // Split URL to get image file name
+      var currentLetterImageName = currentLetterImageURL.split("/");
+      currentLetterImageName = currentLetterImageName[5];
+
+      console.log(currentLetterImageName)
+
+      // Split File Name to get end , i.e. "1-x.png"
+      currentLetterImagePosition = currentLetterImageName.split("+");
+      var end = currentLetterImagePosition.length - 1;
+
+      // Split File Name to get root image name (ends with a "+")
+      rootLetterImageName = "";
+      for(var i=0; i<end; i++){
+        rootLetterImageName += currentLetterImagePosition[i] + "+";
+      }
+      console.log(rootLetterImageName)
+
+      // Split File Name to get current image position
+      currentLetterImagePosition = currentLetterImagePosition[end].split("-");
+      currentLetterImageNumber = parseInt(currentLetterImagePosition[0]);
+
+      // Split File Name to get last image position
+      lastLetterImageNumber = currentLetterImagePosition[1].split(".jpg");
+      lastLetterImageNumber = parseInt(lastLetterImageNumber[0]);
+
     }
+    // Otherwise, use the Select dropdown and page html to get the next image
+    else {
 
-    // Split File Name to get current image position
-    currentLetterImagePosition = currentLetterImagePosition[end].split("-");
-    currentLetterImageNumber = parseInt(currentLetterImagePosition[0]);
+      // Get Letter Name from dropdown and create root image name via join
+      rootLetterImageName = $('#view-letter').html();
+      rootLetterImageName = rootLetterImageName.split(" ").join("+") + "+";
 
-    // Split File Name to get last image position
-    var lastLetterImageNumber = currentLetterImagePosition[1].split(".jpg");
-    lastLetterImageNumber = parseInt(lastLetterImageNumber[0]);
+      // Get current and last image numbers via html already on page
+      currentLetterImageNumber = $('#currentLetterNumber').html();
+      currentLetterImageNumber = parseInt(currentLetterImageNumber);
+      lastLetterImageNumber = $('#lastLetterNumber').html();
+      lastLetterImageNumber = parseInt(lastLetterImageNumber);
+
+    }
 
     // Go Back 1 file name only if current postion is greater than 1
     if(currentLetterImageNumber > 1) {
       var newLetterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + rootLetterImageName + (currentLetterImageNumber - 1) + "-" + lastLetterImageNumber + ".jpg";
+      console.log(newLetterImageURL);
       $("#currentLetterNumber").html(currentLetterImageNumber - 1);
       $("#letterImage").attr("src", newLetterImageURL);
     }
@@ -90,31 +118,59 @@ $(document).ready(function(){
       alt: 'Loading Archive'
     });
 
-    // Split URL to get image file name
-    var currentLetterImageName = currentLetterImageURL.split("/");
-    currentLetterImageName = currentLetterImageName[5];
+    // Image Related Variables
+    var rootLetterImageName;
+    var currentLetterImageNumber;
+    var lastLetterImageNumber;
 
-    // Split File Name to get end , i.e. "1-x.png"
-    var currentLetterImagePosition = currentLetterImageName.split("+");
-    var end = currentLetterImagePosition.length - 1;
+    // If a valid image URL, use the URL to generate next image
+    if (currentLetterImageURL != "/assets/images/Image-Not-Found.png") {
 
-    // Split File Name to get root image name (ends with a "+")
-    var rootLetterImageName = "";
-    for(var i=0; i<end; i++){
-      rootLetterImageName += currentLetterImagePosition[i] + "+";
+      // Split URL to get image file name
+      var currentLetterImageName = currentLetterImageURL.split("/");
+      currentLetterImageName = currentLetterImageName[5];
+
+      console.log(currentLetterImageName)
+
+      // Split File Name to get end , i.e. "1-x.png"
+      currentLetterImagePosition = currentLetterImageName.split("+");
+      var end = currentLetterImagePosition.length - 1;
+
+      // Split File Name to get root image name (ends with a "+")
+      rootLetterImageName = "";
+      for(var i=0; i<end; i++){
+        rootLetterImageName += currentLetterImagePosition[i] + "+";
+      }
+      console.log(rootLetterImageName)
+
+      // Split File Name to get current image position
+      currentLetterImagePosition = currentLetterImagePosition[end].split("-");
+      currentLetterImageNumber = parseInt(currentLetterImagePosition[0]);
+
+      // Split File Name to get last image position
+      lastLetterImageNumber = currentLetterImagePosition[1].split(".jpg");
+      lastLetterImageNumber = parseInt(lastLetterImageNumber[0]);
+
     }
+    // Otherwise, use the Select dropdown and page html to get the next image
+    else {
 
-    // Split File Name to get current image position
-    currentLetterImagePosition = currentLetterImagePosition[end].split("-");
-    currentLetterImageNumber = parseInt(currentLetterImagePosition[0]);
+      // Get Letter Name from dropdown and create root image name via join
+      rootLetterImageName = $('#view-letter').html();
+      rootLetterImageName = rootLetterImageName.split(" ").join("+") + "+";
 
-    // Split File Name to get last image position
-    var lastLetterImageNumber = currentLetterImagePosition[1].split(".jpg");
-    lastLetterImageNumber = parseInt(lastLetterImageNumber[0]);
+      // Get current and last image numbers via html already on page
+      currentLetterImageNumber = $('#currentLetterNumber').html();
+      currentLetterImageNumber = parseInt(currentLetterImageNumber);
+      lastLetterImageNumber = $('#lastLetterNumber').html();
+      lastLetterImageNumber = parseInt(lastLetterImageNumber);
+
+    }
 
     // Go Forward 1 file name only if current postion is greater than 1
     if(currentLetterImageNumber < lastLetterImageNumber) {
       var newLetterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + rootLetterImageName + (currentLetterImageNumber + 1) + "-" + lastLetterImageNumber + ".jpg";
+      console.log(newLetterImageURL);
       $("#currentLetterNumber").html(currentLetterImageNumber + 1);
       $("#letterImage").attr("src", newLetterImageURL);
     }
@@ -128,6 +184,12 @@ $(document).ready(function(){
 
   // Archive Double Click ==> View Archive Text on AWS (full screen)
   $('#letterText').dblclick(function() {
+
+    // Step 0 - Check if there is actaully a transcript
+    if ( isBadLink($("#letterText").html()) ) {
+      alert("Transcript Not Available");
+      return;
+    }
 
     // Hash the page # to the URL
     // window.location.hash = $('#currentLetterNumber').text();
@@ -154,6 +216,12 @@ $(document).ready(function(){
   // Archive Double Click ==> View Archive Image on AWS (full screen)
   $( "#letterImage" ).dblclick(function() {
 
+    // Step 0 - Check if there is actaully a photo
+    if ( isBadLink($('#letterImage').attr("src")) ) {
+      alert("Image Not Available");
+      return;
+    }
+
     // Hash the page # to the URL
     // window.location.hash = $('#currentLetterNumber').text();
     location.replace( "#" + $('#currentLetterNumber').text() );
@@ -174,6 +242,12 @@ $(document).ready(function(){
 
   // Better for mobile ==> Click link to View Archive Image on AWS (full screen)
   $('#viewFullSizedArchive').on('click', function() {
+
+    // Step 0 - Check if there is actaully a photo
+    if ( isBadLink($('#letterImage').attr("src")) ) {
+      alert("Image Not Available");
+      return;
+    }
 
     // Hash the page # to the URL
     // window.location.hash = $('#currentLetterNumber').text();
@@ -196,6 +270,12 @@ $(document).ready(function(){
   // Better for mobile ==> Click link to View Archive Text on AWS (full screen)
   $('#viewFullSizedTranscribe').on('click', function() {
 
+    // Step 0 - Check if there is actaully a transcript
+    if ( isBadLink($("#letterText").html()) ) {
+      alert("Transcript Not Available");
+      return;
+    }
+
     // Hash the page # to the URL
     // window.location.hash = $('#currentLetterNumber').text();
     location.replace( "#" + $('#currentLetterNumber').text() );
@@ -214,6 +294,27 @@ $(document).ready(function(){
       //Browser has blocked it
       alert('Please allow popups for this website.');
     }
+  });
+
+
+  // Prevent User from going to broken AWS URL
+  function isBadLink(link) {
+    // Bad Image
+    if (link == "/assets/images/Image-Not-Found.png") {
+      return true;
+    }
+    // Bad Transcript
+    else if (link == "Transcript not available at this time.") {
+      return true;
+    }
+    // Otherwise return false
+    return false;
+  };
+
+
+  // Error Image Handler (change to default)
+  $("#letterImage").on("error", function(){
+    $("#letterImage").attr("src", "/assets/images/Image-Not-Found.png");
   });
 
 

@@ -30,7 +30,7 @@
           <a id="transcript-button-right" class="btn btn-default transcript-button"><i class="glyphicon glyphicon-menu-right"></i></a>
           {{!-- <a href="#" aria-label="Next"><span aria-hidden="true">&rsaquo;</span></a> --}}
         </h4>
-        <img id="letterImage" src="https://s3.amazonaws.com/kean-wwii-scrapbook/archives/{{hbsObject.awsFileName}}+1-{{hbsObject.filePages}}.jpg" alt="{{hbsObject.fileName}}" width="90%" style="height: 650px; background-color: #ffffff; margin-bottom: 20px;">
+        <img id="letterImage" src="https://s3.amazonaws.com/kean-wwii-scrapbook/archives/{{hbsObject.awsFileName}}+1-{{hbsObject.filePages}}.jpg" alt="{{hbsObject.fileName}}" width="90%" style="height: 650px; background-color: #ffffff; margin-bottom: 20px;" onerror="$('#letterImage').attr('src', '/assets/images/Image-Not-Found.png');" width="90%" style="height: 650px; background-color: #ffffff; margin-bottom: 20px;">
         <p><b>Double <a id="viewFullSizedArchive">click</a> archive to view full size.</b></p>
       </center>
     </div>
