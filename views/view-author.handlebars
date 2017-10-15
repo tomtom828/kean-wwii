@@ -24,7 +24,7 @@
   {{!-- Image --}}
   <div class="col-md-6 col-xs-12">
     <center>
-      <img id="author-photo" src="https://s3.amazonaws.com/kean-wwii-scrapbook/author-photos/{{hbsObject.lastName}}-{{hbsObject.firstName}}.jpg" alt="Photo of {{hbsObject.firstName}} {{hbsObject.lastName}}">
+      <img id="author-photo" src="https://s3.amazonaws.com/kean-wwii-scrapbook/author-photos/{{hbsObject.lastName}}-{{hbsObject.firstName}}.jpg" alt="Photo of {{hbsObject.firstName}} {{hbsObject.lastName}}" onerror="$(this).attr('src', '/assets/images/Kean-Thumbnail.png')">
     </center>
   </div>
 
