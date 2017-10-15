@@ -93,10 +93,10 @@ $(document).ready(function(){
     var letterName = $(this).text();
 
     // Need to pull letter pages from dropdown since the "map_author_letters.js" file is too tangled up
-    var letterPages = $('a:contains("' + letterName + '")').data('pages');
+    var letterPages = $('option:contains("' + letterName + '")').data('pages');
 
     // Update Dropdown Button Text
-    $('#currentLetter').html(letterName);
+    $('option:selected').text(letterName);
 
     // Render the proper Letter image
     var letterImageURL = "https://s3.amazonaws.com/kean-wwii-scrapbook/archives/" + letterName.replace(/ /g, "+") + "+1-" + letterPages + ".jpg";
