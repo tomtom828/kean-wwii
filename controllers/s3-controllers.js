@@ -52,7 +52,7 @@ s3Router.get('/resources/letters/:letterName', function (req, res) {
       // Get .txt file's text
       var fileText = data.Body.toString();
       // Clean up broken UTF-8 encoding characters (the black <?> mark diamond)
-      fileText = fileText.replace(/[\u0100-\uFFFF]/g,'\'');
+//      fileText = fileText.replace(/[\u0100-\uFFFF]/g,'\'');
       // Respond with Letter Text
       res.json(fileText);
 
@@ -93,7 +93,7 @@ function getS3Text(fileName, _callback) {
       // Get .txt file's text
       var fileText = data.Body.toString();
       // Clean up broken UTF-8 encoding characters (the black <?> mark diamond)
-      fileText = fileText.replace(/[\u0100-\uFFFF]/g,'\'');
+//      fileText = fileText.replace(/[\u0100-\uFFFF]/g,'\'');
       // Respond with Letter Text
       return _callback(fileText);
 
