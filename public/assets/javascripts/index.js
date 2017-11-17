@@ -3,15 +3,13 @@ $(document).ready(function(){
 
 
   // Page refresh handler, if "#select" page was refreshed
-  if (window.location.hash != "#" && window.location.hash != "" ) {
+  if (window.location.hash != "") {
 
     // Remove splashpage
     $("#index-content").empty();
 
     // Add Cursive Links
     addIndexContent();
-
-    console.log("hit")
 
   }
   else {
@@ -28,11 +26,6 @@ $(document).ready(function(){
     });
 
   }
-
-
-
-
-
 
 
   // Adds cursive links to Page
