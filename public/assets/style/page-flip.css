@@ -1,0 +1,88 @@
+#r1 {
+    position: absolute;
+    z-index: 2;
+    -webkit-transform-origin: 1315px 500px;
+    -webkit-transform: translate(-1030px, -500px) rotate(-32deg);
+    -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+    -webkit-transition-duration: 1s;
+}
+
+#p1 {
+    width: 1285px;
+    height: 1388px;
+    overflow: hidden;
+}
+
+#p1 > div {
+    -webkit-transform-origin: 285px 0;
+    -webkit-transform: translate(1030px, 500px) rotate(32deg);
+    -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+    -webkit-transition-duration: 1s;
+    width: 285px;
+    height: 388px;
+    background-image: url("/assets/images/Splash-Page.png");
+}
+
+
+#r3 {
+    -webkit-transform-origin: 1315px 500px;
+    -webkit-transform: translate(-1030px, -500px) rotate(-32deg);
+    -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+    -webkit-transition-duration: 1s;
+    position: absolute;
+    z-index: 2;
+}
+
+#s3 {
+    -webkit-transform-origin: 70px 500px;
+    -webkit-transform: translate(215px, -500px) rotate(-32deg) translate(40px, 0);
+    -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+    -webkit-transition-duration: 1s;
+    position: absolute;
+    z-index: 1;
+}
+
+#page-flip:hover #s3 {
+    -webkit-transform-origin: 325px 500px;
+    -webkit-transform: translate(-40px, -500px) rotate(0deg) translate(40px, 0);
+}
+
+
+#p3 {
+    width: 1285px;
+    height: 1388px;
+    overflow: hidden;
+}
+
+#p3 > div {
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: translate(1255px, 500px) rotate(-32deg);
+    -webkit-transition-property: -webkit-transform, -webkit-transform-origin;
+    -webkit-transition-duration: 1s;
+    -webkit-box-shadow: 0 0 11px rgba(0, 0, 0, .5);
+    width: \px;
+    height: 388px;
+    background-image: url("/assets/images/Cursive-Background.jpg");
+    overflow: hidden;
+}
+
+
+#page-flip:hover #r1 {
+    -webkit-transform-origin: 1570px 500px;
+    -webkit-transform: translate(-1285px, -500px) rotate(0deg);
+}
+
+#page-flip:hover #p1 > div {
+    -webkit-transform-origin: 285px 0;
+    -webkit-transform: translate(1285px, 500px) rotate(0deg);
+}
+
+#page-flip:hover #r3 {
+    -webkit-transform-origin: 1570px 500px;
+    -webkit-transform: translate(-1285px, -500px) rotate(0deg);
+}
+
+#page-flip:hover #p3 > div {
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: translate(1000px, 500px) rotate(0deg);
+}

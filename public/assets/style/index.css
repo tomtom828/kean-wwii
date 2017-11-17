@@ -60,3 +60,19 @@ a.hide_hyperlink{
 
   line-height: 110px;
 }
+
+
+
+/* Added for Splash Page */
+
+.container {
+  margin-top: -20px;
+}
+
+#splash-page-image {
+  width: 100vw;
+  height: 90%;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+}
