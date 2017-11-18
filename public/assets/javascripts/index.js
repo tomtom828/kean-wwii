@@ -1,6 +1,8 @@
 // On Page Load, Render
 $(document).ready(function(){
 
+  $("#kean-wwii-content").remove();
+
 
   // Page refresh handler, if "#select" page was refreshed
   if (window.location.hash != "") {
