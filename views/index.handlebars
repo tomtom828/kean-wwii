@@ -1,9 +1,5 @@
 <!-- Link in Page Turn CDN -->
-<link rel="stylesheet" type="text/css" href="/cdn/page-transitions/css/component.css" />
 <link rel="stylesheet" type="text/css" href="/cdn/page-transitions/css/animations.css" />
-<script src="/cdn/page-transitions/js/modernizr.custom.js"></script>
-
-
 
 <!-- Link in Hompage CSS -->
 <link href="/assets/style/index.css" rel="stylesheet" type="text/css">
@@ -12,30 +8,14 @@
 <script src="/assets/javascripts/index.js"></script>
 
 
-	<!-- Page Turn Button -->
-	<div id="iterateEffects">Show next page transition</div>
+<!-- Splash Page -->
+<a href="#turn-page"><img id="splash-page-image" src="/assets/images/Splash-Page.png"/></a>
 
-
-	<!-- Page Animations -->
-	<div id="pt-main" class="pt-perspective">
-		<!-- Splash Page -->
-		<div class="pt-page pt-page-1">
-			<a id="splash-page" href="#"><img id="splash-page-image" src="/assets/images/Splash-Page.png"/></a>
-		</div>
-		<!-- Cursive Links -->
-		<div class="pt-page pt-page-2">
-			<div class="container">
-				<h1 class="a"><a class="hide_hyperlink" href="/reading">Reading the Scrapbook</a></h1>
-		   	<h1 class="b"><a class="hide_hyperlink" href="#">Experiencing WWII</a></h1>
-		   	<h1 class="c"><a class="hide_hyperlink" href="#">Scrapbooking the War</a></h1>
-		   	<h1 class="d"><a class="hide_hyperlink" href="#">Teaching WWII</a></h1>
-		   	<h1 class="e"><a class="hide_hyperlink" href="#">Doing History</a></h1>
-			</div>
-		</div>
-	</div>
-
-
-<!-- More CDN for Page Turning -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="/cdn/page-transitions/js/jquery.dlmenu.js"></script>
-<script src="/cdn/page-transitions/js/pagetransitions.js"></script>
+<!-- Cursive Links Page (underneath the splash page via Z index)-->
+<div id="cursive-page" style="z-index: -1;">
+	<h1 class="a resize_width"><a class="hide_hyperlink" href="/reading">Reading the Scrapbook</a></h1>
+	<h1 class="b resize_width"><a class="hide_hyperlink" href="#">Experiencing WWII</a></h1>
+	<h1 class="c resize_width"><a class="hide_hyperlink" href="#">Scrapbooking the War</a></h1>
+	<h1 class="d resize_width"><a class="hide_hyperlink" href="#">Teaching WWII</a></h1>
+	<h1 class="e resize_width"><a class="hide_hyperlink" href="#">Doing History</a></h1>
+</div>

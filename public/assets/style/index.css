@@ -5,10 +5,32 @@ a.hide_hyperlink{
 }
 
 
+/* Better Cursive Link Styling */
+@media (min-width: 960px) {
+.resize_width {
+    font-size: 40px;
+  }
+}
+@media (min-width: 500px) and (max-width: 960px){
+.resize_width {
+    font-size: 5vw;
+  }
+}
+@media (min-width: 0px) and (max-width: 500px){
+.resize_width {
+    font-size: 6vw;
+  }
+}
+
+#cursive-page {
+  padding-top: 10vh;
+}
+
+
 .a{
   /*padding-top: 20px;*/
 
-  width: 100%;
+  /*width: 100%;*/
   /*max-width: 960px;*/
   font-family: 'Meddon', cursive;
   margin: 0px auto;
@@ -16,9 +38,10 @@ a.hide_hyperlink{
   vertical-align: middle;
 
   line-height: 80px;
+  /*line-height: 5vh;*/
 }
 .b{
-  width: 100%;
+  /*width: 100%;*/
   /*max-width: 960px;*/
   font-family: 'Meddon', cursive;
   margin: 0px auto;
@@ -26,10 +49,11 @@ a.hide_hyperlink{
   vertical-align: middle;
 
   line-height: 80px;
+  /*line-height: 5vh;*/
 }
 
 .c{
-  width: 100%;
+  /*width: 100%;*/
   /*max-width: 960px;*/
   font-family: 'Meddon', cursive;
   margin: 0px auto;
@@ -37,10 +61,11 @@ a.hide_hyperlink{
   vertical-align: middle;
 
   line-height: 90px;
+  /*line-height: 5vh;*/
 }
 
 .d{
-  width: 100%;
+  /*width: 100%;*/
   /*max-width: 960px;*/
   font-family: 'Meddon', cursive;
   margin: 0px auto;
@@ -48,10 +73,11 @@ a.hide_hyperlink{
   vertical-align: middle;
 
   line-height: 100px;
+  /*line-height: 5vh;*/
 }
 
 .e{
-  width: 100%;
+  /*width: 100%;*/
   /*max-width: 960px;*/
   font-family: 'Meddon', cursive;
   margin: 0px auto;
@@ -59,6 +85,7 @@ a.hide_hyperlink{
   vertical-align: middle;
 
   line-height: 110px;
+  /*line-height: 5vh;*/
 }
 
 
