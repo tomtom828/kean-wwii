@@ -1,44 +1,26 @@
-// On Page Load, Render
+// On Page Load, Fire off page turner code
 $(document).ready(function(){
 
+var pageTurned = false;
 
-  // Page refresh handler, if "#select" page was refreshed
-  if (window.location.hash != "") {
-
-    // Remove splashpage
-    $("#index-content").empty();
-
-    // Add Cursive Links
-    addIndexContent();
-
+  // Reload Handler
+  if (window.location.hash=="#turn-page") {
+    $("#splash-page-image").addClass("pt-page-moveToLeft");
+    pageTurned = true;
   }
-  else {
 
-    // If there is a hash change, then render the cursive links
+    // If there is a hash change, then show animation of a page turning
     $(window).on('hashchange',function(){
-
-      // Animation of a page turning
-      $("#index-content").empty();
-
-      // Add Cursive Links
-      addIndexContent();
-
+      $("#splash-page-image").addClass("pt-page-moveToLeft");
+      pageTurned = true;
     });
 
-  }
 
-
-  // Adds cursive links to Page
-  function addIndexContent(){
-
-    // Render Content for Cursive Links
-    var content = '<h1 class="a"><a class="hide_hyperlink" href="/reading">Reading the Scrapbook</a></h1>' +
-      '<h1 class="b"><a class="hide_hyperlink" href="#">Experiencing WWII</a></h1>' +
-      '<h1 class="c"><a class="hide_hyperlink" href="#">Scrapbooking the War</a></h1>' +
-      '<h1 class="d"><a class="hide_hyperlink" href="#">Teaching WWII</a></h1>' +
-      '<h1 class="e"><a class="hide_hyperlink" href="#">Doing History</a></h1>';
-    $("#index-content").append(content);
-
-  }
+    // If the page is not turned within 5 seconds, tell user to click
+    setTimeout(function(){
+      if (!pageTurned) {
+        alert("Please click the page corner to open the scrapbook.")
+      }
+    }, 5000);
 
 })
