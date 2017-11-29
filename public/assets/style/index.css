@@ -4,24 +4,6 @@ a.hide_hyperlink{
   font-weight: bolder;
 }
 
-
-/* Better Cursive Link Styling */
-@media (min-width: 960px) {
-.resize_width {
-    font-size: 40px;
-  }
-}
-@media (min-width: 480px) and (max-width: 960px){
-.resize_width {
-    font-size: 5vw;
-  }
-}
-@media (min-width: 0px) and (max-width: 480px){
-.resize_width {
-    font-size: 4vw;
-  } 
-}
-
 #cursive-page {
   padding-top: 10vh;
 }
@@ -89,13 +71,37 @@ a.hide_hyperlink{
 }
 
 
+/* Custom Media Queries for Better Cursive Link Styling */
+@media (min-width: 960px) {
+  .resize_width {
+    font-size: 40px;
+  }
+}
+@media (min-width: 480px) and (max-width: 960px){
+  .resize_width {
+    font-size: 5vw;
+  }
+
+}
+@media (min-width: 0px) and (max-width: 480px){
+  .resize_width {
+    font-size: 4vw;
+  }
+  /* Resize spacing between links for mobile */
+  .a, .b {
+    line-height: 8vh;
+  }
+  .c, .d, .e {
+    line-height: 9vh;
+  }
+
+}
+
 
 /* Added for Splash Page */
-
 .container {
   margin-top: -20px;
 }
-
 #splash-page-image {
   width: 100vw;
   height: 90%;
