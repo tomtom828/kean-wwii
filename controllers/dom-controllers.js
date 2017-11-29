@@ -69,7 +69,7 @@ domRouter.get('/search/authors/:letter', function (req, res){
 
   // Read from Database
   connection.query('SELECT DISTINCT lastname, firstname FROM letters WHERE lastname LIKE ? ORDER BY lastname ASC', [myLetter], function(err, response){
-    
+
     // Respond with error if database error
     if(err) throw err;
 
@@ -94,7 +94,7 @@ domRouter.get('/search/authors/:letter', function (req, res){
     else {
       res.render('search-authors', null);
     }
-    
+
   });
 
 });
@@ -117,7 +117,7 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
 
   // Read from Database
   connection.query('SELECT DISTINCT lastname, firstname FROM letters WHERE ' + mysql.escapeId(type) + ' = ? ORDER BY lastname ASC', [name], function(err, response){
-    
+
     // Respond with error if database error
     if(err) throw err;
 
@@ -142,7 +142,7 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
     else {
       res.render('search-authors', {errObject: {type: type, name: name}});
     }
-    
+
   });
 
 });
@@ -152,7 +152,7 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
 
 // GET - Author's Bio Page (contains the Picture, Bio, Letters, Map)
 domRouter.get('/authors/:lastname/:firstname', function (req, res) {
-  
+
   // Collect parameters
   var lastName = req.params.lastname.toLowerCase();
   var firstName = req.params.firstname.toLowerCase();
@@ -225,7 +225,7 @@ domRouter.get('/search/letters', function (req, res) {
 
 
 
-  
+
 // POST - Search All Letters in Database of selected criteria
 domRouter.post('/search/letters', function (req, res) {
 
@@ -350,11 +350,14 @@ domRouter.get('/view/letter/:filename', function (req, res) {
 
   }); // end MySQL query
 
-
-  
 });
 
 
+
+// GET - Static Page - Scrapbooking - Nancy Thompson
+domRouter.get('/scrapbooking/nancy-thompson', function (req, res) {
+  res.render('scrapbooking-nancy');
+});
 
 
 // ----------------------------------------------------
