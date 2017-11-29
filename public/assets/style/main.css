@@ -21,6 +21,18 @@ body {
   /*background-size: cover;*/
 }
 
+/* Custom Media Query to Shrink the Navbar Title on Mobile*/
+@media (min-width: 0px) and (max-width: 550px){
+	#webpage-logo {
+		font-size: 3vw;
+	}
+}
+
+#webpage-logo {
+	margin-left: 5px;
+}
+
+
 #kean-logo {
 	height: 55px;
 	float: left;
@@ -31,10 +43,6 @@ body {
 .navbar-brand {
 	/*max-width: 450px;*/
 	margin-top: 10px;
-}
-
-#webpage-logo {
-	margin-left: 5px;
 }
 
 .navbar-inverse {
