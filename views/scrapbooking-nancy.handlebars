@@ -6,8 +6,12 @@
     padding: 7px;
   }
 
+  #title {
+    font-size: 120%;
+  }
+
   #nancy-signature {
-    max-width: 95%;
+    max-width: 60%;
   }
 
   #nancy-signature-backup {
@@ -27,22 +31,35 @@
 <div class="container">
   <div class="row">
 
-    <!-- Left Column -->
-    <div class="col-md-6" style="padding-left: 5%; padding-right: 5%;">
+    <!-- Nancy Centered Photo and Title with Signature -->
+    <div class="col-md-12">
 
-      <!-- Page Title (Signature) -->
-      <center id="nancy-signature-location">
-        <img id="nancy-signature" src="/assets/images/Nancy-Thompson-Signature.png" alt="Nancy Thompson Signature" onerror="$('#nancy-signature').remove(); $('#nancy-signature-location').append('<h1 id=&quot;nancy-signature-backup&quot;>Nancy Thompson</h1>')"/>
+      <!-- Page Title -->
+      <center id="title">
+        <h1 style="font-size: 300%;">Scrapbooking</h1>
       </center>
 
       <br/>
 
       <!-- Photo 1 -->
       <center>
-        <img id="nancy-photo-1" style="max-width: 75%;" src="/assets/images/Nancy-Thompson-Photo.jpg" alt="Photo of Nancy Thompson"/>
+        <img id="nancy-photo-1" style="max-width: 300px;" src="/assets/images/Nancy-Thompson-Photo.jpg" alt="Photo of Nancy Thompson"/>
+        <p>(Nancy Thompson, 1947 yearbook)</p>
       </center>
 
       <br/>
+
+      <!-- Signature -->
+      <center id="nancy-signature-location">
+        <img id="nancy-signature" src="/assets/images/Nancy-Thompson-Signature.png" alt="Nancy Thompson Signature" onerror="$('#nancy-signature').remove(); $('#nancy-signature-location').append('<h1 id=&quot;nancy-signature-backup&quot;>Nancy Thompson</h1>')"/>
+      </center>
+
+      </br>
+
+    </div>
+
+    <!-- Left Column -->
+    <div class="col-md-6" style="padding-left: 5%; padding-right: 5%;">
 
       <!-- Paragraph 1 -->
       <p>
@@ -59,26 +76,24 @@
         <img id="nancy-photo-2" style="max-width: 80%;" src="/assets/images/Nancy-Thompson-Library-Photo.jpg" alt="Photo of Nancy in Classroom"/>
       </center>
 
-    </div>
-
-    <br/>
-
-    <!-- Right Column -->
-    <div class="col-md-6" style="padding-left: 5%; padding-right: 5%;">
+      <br/>
 
       <!-- Paragraph 3 -->
       <p>
         During WWII, Thompson wrote letters to the men and women (students, alumni, and a faculty member) who served in the war effort.  She diligently filed all of their responses.  Surprisingly, there’s very little evidence of Thompson’s voice in the collection. It’s only in the Annual Report of the Library that we read her words, where she wrote year after year of the challenges of running a library.  In November 24, 1952, student paper noted that "[Thompson] prefers to remain in the background when it comes to the giving of honors but the Reflector feels that her efforts should be noted and commended. If the time, effort, and love with which she has guided just one event could be counted and added, its magnitude would far outshine the success of any and all the alumni affairs.”
       </p>
 
-      <br/>
-
       <!-- Photo 3 -->
       <center>
         <img id="nancy-photo-3" style="max-width: 80%;" src="/assets/images/Nancy-Thompson-Writing-Photo.jpg" alt="Photo of Nancy Writing Letters"/>
       </center>
 
-      <br/>
+    </div>
+
+    <br/>
+
+    <!-- Right Column -->
+    <div class="col-md-6" style="padding-left: 5%; padding-right: 5%;">
 
       <!-- Paragraph 4 -->
       <p>
@@ -89,7 +104,7 @@
 
       <!-- Photo 4 -->
       <center>
-        <img id="nancy-photo-4" style="max-width: 60%;" src="/assets/images/Nancy-Thompson-Honored-Photo.jpg" alt="Photo of Nancy Receiving the Scrapbook"/>
+        <img id="nancy-photo-4" style="max-width: 80%;" src="/assets/images/Nancy-Thompson-Honored-Photo.jpg" alt="Photo of Nancy Receiving the Scrapbook"/>
       </center>
 
       <br/>
