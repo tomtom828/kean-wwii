@@ -46,7 +46,7 @@ domRouter.get('/', function (req, res) {
 
 // GET - Reading Page Render
 domRouter.get('/reading', function (req, res) {
-  res.render('reading');
+  res.render('reading/reading-menu');
 });
 
 
@@ -87,12 +87,12 @@ domRouter.get('/search/authors/:letter', function (req, res){
         })
       }
       // Render the author names
-      res.render('search-authors', {hbsObject: authorNameData});
+      res.render('reading/search-authors', {hbsObject: authorNameData});
 
     }
     // Otherwise, no author was found
     else {
-      res.render('search-authors', null);
+      res.render('reading/search-authors', null);
     }
 
   });
@@ -111,7 +111,7 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
 
   // Return if parameter is not a first name or lastname
   if(type != "firstname" && type != "lastname"){
-    res.render('search-authors', null);
+    res.render('reading/search-authors', null);
     return;
   }
 
@@ -135,12 +135,12 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
         })
       }
       // Render the author names
-      res.render('search-authors', {hbsObject: authorNameData});
+      res.render('reading/search-authors', {hbsObject: authorNameData});
 
     }
     // Otherwise, no author was found
     else {
-      res.render('search-authors', {errObject: {type: type, name: name}});
+      res.render('reading/search-authors', {errObject: {type: type, name: name}});
     }
 
   });
@@ -204,7 +204,7 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
       }
 
       // Render Author's Bio Page
-      res.render('view-author', {hbsObject: authorAndFileData});
+      res.render('reading/view-author', {hbsObject: authorAndFileData});
 
     }); // end S3 query
 
@@ -219,7 +219,7 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
 domRouter.get('/search/letters', function (req, res) {
 
   // Default view of the search letters page
-  res.render('search-letters', null);
+  res.render('reading/search-letters', null);
 
 });
 
@@ -289,7 +289,7 @@ domRouter.post('/search/letters', function (req, res) {
     }
 
     // Render Letter Search Results
-    res.render('search-letters', {hbsObject: letterAndFileData});
+    res.render('reading/search-letters', {hbsObject: letterAndFileData});
 
   });
 
@@ -300,7 +300,7 @@ domRouter.post('/search/letters', function (req, res) {
 
 // GET - Mapping of All Letters in Database of selected criteria
 domRouter.get('/search/map', function (req, res) {
-  res.render('search-map');
+  res.render('reading/search-map');
 });
 
 
@@ -344,7 +344,7 @@ domRouter.get('/view/letter/:filename', function (req, res) {
       }
 
       // Render Author's Bio Page
-      res.render('view-letter', {hbsObject: authorAndFileData});
+      res.render('reading/view-letter', {hbsObject: authorAndFileData});
 
     }); // end S3 query
 
@@ -356,7 +356,7 @@ domRouter.get('/view/letter/:filename', function (req, res) {
 
 // GET - Static Page - Scrapbooking - Nancy Thompson
 domRouter.get('/scrapbooking/nancy-thompson', function (req, res) {
-  res.render('scrapbooking-nancy');
+  res.render('scrapbooking/nancy-thompson');
 });
 
 
