@@ -44,6 +44,8 @@ domRouter.get('/', function (req, res) {
 
 
 
+// ~ ~ ~ ~ ~ Reading Routes ~ ~ ~ ~ ~
+
 // GET - Reading Page Render
 domRouter.get('/reading', function (req, res) {
   res.render('reading/reading-menu');
@@ -353,17 +355,21 @@ domRouter.get('/view/letter/:filename', function (req, res) {
 });
 
 
+// ~ ~ ~ ~ ~ Scrapbooking Routes ~ ~ ~ ~ ~
 
 // GET - Static Page - Scrapbooking - Nancy Thompson
 domRouter.get('/scrapbooking/nancy-thompson', function (req, res) {
   res.render('scrapbooking/nancy-thompson');
 });
 
-
-
 // GET - Static Page - Scrapbooking - N.S.T.C
 domRouter.get('/scrapbooking/nstc', function (req, res) {
   res.render('scrapbooking/nstc');
+});
+
+// GET - Static Page - Scrapbooking - Project History
+domRouter.get('/scrapbooking/project-history', function (req, res) {
+  res.render('scrapbooking/project-history');
 });
 
 
