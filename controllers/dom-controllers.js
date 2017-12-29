@@ -360,6 +360,14 @@ domRouter.get('/scrapbooking/nancy-thompson', function (req, res) {
 });
 
 
+
+// GET - Static Page - Scrapbooking - N.S.T.C
+domRouter.get('/scrapbooking/nstc', function (req, res) {
+  res.render('scrapbooking/nstc');
+});
+
+
+
 // ----------------------------------------------------
 // Export routes
 module.exports = domRouter;
