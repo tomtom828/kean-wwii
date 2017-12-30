@@ -6,6 +6,37 @@
     padding: 10px;
   }
 
+  h4 {
+    background-color: white;
+    padding: 10px;
+    font-weight: bold;
+    line-height: 25px;
+  }
+
+  .list-students > li {
+    list-style: none;
+    background-color: white;
+  }
+
+  /* Custom Media Query for List of Student Names on Mobile */
+  @media (min-width: 0px) and (max-width: 550px){
+    .list-students-container {
+      clear: left;
+      text-align: center;
+      align-content: center;
+
+    }
+    .list-students > li {
+      min-width: 150px;
+      margin-left: 100%;
+      margin-right: 100%;
+    }
+  }
+
+  .reduce-p-margin {
+    margin-top: -20px;
+  }
+
   .inline-image-left {
     padding: 5px;
     float: left;
@@ -54,7 +85,7 @@
         </p>
       </center>
 
-      <br/>
+      <!-- <br/> -->
 
       <!-- Title -->
       <center>
@@ -85,81 +116,396 @@
 
     </div>
 
-    <br/>
-
     <!-- Right Column -->
     <div class="col-md-6" style="padding-left: 5%; padding-right: 5%;">
 
       <!-- Paragraph 2 -->
-      <div class="inline-image-right">
-        <img src="/assets/images/scrapbooking/nstc/NSTC-Give-A-Book.jpg" width="200" height="300" />
-        <br/>
-        <center><i>Poster Promoting Book Drive</i></center>
-      </div>
       <p>
-        para 2
+        For four years, 21 Honors History students have been scanning, transcribing, analyzing letters, and writing biographies about the letter writers. Students were able to look in other parts of the Kean University Archives to find supporting evidence for the letter writers and campus life in The Service Men’s News newsletter, student newspaper, yearbooks, course catalogs, alumni publications, awards for fundraisers, and transcripts from past and recent interviews.  Students have presented their findings at national and regional honors conferences, including the prestigious “Posters on the Hill” sponsored by the Council for Undergraduate Research.  History Honor’s Students were featured in two issues of “Kean Magazine,” in Summer 2008 and Spring 2017.  They also curated two exhibits, one of which was displayed at the Mid-Atlantic Regional Archives Conference in Newark, April 2017.
       </p>
 
     </div>
 
   </div>
 
-    <!-- Three Column Format -->
-    <div class="row">
+  <!-- Three Column Format -->
+  <div class="row">
 
-      <!-- Left Column -->
-      <div class="col-md-4" style="padding-left: 5%; padding-right: 5%;">
-
-        <!-- Col 1 -->
-        <div class="inline-image-left">
-          <img src="/assets/images/scrapbooking/nstc/NSTC-Auditorium.jpg" width="200" height="200">
+    <!-- Title Row -->
+    <div class="col-xs-12" style="padding-left: 5%; padding-right: 5%;">
+      <center>
+        <h4>
+          This project is the result of cross-college collaboration of the following:
           <br/>
-          <center><i>Students in auditorium</i></center>
-        </div>
-        <p>
-          Para 1
-        </p>
+          Honor’s History Students
+        </h4>
+      </center>
 
-      </div>
+      <!-- Shift up the 3 name columns -->
+      <div style="margin-top: -10px;"></div>
+    </div>
 
-      <br/>
+    <!-- Left Column -->
+    <div class="col-xs-4 list-students-container" style="padding-left: 5%; padding-right: 5%;">
+      <center>
+        <ul class="list-students">
+          <li>Shannon Berry ‘16</li>
+          <li>Michael Collins ’14</li>
+          <li>Jonathan Cutler ’15</li>
+          <li>Caleb Dagnell ‘18</li>
+          <li>Zachary DeLeon ‘18</li>
+          <li>Jessica DiFranco ‘17</li>
+          <li>Kevin Fette ’16</li>
+        </ul>
+      </center>
+    </div>
 
-      <!-- Center Column -->
-      <div class="col-md-4" style="padding-left: 5%; padding-right: 5%;">
+    <!-- Center Column -->
+    <div class="col-xs-4 list-students-container" style="padding-left: 5%; padding-right: 5%;">
+      <center>
+        <ul class="list-students">
+          <li>Brianna Gordon</li>
+          <li>Frank Harpster ‘17</li>
+          <li>Laura Hurley ‘17</li>
+          <li>Gabriel Kissoon ’16</li>
+          <li>Christina Leedy ’15</li>
+          <li>Dave Lewis ‘16</li>
+          <li>Erik Lister ‘18</li>
+        </ul>
+      </center>
+    </div>
 
-        <!-- Col 2 -->
-        <div class="inline-image-right">
-          <img src="/assets/images/scrapbooking/nstc/NSTC-Give-A-Book.jpg" width="200" height="300" />
-          <br/>
-          <center><i>Poster Promoting Book Drive</i></center>
-        </div>
-        <p>
-          para 2
-        </p>
+    <!-- Right Column -->
+    <div class="col-xs-4 list-students-container" style="padding-left: 5%; padding-right: 5%;">
+      <center>
+        <ul class="list-students">
+          <li>Angelina Lysenko</li>
+          <li>Anthony MacFarlane ‘14</li>
+          <li>Leanne Manna ‘18</li>
+          <li>Caitlyn Murphy ‘17</li>
+          <li>Colin Scotti ‘16</li>
+          <li>Michelle Thompson ‘17</li>
+          <li>Stephanie Valente ‘16</li>
+        </ul>
+      </center>
+    </div>
 
-      </div>
+  </div>
 
-      <!-- Right Column -->
-      <div class="col-md-4" style="padding-left: 5%; padding-right: 5%;">
+  <br/>
 
-        <!-- Col 3 -->
-        <div class="inline-image-right">
-          <img src="/assets/images/scrapbooking/nstc/NSTC-Give-A-Book.jpg" width="200" height="300" />
-          <br/>
-          <center><i>Poster Promoting Book Drive</i></center>
-        </div>
-        <p>
-          para 3
-        </p>
+  <!-- Two Column Format -->
+  <div class="row">
 
-      </div>
+    <!-- Left Column -->
+    <div class="col-sm-1"></div>
+    <div class="col-sm-6" style="padding-left: 5%; padding-right: 5%;">
+
+      <!-- Staff Names - History Honors Program  -->
+      <p>
+        <b>Kean University Department of History Honors Program</b>
+        <br/>
+        Dr. Jonathan Mercantini
+        <br/>
+        Dr. Elizabeth Hyde, Co-Directors
+        <br/>
+        Mary Woubneh, Administrative Assistant
+      </p>
+
+      <!-- Staff Names - Archives and Special Collections  -->
+      <p>
+        <b>Kean University Archives and Special Collections</b>
+        <br/>
+        Erin Alghandoor, Archivist
+      </p>
+
+      <!-- Staff Names - History, Politics, and Policy -->
+      <p>
+        <b>Kean University Center for History, Politics, and Policy</b>
+        <br/>
+        Terry Golway, Former Director
+        <br/>
+        Shane Derris, Former Assistant Director
+      </p>
 
     </div>
 
+    <!-- Right Column -->
+    <div class="col-sm-5" style="padding-left: 5%; padding-right: 5%;">
+
+      <!-- Fantastic Frantic Foto -->
+      <center>
+        <div>
+          <img src="/assets/images/scrapbooking/project-history/PH-Frank-Scrapbooking.jpg" width="200" height="300">
+          <br/>
+          <center style="max-width: 200px;"><i>Student Frank Harpster ‘17 preparing a surrogate scrapbook for an exhibit.</i></center>
+        </div>
+      </center>
+
+    </div>
+
+  </div>
+
+
+  <!-- Single Row Format -->
+  <div class="row">
+
+    <!-- Title Row -->
+    <div class="col-xs-12" style="padding-left: 5%; padding-right: 5%;">
+      <center>
+
+        <!-- Comp Sci Professors -->
+        <h4>
+          Kean University Department of Computer Science
+        </h4>
+        <!-- Shift up the names -->
+        <div style="margin-top: -20px;"></div>
+        <p>
+          Professor Patricia Morreale
+          <br/>
+          Professor Liou Jing-Chiou
+        </p>
+
+        <!-- Shift up the names -->
+        <div style="margin-top: -15px;"></div>
+
+        <!-- Comp Sci Students -->
+        <p>
+          <b>Students</b>
+          <br/>
+          <span>Joseph Galindo</span>
+          <span style="margin-left: 5%; margin-right: 5%;">Jaime Corea</span>
+          <span>Sasha Quinga</span>
+        </p>
+
+      </center>
+    </div>
+
+  </div>
+
+
+  <!-- Single Row Format -->
+  <div class="row">
+
+    <!-- Title Row -->
+    <div class="col-xs-12" style="padding-left: 5%; padding-right: 5%;">
+      <center>
+
+        <!-- Design Professors -->
+        <h4>
+          Kean University Robert Busch School of Design
+        </h4>
+        <!-- Shift up the names -->
+        <div style="margin-top: -20px;"></div>
+        <p>
+          Dawnmarie McDermid, Creative Lead, Design Studio
+        </p>
+
+        <!-- Shift up the names -->
+        <div style="margin-top: -15px;"></div>
+
+        <!-- Design Students -->
+        <p>
+          <b>Students</b>
+
+          <!-- Shift up the names -->
+          <div style="margin-top: -15px;"></div>
+
+          <div style="white-space: nowrap; background-color: white; max-width: 700px;">
+            <div class="col-xs-4">
+              Shiloh Sonatore
+              <span style="white-space: normal;"><i>(Design Credit)</i></span>
+              <br/>
+              Rachel Nierras
+              <br/>
+              Jubenal Torres
+            </div>
+
+            <div class="col-xs-4">
+              Sarah Chirichella
+              <br/>
+              Amilana Perez
+              <br/>
+              Anna Vasilenko
+            </div>
+
+            <div class="col-xs-4">
+              Theresa McEvoy
+              <br/>
+              Marc Rosario
+              <br/>
+              Ryan Wariki
+              <br/>
+              Erica Whyte
+            </div>
+          </div>
+
+        </p>
+
+      </center>
+    </div>
+
+  </div>
+
+
+  <!-- Two Column Format -->
+  <div class="row">
+
+    <br/><br/>
+
+    <!-- Left Column -->
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5" style="padding-left: 5%; padding-right: 5%;">
+
+      <!-- Poster Girls -->
+      <center>
+        <div>
+          <img src="/assets/images/scrapbooking/project-history/PH-Cambridge-Poster.jpg" width="300" height="250">
+          <br/>
+          <center style="max-width: 280px;"><i>Students Caitlyn Murphy ‘17 and Shannon Berry ‘17 setting up a research poster.</i></center>
+        </div>
+      </center>
+
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-sm-6" style="padding-left: 5%; padding-right: 5%;">
+
+      <!-- Staff Names - Academic Affairs -->
+      <p>
+        <b>Kean University Office of Academic Affairs</b>
+        <br/>
+        Jeffrey Toney, Vice President of Academic Affairs
+      </p>
+
+      <!-- Staff Names - Library -->
+      <p class="reduce-p-margin">
+        <b>Kean University Nancy Thompson Library</b>
+        <br/>
+        Kimberly Fraone, Acting University Librarian
+      </p>
+
+      <!-- Staff Names - Foundation -->
+      <p class="reduce-p-margin">
+        <b>Kean University Foundation</b>
+        <br/>
+        Stella Maher
+      </p>
+
+      <!-- Staff Names - Registrar -->
+      <p class="reduce-p-margin">
+        <b>Kean University Office of the Registrar</b>
+        <br/>
+        Ken Wolpin, Registrar
+        <br/>
+        Rosa Camelli
+      </p>
+
+      <!-- Staff Names - Success -->
+      <p class="reduce-p-margin">
+        <b>Kean University Center for Academic Success</b>
+        <br/>
+        Maria Perez
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- Two Column Format -->
+  <div class="row">
+
+    <br/><br/>
+
+    <!-- Left Column -->
+    <div class="col-sm-1"></div>
+    <div class="col-sm-6" style="padding-left: 5%; padding-right: 5%;">
+
+      <!-- Staff Names - Facilities and Planning -->
+      <p>
+        <b>Kean University Facilities and Planning</b>
+        <br/>
+        Tracie Feldman
+      </p>
+
+      <!-- Staff Names - Research and Sponsored Programs -->
+      <p class="reduce-p-margin">
+        <b>Kean University Research and Sponsored Programs</b>
+        <br/>
+        Susan Gannon, Acting Director
+      </p>
+
+      <!-- Staff Names - Office of Media Relations -->
+      <p>
+        <b>Kean University Office of Media Relations</b>
+        <br/>
+        Susan Kayne
+        <br/>
+        Margaret  McCorry
+        <br/>
+        Emmanuel Vozos
+        <br/>
+        Bryan Pekarek
+        <br/>
+        Lawrence Cortes
+        <br/>
+        Ian Alfano
+      </p>
+
+      <!-- Staff Names - OCIS/AV-->
+      <p class="reduce-p-margin">
+        <b>Kean University OCIS/AV</b>
+        <br/>
+        Muhammad Hassan
+        <br/>
+        William Burton
+        <br/>
+        Fahad Mughal
+        <br/>
+        Christopher Rustick
+      </p>
+
+      <!-- Staff Names - Visual and Performing Arts -->
+      <p class="reduce-p-margin">
+        <b>Kean University College of Visual and Performing Arts</b>
+        <br/>
+        Bruce De La Cruz and Performers
+      </p>
+
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-sm-5" style="padding-left: 5%; padding-right: 5%;">
+
+      <!-- Fantastic Frantic Foto -->
+      <center>
+        <div>
+          <img src="/assets/images/scrapbooking/project-history/PH-Exhibit-Case.png" width="200" height="300">
+          <br/>
+          <center style="max-width: 200px;"><i>Honor’s Students Caitlyn Murphy ‘17 and Jessica DiFranco ‘17 preparing an exhibit case.</i></center>
+        </div>
+      </center>
+
+    </div>
+
+  </div>
 
 
 
-
+  <!-- SPECIAL THANKS -->
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="col-sm-6" style="padding-left: 5%; padding-right: 5%;">
+        <p class="reduce-p-margin">
+          <b>Special Thank You</b>
+          <br/>
+          <!-- Come Find Me! -->
+          <!-- https://www.linkedin.com/in/thomas-thompson/ -->
+          Thomas Thompson, Web Developer, Rutgers '14
+        </p>
+      </div>
+    </div>
 
 
 </div>

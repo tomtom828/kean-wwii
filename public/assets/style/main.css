@@ -46,12 +46,14 @@ body {
 }
 
 .navbar-inverse {
-	background-color: #15317E;
+	/* background-color: #15317E; */
+	background-color: #003057;
 	color: white;
 }
 
 .navbar-drop-menu {
-	background-color: #15317E;
+	/* background-color: #15317E; */
+	background-color: #003057;
 }
 
 .navbar-drop-menu > li > a {
