@@ -357,6 +357,11 @@ domRouter.get('/view/letter/:filename', function (req, res) {
 
 // ~ ~ ~ ~ ~ Scrapbooking Routes ~ ~ ~ ~ ~
 
+// GET - Scrapbooking (landing page)
+domRouter.get('/scrapbooking', function (req, res) {
+  res.render('scrapbooking/scrapbooking-menu');
+});
+
 // GET - Static Page - Scrapbooking - Nancy Thompson
 domRouter.get('/scrapbooking/nancy-thompson', function (req, res) {
   res.render('scrapbooking/nancy-thompson');
