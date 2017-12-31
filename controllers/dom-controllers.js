@@ -372,6 +372,10 @@ domRouter.get('/scrapbooking/project-history', function (req, res) {
   res.render('scrapbooking/project-history');
 });
 
+// GET - Static Page - Scrapbooking - The Scrapbook
+domRouter.get('/scrapbooking/the-scrapbook', function (req, res) {
+  res.render('scrapbooking/the-scrapbook');
+});
 
 
 // ----------------------------------------------------
