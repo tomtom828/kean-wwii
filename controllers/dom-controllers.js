@@ -377,6 +377,11 @@ domRouter.get('/scrapbooking/the-scrapbook', function (req, res) {
   res.render('scrapbooking/the-scrapbook');
 });
 
+// GET - Static Page - Scrapbooking - The Serviceman's New
+domRouter.get('/scrapbooking/servicemens-news', function (req, res) {
+  res.render('scrapbooking/servicemens-news');
+});
+
 
 // ----------------------------------------------------
 // Export routes
