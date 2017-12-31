@@ -388,6 +388,20 @@ domRouter.get('/scrapbooking/servicemens-news', function (req, res) {
 });
 
 
+
+// ~ ~ ~ ~ ~ Experiencing Routes ~ ~ ~ ~ ~
+
+// GET - Experiencing (landing page)
+domRouter.get('/experiencing', function (req, res) {
+  res.render('experiencing/experiencing-menu');
+});
+
+// GET - Static Page - Experiencing - Homefront
+domRouter.get('/experiencing/homefront', function (req, res) {
+  res.render('experiencing/homefront');
+});
+
+
 // ----------------------------------------------------
 // Export routes
 module.exports = domRouter;
