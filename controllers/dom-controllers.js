@@ -401,6 +401,11 @@ domRouter.get('/experiencing/homefront', function (req, res) {
   res.render('experiencing/homefront');
 });
 
+// GET - Static Page - Experiencing - Race
+domRouter.get('/experiencing/race', function (req, res) {
+  res.render('experiencing/race');
+});
+
 
 // ----------------------------------------------------
 // Export routes
