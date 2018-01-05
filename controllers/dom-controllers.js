@@ -406,6 +406,11 @@ domRouter.get('/experiencing/race', function (req, res) {
   res.render('experiencing/race');
 });
 
+// GET - Static Page - Experiencing - Wartime
+domRouter.get('/experiencing/wartime', function (req, res) {
+  res.render('experiencing/wartime');
+});
+
 
 // ----------------------------------------------------
 // Export routes
