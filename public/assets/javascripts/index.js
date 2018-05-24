@@ -18,11 +18,11 @@ var pageTurned = false;
     });
 
 
-    // If the page is not turned within 5 seconds, tell user to click
+    // If the page is not turned within 15 seconds, tell user to click
     setTimeout(function(){
       if (!pageTurned) {
         alert("Please click the page corner to open the scrapbook.")
       }
-    }, 5000);
+    }, 15000);
 
 })
