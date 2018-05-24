@@ -11,11 +11,82 @@
 <!-- Splash Page -->
 <a href="#turn-page"><img id="splash-page-image" src="/assets/images/Splash-Page.png"/></a>
 
+<!-- Float the Div -->
+<div id="float-intro-div">
+	It was the story of the war itself, wrote Nancy Thompson of the scrapbook she assembled of letters from Newark State Teachers College students serving in World War II. Turn the page to share in their experiences.
+</div>
+
 <!-- Cursive Links Page (underneath the splash page via Z index)-->
 <div id="cursive-page" style="z-index: -1;">
-	<h1 class="a resize_width"><a class="hide_hyperlink" href="/reading">Reading the Scrapbook</a></h1>
-	<h1 class="b resize_width"><a class="hide_hyperlink" href="/experiencing">Experiencing WWII</a></h1>
-	<h1 class="c resize_width"><a class="hide_hyperlink" href="/scrapbooking">Scrapbooking the War</a></h1>
-	<h1 class="d resize_width"><a class="hide_hyperlink" href="#">Teaching WWII</a></h1>
-	<h1 class="e resize_width"><a class="hide_hyperlink" href="#">Doing History</a></h1>
+	<div class="row">
+
+		<!-- Left Side -->
+		<div class="col-xs-6" style="z-index: -1;">
+			<div id="main-quote-div">
+				<p>
+					When the United States entered World War II, Newark State Teacher’s College librarian Nancy Thompson led a campus-wide effort to write to NSTC students serving the war effort.  Many wrote back.   Thompson and colleagues then shared the contents of their letters in “The Serviceman’s News,” that they distributed to NSTC students all over the world.  Thompson preserved over 800 letters which are now available on this website.  We invite you to experience the impact of World War II on young Americans by reading their letters and mapping their movement around the United States and the world.
+				</p>
+			</div>
+		</div>
+
+		<!-- Right Side -->
+		<div class="col-xs-6" style="z-index: -1;">
+			<h1 class="a resize_width"><a class="hide_hyperlink" href="/reading">Reading the Scrapbook</a></h1>
+			<h1 class="b resize_width"><a class="hide_hyperlink" href="/experiencing">Experiencing WWII</a></h1>
+			<h1 class="c resize_width"><a class="hide_hyperlink" href="/scrapbooking">Scrapbooking the War</a></h1>
+			<h1 class="d resize_width"><a class="hide_hyperlink" href="#">Teaching WWII</a></h1>
+			<h1 class="e resize_width"><a class="hide_hyperlink" href="#">Doing History</a></h1>
+		</div>
+
+	</div>
 </div>
+
+
+<style>
+
+	/* Float Div Styling TODO: move this in the right spot */
+	#float-intro-div {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		z-index: 100;
+		width: 30%;
+		font-family: Courier New, monospace;
+		font-weight: bolder;
+		line-height: 1.75;
+		font-size: 16px;
+		max-height: 20%;
+	}
+	@media (max-width: 750px) {
+		#float-intro-div {
+			line-height: 1.5;
+			font-size: 12px;
+			bottom: 1px;
+			max-height: 50%;
+		}
+	}
+
+
+	/* Styling for Main Quote */
+	#main-quote-div {
+		background-color: #f2efe6;
+
+		width: 85%;
+		margin-bottom: 40px;
+
+		line-height: 3;
+		font-size: 14px;
+		font-family: Courier New, monospace;
+		font-style: italic;
+
+		padding: 15px;
+	}
+	@media (max-width: 478px) {
+		#main-quote-div {
+			line-height: 1.25;
+			font-size: 10px;
+			padding: 7px;
+		}
+	}
+
+</style>

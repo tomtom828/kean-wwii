@@ -7,12 +7,14 @@ var pageTurned = false;
   if (window.location.hash=="#turn-page") {
     $("#splash-page-image").addClass("pt-page-moveToLeft");
     pageTurned = true;
+    $("#float-intro-div").remove();
   }
 
     // If there is a hash change, then show animation of a page turning
     $(window).on('hashchange',function(){
       $("#splash-page-image").addClass("pt-page-moveToLeft");
       pageTurned = true;
+      $("#float-intro-div").remove();
     });
 
 
