@@ -411,6 +411,11 @@ domRouter.get('/experiencing/wartime', function (req, res) {
   res.render('experiencing/wartime');
 });
 
+// GET - Static Page - Experiencing - Women
+domRouter.get('/experiencing/women', function (req, res) {
+  res.render('experiencing/women');
+});
+
 
 // ----------------------------------------------------
 // Export routes
