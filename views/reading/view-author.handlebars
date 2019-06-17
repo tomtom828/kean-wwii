@@ -38,16 +38,20 @@
           {{!-- Repeat their name --}}
           <h2 class="author-name"><b>{{hbsObject.displayFirstName}} {{hbsObject.displayLastName}}</b></h2>
 
-          {{!-- Important Facts --}}
+          {{!-- Important Facts: Bio Information --}}
           <ul>
-            <li id="bio-birth"><b>Date of Birth: </b> </li>
-            <li id="bio-death"><b>Date of Death: </b> </li>
-            <li id="bio-enrolled"><b>Enrolled: </b> </li>
-            <li id="bio-left"><b>Left N.S.T.C. for service: </b> </li>
-            <li id="bio-return"><b>Return to N.S.T.C. from service: </b> </li>
-            <li id="bio-graduated"><b>Graduated from N.S.T.C.: </b> </li>
-            <li id="bio-degree"><b>Degree: </b> </li>
-          <ul>
+            {{#if hbsObject.authorBioData}}
+              {{!-- Dynamically Append Bio Info --}}
+              {{#each hbsObject.authorBioData}}
+                <li><b>{{bio_attribute}}:</b> {{bio_attrib_value}}</li>
+              {{/each}}
+              {{else}}
+                Sorry, no information available. <br/>
+                This website is still under development. <br/>
+                Please come back at a later time.
+            {{/if}}
+          </ul>
+
         </div>
       </div>
     </center>

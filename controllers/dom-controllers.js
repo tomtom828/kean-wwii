@@ -167,50 +167,64 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
   connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = ? AND letters.firstname = ? AND letters.filename = archives.filename ORDER BY letters.ts_dateguess ASC, letters.filename ASC', [lastName, firstName], function(err, response) {
     if(err) throw err;
 
-    // Clean response to display error message if no files found
-    var fileResponse;
-    if (response.length == 0) {
-      fileResponse = null;
-      defaultFileName = "Sorry. No Letters Available.";
-      defaultFilePages = 1;
-      awsDefaultFileName = "No+Letter+Found";
-    }
-    // Otherwise, give back the response
-    else {
-      fileResponse = response;
-      defaultFileName = response[0].filename;
-      defaultFilePages = response[0].pages;
-      awsDefaultFileName = defaultFileName.replace(/ /g, "+");
-    }
+    // TODO once archives are cleaned up, need to make this one query
+    connection.query('SELECT author_bio_meta.bio_attribute, author_bio.bio_attrib_value ' +
+      'FROM author_bio ' +
+      'INNER JOIN authors ON authors.id = author_bio.author_id ' +
+      'INNER JOIN author_bio_meta ON author_bio.author_bio_meta_id = author_bio_meta.id ' +
+      'WHERE authors.last_name = ? AND authors.first_name = ? '+
+      'ORDER BY authors.id, author_bio_meta.sort_key;', [lastName, firstName], function(err2, response2) {
+        if(err2) throw err2;
 
-    // Get Text File Data from AWS S3
-    getS3Text(defaultFileName, function(awsText) {
+        // Clean response to display error message if no files found
+        var fileResponse;
+        if (response.length == 0) {
+          fileResponse = null;
+          defaultFileName = "Sorry. No Letters Available.";
+          defaultFilePages = 1;
+          awsDefaultFileName = "No+Letter+Found";
+          authorBioData = null;
+        }
+        // Otherwise, give back the response
+        else {
+          fileResponse = response;
+          defaultFileName = response[0].filename;
+          defaultFilePages = response[0].pages;
+          awsDefaultFileName = defaultFileName.replace(/ /g, "+");
+          authorBioData = response2;
+        }
 
-      // Note that /n (enter key) needs to be changed to <br>
-      var defaultFileText = awsText.replace(/\n/g, "<br>");
+        // Get Text File Data from AWS S3
+        getS3Text(defaultFileName, function(awsText) {
 
-      // Note that /t (tab key) needs to be changed to a tab, using a <i> tag and CSS
-      defaultFileText = defaultFileText.replace(/\t/g, '<i style="padding-left: 5em";></i>')
+          // Note that /n (enter key) needs to be changed to <br>
+          var defaultFileText = awsText.replace(/\n/g, "<br>");
 
-      // Create page render object
-      var authorAndFileData = {
-        firstName: firstName,
-        lastName: lastName,
-        displayFirstName: displayFirstName,
-        displayLastName: displayLastName,
-        defaultFileName: defaultFileName,
-        defaultFilePages: defaultFilePages,
-        defaultFileText: defaultFileText,
-        awsDefaultFileName: awsDefaultFileName,
-        letterData: fileResponse
-      }
+          // Note that /t (tab key) needs to be changed to a tab, using a <i> tag and CSS
+          defaultFileText = defaultFileText.replace(/\t/g, '<i style="padding-left: 5em";></i>')
 
-      // Render Author's Bio Page
-      res.render('reading/view-author', {hbsObject: authorAndFileData});
+          // Create page render object
+          var authorAndFileData = {
+            firstName: firstName,
+            lastName: lastName,
+            displayFirstName: displayFirstName,
+            displayLastName: displayLastName,
+            defaultFileName: defaultFileName,
+            defaultFilePages: defaultFilePages,
+            defaultFileText: defaultFileText,
+            awsDefaultFileName: awsDefaultFileName,
+            letterData: fileResponse,
+            authorBioData: authorBioData
+          }
 
-    }); // end S3 query
+          // Render Author's Bio Page
+          res.render('reading/view-author', {hbsObject: authorAndFileData});
 
-  }); // end MySQL query
+        }); // end S3 query
+
+      }); // end MySQL query 2
+      
+  }); // end MySQL query 1
 
 });
 
