@@ -8,7 +8,7 @@ This project was a continuation of the code developed by a [Kean Student](https:
 
 
 ## Functionality
-On the backend, the app uses the `Express` server for `NodeJS` as well as `MySQL` to interact with a database of archive names, author information, and location cooridinates.
+On the backend, the app uses the `Express` server for `NodeJS` as well as `MySQL` to interact with a database of archive names, author information, and location coordinates.
 
 On the frontend, the app uses `Handlebars` for templating and `Bootstrap` as a styling framework. The app also uses `jQuery` and `AJAX` for a more responsive user experience.
 
@@ -23,7 +23,7 @@ If you wish to clone the website down and run it on localhost...
   2. Once you are set up, `cd` into this repo and run `npm install`.
   3. Then seed the database using MySQL Workbench.
       * The schema is found in `models/db.sql`.
-      * Also double check that the localhost connnection is correct in `models/dbInfo.json`.
+      * Also double check that the localhost connection is correct in `models/dbInfo.json`.
   4. Run the server with `node server.js`.
   5. Navigate to `localhost:8080` in your browser.
 
@@ -32,3 +32,7 @@ If you wish to clone the website down and run it on localhost...
 Feel free to fork this repo.
 Then refer to the documentation stored in the keanwwiiscrapbook@gmail.com account.
 The account's Google Drive will contain a document with instructions on how to add yourself as a collaborator.
+
+### Screenshot
+
+![WWII Scrapbook Landing Page](/screenshots/homepage.png)
