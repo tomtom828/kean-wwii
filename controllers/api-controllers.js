@@ -36,13 +36,20 @@ connection.connect(function(err) {
 
 // API - Retrieve Lat & Long Coordinates of selected Author (Lastname, Firstname) from MySQL
 apiRouter.get('/api/map/author/:lastname/:firstname', function (req, res) {
-  
+
   // Collect parameters
   var lastname = req.params.lastname;
   var firstname = req.params.firstname;
 
-  // Read Database
-  connection.query('SELECT * FROM letters, locdata WHERE firstname = ? AND lastname = ? AND letters.id = locdata.locationid ORDER BY ts_dateguess ASC', [firstname, lastname], function(err, response){
+  // Read Database (Updated DB 2020)
+  var stmt = "SELECT * " +
+              "FROM authors a, records r, location_data loc " +
+              "WHERE a.first_name = ? AND a.last_name = ? " +
+              "AND r.id = loc.record_id AND a.id = r.author_id " +
+              "ORDER BY year, month, day";
+  // connection.query('SELECT * FROM letters, locdata WHERE firstname = ? AND lastname = ? AND letters.id = locdata.locationid ORDER BY ts_dateguess ASC', [firstname, lastname], function(err, response){
+  connection.query(stmt, [firstname, lastname], function(err, response){
+
     if(err) throw err;
 
     // Export to Client Side
@@ -56,9 +63,14 @@ apiRouter.get('/api/map/author/:lastname/:firstname', function (req, res) {
 
 // API - Retrieve Lat & Long Coordinates of All Letters
 apiRouter.get('/api/map/search', function (req, res) {
-  
-  // Read Database
-  connection.query('SELECT * FROM letters, locdata WHERE letters.id = locdata.locationid ORDER BY ts_dateguess ASC, lng ASC, lat ASC', function(err, response){
+
+  // Read Database (Updated DB 2020)
+  var stmt = "SELECT * " +
+              "FROM authors a, records r, location_data loc " +
+              "WHERE r.id = loc.record_id AND a.id = r.author_id " +
+              "ORDER BY year, month, day, lng, lat";
+  // connection.query('SELECT * FROM letters, locdata WHERE letters.id = locdata.locationid ORDER BY ts_dateguess ASC, lng ASC, lat ASC', function(err, response){
+  connection.query(stmt, function(err, response){
     if(err) throw err;
 
     // Export to Client Side
@@ -72,7 +84,7 @@ apiRouter.get('/api/map/search', function (req, res) {
 
 // API - Retrieve Lat & Long Coordinates of selected Year, Branch, and Sex
 apiRouter.post('/api/map/search', function (req, res) {
-  
+
   // Collect parameters
   var year = req.body.year;
   var branch = req.body.branch;
@@ -83,8 +95,14 @@ apiRouter.post('/api/map/search', function (req, res) {
   var myServiceBranch = branch + "%"; // ex: "Army%" or "Army (British)%" or "%"
   var mySex = sex + "%"; // ex: "M%" or "F%" or "%"
 
-  // Read Database
-  connection.query('SELECT * FROM letters, locdata WHERE letters.id = locdata.locationid AND gender LIKE ? AND service_branch LIKE ? AND ts_dateguess LIKE ? ORDER BY ts_dateguess ASC, lng ASC, lat ASC', [mySex, myServiceBranch, myYear] , function(err, response){
+  // Read Database (Updated DB 2020)
+  var stmt = "SELECT * " +
+              "FROM authors a, records r, location_data loc " +
+              "WHERE r.id = loc.record_id AND a.id = r.author_id " +
+              "AND a.sex LIKE ? AND a.service_branch LIKE ? AND r.year LIKE ? " +
+              "ORDER BY year, month, day, lng, lat";
+  // connection.query('SELECT * FROM letters, locdata WHERE letters.id = locdata.locationid AND gender LIKE ? AND service_branch LIKE ? AND ts_dateguess LIKE ? ORDER BY ts_dateguess ASC, lng ASC, lat ASC', [mySex, myServiceBranch, myYear] , function(err, response){
+  connection.query(stmt, [mySex, myServiceBranch, myYear] , function(err, response){
     if(err) throw err;
 
     // Export to Client Side
