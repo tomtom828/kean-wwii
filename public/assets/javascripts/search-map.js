@@ -54,6 +54,9 @@ $(document).ready(function(){
     if (branch == "") {
       displayBranch = "any service branch";
     }
+    else if (branch == "No Military Service") {
+        displayBranch = "no service background";
+    }
     else {
       displayBranch = "the " + branch;
     }
@@ -68,7 +71,7 @@ $(document).ready(function(){
     // Show Updated Query Terms
     var newSearchQuery = '<br><p>Displaying letters written by <b>' +
       displaySex + '</b> from <b>' +
-      displayBranch + '</b> in <b>' + 
+      displayBranch + '</b> in <b>' +
       displayYear + '</b>.</p>';
     $('#mapSearchQuery').html(newSearchQuery);
 
@@ -165,7 +168,7 @@ $(document).ready(function(){
       // Show Updated Query Terms
       var newSearchQuery = '<br><p>Displaying letters written by <b>' +
         displaySex + '</b> from <b>' +
-        displayBranch + '</b> in <b>' + 
+        displayBranch + '</b> in <b>' +
         displayYear + '</b>.</p>';
       $('#mapSearchQuery').html(newSearchQuery);
 

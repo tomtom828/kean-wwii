@@ -69,8 +69,8 @@ domRouter.get('/search/authors/:letter', function (req, res){
   // Set up proper "%" syntax for MySQL matching
   var myLetter = letter + "%"; // ex: "A%" or "B%"
 
-  // Read from Database
-  connection.query('SELECT DISTINCT lastname, firstname FROM letters WHERE lastname LIKE ? ORDER BY lastname ASC', [myLetter], function(err, response){
+  // Read from Database (Updated DB 2020)
+  connection.query('SELECT last_name, first_name FROM authors WHERE last_name LIKE ? ORDER BY last_name ASC', [myLetter], function(err, response){
 
     // Respond with error if database error
     if(err) throw err;
@@ -82,10 +82,10 @@ domRouter.get('/search/authors/:letter', function (req, res){
       var authorNameData = [];
       for(var i = 0; i < response.length; i++){
         authorNameData.push({
-          "firstName": response[i].firstname.toLowerCase(),
-          "lastName": response[i].lastname.toLowerCase(),
-          "displayFirstName": response[i].firstname,
-          "displayLastName": response[i].lastname
+          "firstName": response[i].first_name.toLowerCase(),
+          "lastName": response[i].last_name.toLowerCase(),
+          "displayFirstName": response[i].first_name,
+          "displayLastName": response[i].last_name
         })
       }
       // Render the author names
@@ -117,8 +117,16 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
     return;
   }
 
-  // Read from Database
-  connection.query('SELECT DISTINCT lastname, firstname FROM letters WHERE ' + mysql.escapeId(type) + ' = ? ORDER BY lastname ASC', [name], function(err, response){
+  // Update "type" to DB 2020 format
+  if (type == "firstname") {
+    type = "first_name";
+  }
+  else {
+    type = "last_name";
+  }
+
+  // Read from Database (Updated DB 2020)
+  connection.query('SELECT last_name, first_name FROM authors WHERE ' + mysql.escapeId(type) + ' = ? ORDER BY last_name ASC', [name], function(err, response){
 
     // Respond with error if database error
     if(err) throw err;
@@ -130,10 +138,10 @@ domRouter.get('/search/authors/:type/:name', function (req, res){
       var authorNameData = [];
       for(var i = 0; i < response.length; i++){
         authorNameData.push({
-          "firstName": response[i].firstname.toLowerCase(),
-          "lastName": response[i].lastname.toLowerCase(),
-          "displayFirstName": response[i].firstname,
-          "displayLastName": response[i].lastname
+          "firstName": response[i].first_name.toLowerCase(),
+          "lastName": response[i].last_name.toLowerCase(),
+          "displayFirstName": response[i].first_name,
+          "displayLastName": response[i].last_name
         })
       }
       // Render the author names
@@ -163,11 +171,21 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
   var displayLastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
   var displayFirstName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
 
-  // Read Database
-  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.lastname = ? AND letters.firstname = ? AND letters.filename = archives.filename ORDER BY letters.ts_dateguess ASC, letters.filename ASC', [lastName, firstName], function(err, response) {
+  // Fix O'Sullivan / O'Mara
+  if (displayLastName.charAt(1)=="'") {
+    displayLastName = displayLastName.substring(0,2) + displayLastName[2].toUpperCase() + displayLastName.substring(3);
+  }
+
+  // Get Author Records (Updated DB 2020)
+  var stmt = "SELECT record_name AS filename, page_count AS pages, year, month, day " +
+            "FROM records r, authors a " +
+            "WHERE r.author_id = a.id " +
+            "AND a.last_name=? AND a.first_name=? " +
+            "ORDER BY year, month, day,record_name";
+  connection.query(stmt, [lastName, firstName], function(err, response) {
     if(err) throw err;
 
-    // TODO once archives are cleaned up, need to make this one query
+    // Get Author Bio Information
     connection.query('SELECT author_bio_meta.bio_attribute, author_bio.bio_attrib_value ' +
       'FROM author_bio ' +
       'INNER JOIN authors ON authors.id = author_bio.author_id ' +
@@ -193,6 +211,7 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
           awsDefaultFileName = defaultFileName.replace(/ /g, "+");
           authorBioData = response2;
         }
+
 
         // Get Text File Data from AWS S3
         getS3Text(defaultFileName, function(awsText) {
@@ -223,7 +242,7 @@ domRouter.get('/authors/:lastname/:firstname', function (req, res) {
         }); // end S3 query
 
       }); // end MySQL query 2
-      
+
   }); // end MySQL query 1
 
 });
@@ -254,8 +273,14 @@ domRouter.post('/search/letters', function (req, res) {
   var myServiceBranch = branch + "%"; // ex: "Army%" or "Army (British)%" or "%"
   var mySex = sex + "%"; // ex: "M%" or "F%" or "%"
 
-  // Read Database
-  connection.query('SELECT filename FROM letters WHERE gender LIKE ? AND service_branch LIKE ? AND ts_dateguess LIKE ? ORDER BY filename ASC', [mySex, myServiceBranch, myYear], function(err, response) {
+  // Read Database (Updated DB 2020)
+  var stmt = "SELECT record_name AS filename " +
+              "FROM records r, authors a " +
+              "WHERE a.sex LIKE ? AND a.service_branch LIKE ? AND year LIKE ? " +
+              "AND a.id = r.author_id " +
+              "ORDER BY record_name ASC ";
+  // connection.query('SELECT filename FROM letters WHERE gender LIKE ? AND service_branch LIKE ? AND ts_dateguess LIKE ? ORDER BY filename ASC', [mySex, myServiceBranch, myYear], function(err, response) {
+  connection.query(stmt, [mySex, myServiceBranch, myYear], function(err, response) {
   if(err) throw err;
 
     // Clean response to display error message if no files found
@@ -282,6 +307,9 @@ domRouter.post('/search/letters', function (req, res) {
     var displayBranch;
     if (branch == "") {
       displayBranch = "any service branch";
+    }
+    else if (branch == "No Military Service") {
+        displayBranch = "no service background";
     }
     else {
       displayBranch = "the " + branch;
@@ -327,8 +355,12 @@ domRouter.get('/view/letter/:filename', function (req, res) {
   // Get filename from parameters
   var fileName = req.params.filename;
 
-  // Read Database
-  connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.filename = ? AND letters.filename = archives.filename', [fileName], function(err, response) {
+  // Read Database (Updated DB 2020)
+  var stmt = "SELECT record_name AS filename, page_count AS pages, year, month, day " +
+              "FROM records " +
+              "WHERE record_name = ?";
+  // connection.query('SELECT letters.filename, archives.pages, letters.letterdate, letters.ts_dateguess FROM letters, archives WHERE letters.filename = ? AND letters.filename = archives.filename', [fileName], function(err, response) {
+  connection.query(stmt, [fileName], function(err, response) {
     if(err) throw err;
 
     // Clean response to display error message if no files found

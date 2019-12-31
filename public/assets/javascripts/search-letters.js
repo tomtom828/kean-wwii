@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     // Change the selection to match the last query
     $('#selectedBranch').val(selectedBranch);
-    
+
   }
 
   // Append the previous Sex selection if not default / unsearched
@@ -42,7 +42,7 @@ $(document).ready(function(){
 
     // Change the selection to match the last query
     $('#selectedYear').val(selectedYear);
-    
+
   }
 
 });

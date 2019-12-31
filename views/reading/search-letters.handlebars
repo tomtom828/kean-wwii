@@ -11,7 +11,7 @@
 <div class="row">
 
   {{!-- Empty Div to move search bar to the right --}}
-  <div class="col-md-3 col-xs-1"></div> 
+  <div class="col-md-3 col-xs-1"></div>
 
     {{!-- Search Bar --}}
     <div class="col-md-6 col-xs-10">
@@ -26,13 +26,18 @@
               <select id="selectedBranch" name="branch" class="btn btn-default letter-selection-dropdown">
                 <option value="" selected>Any</option>
                 <option value="Army">Army</option>
-                <option value="Army (British)">Army (British)</option>
+                <option value="Army Air Corps">Army Air Corps</option>
+                <option value="Army Air Forces">Army Air Forces</option>
+                <option value="Army Infantry">Army Infantry</option>
+                <option value="Army Reserve">Army Reserve</option>
                 <option value="Coast Guard">Coast Guard</option>
-                <option value="Harbor Defense">Harbor Defense</option>
-                <option value="Merchant Marines">Merchant Marines</option>
+                <option value="Marine Corps">Marine Corps</option>
+                <option value="Naval Reserve">Naval Reserve</option>
                 <option value="Navy">Navy</option>
+                <option value="No Military Service">No Service</option>
                 <option value="Red Cross">Red Cross</option>
-                <option value="US Marine Corps">US Marine Corps</option>
+                <option value="WAAC">WAAC</option>
+                <option value="WAVES">WAVES</option>
               </select>
 
               {{!-- Select Gender --}}
@@ -47,6 +52,8 @@
               <b>Year: </b>
               <select id="selectedYear" name="year" class="btn btn-default letter-selection-dropdown">
                 <option value="" selected>All</option>
+                <option value="1937">1937</option>
+                <option value="1939">1939</option>
                 <option value="1941">1941</option>
                 <option value="1942">1942</option>
                 <option value="1943">1943</option>
@@ -94,7 +101,7 @@
       <div id="letter_list">
 
         {{!-- Search was done --}}
-        {{#if hbsObject}}         
+        {{#if hbsObject}}
 
           {{!-- Successful search --}}
           {{#if hbsObject.letterData}}

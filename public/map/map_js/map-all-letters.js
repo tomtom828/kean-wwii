@@ -34,7 +34,7 @@ function initMap() {
           center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
           mapTypeId: 'roadmap'
         });
-        
+
         // Create Legend and Center Map
         createLegend();
         document.getElementById("maperror").style.display = "none";
@@ -144,13 +144,14 @@ function initMap() {
 
           var coords = markers[i].lat+","+markers[i].lng;
 
-          var name = markers[i].filename;
+          // Using updated DB Response 2020
+          var name = markers[i].record_name;
           var address = markers[i].location;
           var point = new google.maps.LatLng(
             parseFloat(markers[i].lat),
             parseFloat(markers[i].lng));
           var letterid = markers[i].id;
-          var year = markers[i].ts_dateguess.substring(0, 4);;
+          var year = markers[i].year;
 
           // *** NEW BY TOMMY ***
           var letterURL = "/view/letter/" + name.replace(/ /g, "%20");
@@ -165,9 +166,9 @@ function initMap() {
             var marker_icon_filepath = "/map/marker_icons/unknown_single.png";
           }
 
-          var html = '<b><a href="' + letterURL + '" class="mapMarkerIconLink">' + 
-                      name + '</a>'+ 
-                      '</b> <br>' + 
+          var html = '<b><a href="' + letterURL + '" class="mapMarkerIconLink">' +
+                      name + '</a>'+
+                      '</b> <br>' +
                       address +
                       '<br>';
           var icon = {};
@@ -202,22 +203,22 @@ function initMap() {
 
         if(distinct_array[coords] > 1) {
           oms.addMarker(marker);
-          
+
           if(year > "0000") {
             marker.setOptions({
               icon: "/map/marker_icons/" + year.toString() + "_multiple.png"
-            }); 
+            });
           }
 
           else {
             marker.setOptions({
               icon: "/map/marker_icons/unknown_multiple.png"
             });
-          } 
+          }
         }
 
         valid_markers.push(marker);
-        
+
         bindInfoWindow(marker, map, infoWindow, html); //bind ALL points to the google.maps.event
 
         } //endif
@@ -238,16 +239,16 @@ function initMap() {
             //label.position = e.latLng;
 
             label.setMap(map);
-            
+
             polyline.setOptions({ strokeColor: '#660033',
-                                  strokeWeight: 6});  
+                                  strokeWeight: 6});
         });
 
         google.maps.event.addListener(polyline, 'mouseout', function(e) {
 
             label.setMap(null);
             polyline.setOptions({ strokeColor: '#2f2f2f',
-                                  strokeWeight: 4});  
+                                  strokeWeight: 4});
         });
       }
 
@@ -272,8 +273,8 @@ function initMap() {
   function createLegend(){
 
     var legend = document.getElementById('legend');
-    legend.style.display = "block"; //toggle visibility here, when it's known the legend will actually be needed 
-    
+    legend.style.display = "block"; //toggle visibility here, when it's known the legend will actually be needed
+
     var prefixes = ["unknown","1941","1942","1943","1944","1945","1946","1950"];
 
     for(var i = 0; i < prefixes.length; i++) {
