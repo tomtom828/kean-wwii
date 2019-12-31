@@ -156,7 +156,8 @@ function initMap() {
           var letterid = markers[i].id;
           var year = markers[i].year;
 
-          if(year > "0000") { //if a year is not null, by default make the path point to that year, single icon on the spot
+          // Updated DB 2020... UN instead of NULL
+          if(year != "UN") { //if a year is not null, by default make the path point to that year, single icon on the spot
 
             var marker_icon_filepath = "/map/marker_icons/" + year.toString() + "_single.png";
           }
@@ -204,7 +205,8 @@ function initMap() {
         if(distinct_array[coords] > 1) {
           oms.addMarker(marker);
 
-          if(year > "0000") {
+          // Updated DB 2020... UN instead of NULL
+          if(year != "UN") {
             marker.setOptions({
               icon: "/map/marker_icons/" + year.toString() + "_multiple.png"
             });
