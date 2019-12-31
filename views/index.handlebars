@@ -32,10 +32,10 @@
 		<!-- Right Side -->
 		<div class="col-xs-6">
 			<h1 class="a resize_width"><a class="hide_hyperlink" href="/reading">Reading the Scrapbook</a></h1>
-			<h1 class="b resize_width"><a class="hide_hyperlink" href="/experiencing">Experiencing WWII</a></h1>
-			<h1 class="c resize_width"><a class="hide_hyperlink" href="/scrapbooking">Scrapbooking the War</a></h1>
-			<h1 class="d resize_width"><a class="hide_hyperlink" href="#">Teaching WWII</a></h1>
-			<h1 class="e resize_width"><a class="hide_hyperlink" href="#">Doing History</a></h1>
+			<h1 class="e resize_width"><a class="hide_hyperlink" href="/experiencing">Experiencing WWII</a></h1>
+			<h1 class="e resize_width"><a class="hide_hyperlink" href="/scrapbooking">Scrapbooking the War</a></h1>
+			{{!-- <h1 class="d resize_width"><a class="hide_hyperlink" href="#">Teaching WWII</a></h1> --}}
+			{{!-- <h1 class="e resize_width"><a class="hide_hyperlink" href="#">Doing History</a></h1> --}}
 		</div>
 
 	</div>
@@ -74,18 +74,25 @@
 		width: 85%;
 		margin-bottom: 40px;
 
-		line-height: 3;
+		line-height: 2.5;
 		font-size: 14px;
 		font-family: Courier New, monospace;
 		font-style: italic;
 
-		padding: 15px;
 	}
+	#main-quote-div > p{
+		padding: 25px 55px;
+	}
+
+	/* Mobile */
 	@media (max-width: 478px) {
 		#main-quote-div {
 			line-height: 1.25;
 			font-size: 10px;
 			padding: 7px;
+		}
+		#main-quote-div > p{
+			padding: 10px;
 		}
 	}
 
