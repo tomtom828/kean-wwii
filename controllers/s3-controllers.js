@@ -7,10 +7,24 @@ var s3Router = express.Router();
 // Node Dependencies for AWS
 var aws = require('aws-sdk');
 
+// If deployed, use Heroku Config Vars
+var s3Info = require('../models/s3Info.json');
+var myAccessKeyId;
+var mySecretAccessKey;
+if(process.env.NODE_ENV == 'production') {
+  myAccessKeyId = process.env.accessKeyId;
+  mySecretAccessKey = process.env.secretAccessKey;
+}
+// Otherwise, use s3Info.json
+else {
+  myAccessKeyId = s3Info.accessKeyId;
+  mySecretAccessKey = s3Info.secretAccessKey;
+}
+
 // Set to AWS "Anyone" permissions group => Read Only access to S3 files
 aws.config.update({
-    accessKeyId: "AKIAJBLISXXXKJHKIDFQ",
-    secretAccessKey: "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",
+    accessKeyId: myAccessKeyId,
+    secretAccessKey: mySecretAccessKey,
 });
 
 // Create New S3 Connection
